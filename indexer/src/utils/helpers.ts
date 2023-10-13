@@ -525,3 +525,23 @@ export function updateTotalPayout({
     },
   };
 }
+
+export function insertTest({
+  amount,
+  timestamp,
+}: any) {
+  const entity = {
+    adventurerId: checkExistsInt(BigInt(amount)),
+  };
+
+  return {
+    entity,
+    update: {
+      $set: {
+        ...entity,
+        timestamp,
+      },
+    },
+  };
+}
+

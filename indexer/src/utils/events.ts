@@ -179,6 +179,10 @@ export const parseStartGame = combineParsers({
   adventurerMeta: { index: 1, parser: parseAdventurerMetadata },
 });
 
+export const parseTest = combineParsers({
+  adventurerState: { index: 0, parser: parseFelt252 },
+});
+
 export const parseBag = combineParsers({
   item1: { index: 0, parser: parseLootStatistics },
   item2: { index: 1, parser: parseLootStatistics },
