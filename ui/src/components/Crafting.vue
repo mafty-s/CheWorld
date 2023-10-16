@@ -6,429 +6,37 @@
       <div class="tab" id="tab1">
         <div class="left">
           <div class="hd">
-            <a href="javascript:;" class="current">Equipment</a>
-            <a href="javascript:;">Food</a>
-            <a href="javascript:;">TOOLS</a>
-            <a href="javascript:;">Materials</a>
+            <a href="javascript:;" class="current" @click="setCraftingIndex(1)">Equipment</a>
+            <a href="javascript:;" @click="setCraftingIndex(2)">Food</a>
+            <a href="javascript:;" @click="setCraftingIndex(3)">TOOLS</a>
+            <a href="javascript:;" @click="setCraftingIndex(4)">Materials</a>
           </div>
           <div class="bd">
-            <div class="model">
+            <div class="model" v-show="craftingIndex===1">
               <ul>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic1.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic2.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic3.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic4.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic5.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
+                <li v-for="(equipment,index) in currRole.bag.equipments" :key="index">
+                  <li>
+                    <h2 class="h2tit"><img :src="equipment.icon" alt=""><span>{{ equipment.name }}</span></h2>
+                    <dl>
+                      <dd>
+                        <a href="#" class="dis">Helmet of Valor</a>
+                      </dd>
+                      <dd>
+                        <a href="#" class="current">Helmet of Valor</a>
+                      </dd>
+                      <dd>
+                        <a href="#">Helmet of Valor</a>
+                      </dd>
+                      <dd>
+                        <a href="#">Helmet of Valor</a>
+                      </dd>
+                      <dd>
+                        <a href="#">Helmet of Valor</a>
+                      </dd>
+                    </dl>
+                  </li>
                 </li>
 
-              </ul>
-            </div>
-            <div class="model">
-              <ul>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic1.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic2.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic3.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic4.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic5.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-
-              </ul>
-            </div>
-            <div class="model">
-              <ul>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic1.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic2.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic3.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic4.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic5.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-
-              </ul>
-            </div>
-            <div class="model">
-              <ul>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic1.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic2.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic3.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic4.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <h2 class="h2tit"><img src="images/ic5.png" alt=""><span>Headgear</span></h2>
-                  <dl>
-                    <dd>
-                      <a href="#" class="dis">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#" class="current">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                    <dd>
-                      <a href="#">Helmet of Valor</a>
-                    </dd>
-                  </dl>
-                </li>
 
               </ul>
             </div>
@@ -473,19 +81,18 @@ import {mapActions, mapMutations, mapState} from "vuex";
 
 export default {
   name: 'CraftingComponent',
-  components: {
-  },
+  components: {},
   mounted() {
 
   },
-  computed: mapState(['wallet_address']),
+  computed: mapState(['wallet_address', "currRole", "craftingIndex"]),
   data() {
     return {}
   },
   methods: {
     ...mapActions(['connect_wallet']),
-    ...mapMutations(['setShowCrafting']),
-    closeCrafting(){
+    ...mapMutations(['setShowCrafting',"setCraftingIndex"]),
+    closeCrafting() {
       this.setShowCrafting(false);
     }
   }

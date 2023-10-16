@@ -6,7 +6,57 @@ export const store = createStore({
         wallet_address: "",
         provider: null,
         account: null,
-        showCrafting: false
+        showCrafting: false,
+        craftingIndex: 1,
+        currRole: {
+            bag: {
+                equipments: [
+                    {
+                        icon: "images/ic1.png",
+                        name: "HEAD",
+                        list: [
+
+                        ]
+                    },
+                    {
+                        icon: "images/ic2.png",
+                        name: "CHEST",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic3.png",
+                        name: "WAIST",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic4.png",
+                        name: "FOOT",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic5.png",
+                        name: "WEAPON",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic6.png",
+                        name: "HAND",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic6.png",
+                        name: "NECK",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic6.png",
+                        name: "RING",
+                        list: []
+                    },
+                ],
+                food: [{}]
+            }
+        }
     },
     mutations: {
         setWalletAddress(state, value) {
@@ -14,6 +64,9 @@ export const store = createStore({
         },
         setShowCrafting(state, value) {
             state.showCrafting = value
+        },
+        setCraftingIndex(state, value) {
+            state.craftingIndex = value
         }
     },
     actions: {
