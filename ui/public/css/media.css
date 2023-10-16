@@ -1,0 +1,32 @@
+@media screen and (max-width: 1200px){
+
+}
+@media screen and (max-width: 992px){
+	
+}
+@media screen and (max-width: 768px){
+.wap_nav {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	z-index: 7777;
+}
+.wap_nav .logo {
+    float: left;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.wap_nav .logo img{height: 24px;margin-top: 13px;margin-left: 10px;}
+
+
+
+.pc{
+    display: none;
+}
+.wap{
+    display: block;
+}
+
+}
