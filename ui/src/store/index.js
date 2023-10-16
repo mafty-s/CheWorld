@@ -2,6 +2,8 @@ import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 
+export const contract_address = "0x02047b8a0f95a8aab8d01534565bdd6eb0b5a81c432e39f0977ab6e165d88ee8";
+
 export const store = createStore({
     state: {
         wallet_address: "",
@@ -85,11 +87,18 @@ export const store = createStore({
                     },
                 ]
             }
-        }
+        },
+        roles: [{}]
     },
     mutations: {
         setWalletAddress(state, value) {
             state.wallet_address = value;
+        },
+        setAccount(state, value) {
+            state.account = value;
+        },
+        setProvider(state, value) {
+            state.provider = value;
         },
         setShowCrafting(state, value) {
             state.showCrafting = value
@@ -130,6 +139,40 @@ export const store = createStore({
             const provider = a.provider;
             const account = a.account;
             context.commit("setWalletAddress", wallet_address);
+            context.commit("setAccount",account);
+            context.commit("setProvider",provider)
+        },
+        async start(context, formData) {
+
+            const mintAdventurerTx = {
+                contractAddress: gameContract?.address ?? "",
+                entrypoint: "start",
+                calldata: [
+                    "0x0628d41075659afebfc27aa2aab36237b08ee0b112debd01e56d037f64f6082a",
+                    getKeyFromValue(gameData.ITEMS, formData.startingWeapon) ?? "",
+                    stringToFelt(formData.name).toString(),
+                    getRandomNumber(8000),
+                    getKeyFromValue(gameData.CLASSES, formData.class) ?? "",
+                    "1",
+                    formData.startingStrength,
+                    formData.startingDexterity,
+                    formData.startingVitality,
+                    formData.startingIntelligence,
+                    formData.startingWisdom,
+                    formData.startingCharisma,
+                ],
+            };
+
+            const tx = await handleSubmitCalls(writeAsync);
+
+            console.log("tx", tx);
+
+            const receipt = await state.account?.waitForTransaction(tx.transaction_hash, {
+                retryInterval: 2000,
+            });
+
+            console.log('receipt', receipt)
+
         }
     }
 })

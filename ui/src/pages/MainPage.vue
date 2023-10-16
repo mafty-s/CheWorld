@@ -1,6 +1,8 @@
 <template>
   <div class="game">
     <div class="people" style="cursor: pointer" @click="openCrafting"></div>
+    <div class="people" style="cursor: pointer;left: 20%;"></div>
+
     <div class="leftInfor">
       <div class="user"><img src="@/assets/images/user.png" alt=""></div>
       <div class="infor">
