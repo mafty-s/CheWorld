@@ -6,35 +6,30 @@
       <div class="tab" id="tab1">
         <div class="left">
           <div class="hd">
-            <a href="javascript:;" class="current" @click="setCraftingIndex(1)">Equipment</a>
-            <a href="javascript:;" @click="setCraftingIndex(2)">Food</a>
-            <a href="javascript:;" @click="setCraftingIndex(3)">TOOLS</a>
-            <a href="javascript:;" @click="setCraftingIndex(4)">Materials</a>
+            <a href="javascript:;" :class="[craftingIndex===1 ? 'current' : '',]" @click="setCraftingIndex(1)">Equipment</a>
+            <a href="javascript:;" :class="[craftingIndex===2 ? 'current' : '',]" @click="setCraftingIndex(2)">Food</a>
+            <a href="javascript:;" :class="[craftingIndex===3 ? 'current' : '',]" @click="setCraftingIndex(3)">TOOLS</a>
+            <a href="javascript:;" :class="[craftingIndex===4 ? 'current' : '',]" @click="setCraftingIndex(4)">Materials</a>
           </div>
           <div class="bd">
-            <div class="model" v-show="craftingIndex===1">
+            <div class="model">
               <ul>
-                <li v-for="(equipment,index) in currRole.bag.equipments" :key="index">
-                  <li>
+                <li v-for="(equipment,index) in currRole.bag.equipments" :key="index"  v-show="craftingIndex===1">
                     <h2 class="h2tit"><img :src="equipment.icon" alt=""><span>{{ equipment.name }}</span></h2>
                     <dl>
                       <dd>
                         <a href="#" class="dis">Helmet of Valor</a>
                       </dd>
-                      <dd>
-                        <a href="#" class="current">Helmet of Valor</a>
-                      </dd>
-                      <dd>
-                        <a href="#">Helmet of Valor</a>
-                      </dd>
-                      <dd>
-                        <a href="#">Helmet of Valor</a>
-                      </dd>
-                      <dd>
-                        <a href="#">Helmet of Valor</a>
-                      </dd>
                     </dl>
-                  </li>
+                </li>
+
+                <li v-for="(food,index) in currRole.bag.foods" :key="index"  v-show="craftingIndex===2">
+                  <h2 class="h2tit"><img :src="food.icon" alt=""><span>{{ food.name }}</span></h2>
+                  <dl>
+                    <dd>
+                      <a href="#" class="dis">Helmet of Valor</a>
+                    </dd>
+                  </dl>
                 </li>
 
 

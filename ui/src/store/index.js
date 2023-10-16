@@ -14,9 +14,7 @@ export const store = createStore({
                     {
                         icon: "images/ic1.png",
                         name: "HEAD",
-                        list: [
-
-                        ]
+                        list: []
                     },
                     {
                         icon: "images/ic2.png",
@@ -54,7 +52,18 @@ export const store = createStore({
                         list: []
                     },
                 ],
-                food: [{}]
+                foods: [
+                    {
+                        icon: "images/ic6.png",
+                        name: "ROAST MEAT",
+                        list: []
+                    },
+                    {
+                        icon: "images/ic6.png",
+                        name: "FISH SOUP",
+                        list: []
+                    },
+                ]
             }
         }
     },
