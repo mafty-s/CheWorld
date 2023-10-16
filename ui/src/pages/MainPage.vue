@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <div class="people" @click="openCrafting"></div>
+    <div class="people" style="cursor: pointer" @click="openCrafting"></div>
     <div class="leftInfor">
       <div class="user"><img src="images/user.png" alt=""></div>
       <div class="infor">
