@@ -4,14 +4,17 @@ import {connect} from "@argent/get-starknet";
 export const store = createStore({
     state: {
         wallet_address: "",
-        provider:null,
-        account:null,
+        provider: null,
+        account: null,
+        showCrafting: false
     },
     mutations: {
         setWalletAddress(state, value) {
             state.wallet_address = value;
         },
-
+        setShowCrafting(state, value) {
+            state.showCrafting = value
+        }
     },
     actions: {
         increment(context) {
