@@ -4,7 +4,7 @@ import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 
 export const contract_address = "0x02047b8a0f95a8aab8d01534565bdd6eb0b5a81c432e39f0977ab6e165d88ee8";
-
+// export const lordsContractAddress :string
 export const store = createStore({
     state: {
         wallet_address: "",
@@ -145,15 +145,29 @@ export const store = createStore({
         },
         async start(context, formData) {
 
+
+            // const mintLords = {
+            //     contractAddress: lordsContractAddress,
+            //     entrypoint: "mint",
+            //     calldata: [formatAddress, (100 * 10 ** 18).toString(), "0"],
+            // };
+            //
+            // const approveLordsTx = {
+            //     contractAddress: lordsContract?.address ?? "",
+            //     entrypoint: "approve",
+            //     calldata: [contract_address, (100 * 10 ** 18).toString(), "0"],
+            // };
+
+
             const mintAdventurerTx = {
-                contractAddress: gameContract?.address ?? "",
+                contractAddress: contract_address,
                 entrypoint: "start",
                 calldata: [
                     "0x0628d41075659afebfc27aa2aab36237b08ee0b112debd01e56d037f64f6082a",
-                    getKeyFromValue(gameData.ITEMS, formData.startingWeapon) ?? "",
+                    formData.startingWeapon,
                     stringToFelt(formData.name).toString(),
                     getRandomNumber(8000),
-                    getKeyFromValue(gameData.CLASSES, formData.class) ?? "",
+                    formData.class,
                     "1",
                     formData.startingStrength,
                     formData.startingDexterity,
@@ -164,11 +178,11 @@ export const store = createStore({
                 ],
             };
 
-            const tx = await state.account?.execute(mintAdventurerTx);
+            const tx = await context.state.account?.execute(mintAdventurerTx);
 
             console.log("tx", tx);
 
-            const receipt = await state.account?.waitForTransaction(tx.transaction_hash, {
+            const receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
                 retryInterval: 2000,
             });
 

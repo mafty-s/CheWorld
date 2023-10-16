@@ -33,7 +33,8 @@ export default {
         startingWisdom: 1,
         startingCharisma: 1,
         name: "abc",
-        startingWeapon: 1
+        startingWeapon: 16,
+        class:1
       });
     }
 

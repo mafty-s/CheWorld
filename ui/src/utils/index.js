@@ -1,3 +1,5 @@
+import {Buffer} from "buffer";
+
 export function stringToFelt(str) {
     return "0x" + Buffer.from(str).toString("hex");
 }
