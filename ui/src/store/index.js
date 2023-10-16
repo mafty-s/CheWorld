@@ -17,48 +17,56 @@ export const store = createStore({
                     item_subtypes.hand = {
                         icon: "images/ic1.png",
                         name: "HEAD",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.head
+                        subtype: item_subtypes.head
                     },
-                    item_subtypes.chest =   {
+                    item_subtypes.chest = {
                         icon: "images/ic2.png",
                         name: "CHEST",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.chest
+                        subtype: item_subtypes.chest
                     },
-                    item_subtypes.waist =  {
+                    item_subtypes.waist = {
                         icon: "images/ic3.png",
                         name: "WAIST",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.waist
+                        subtype: item_subtypes.waist
                     },
                     {
                         icon: "images/ic4.png",
                         name: "FOOT",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.foot
+                        subtype: item_subtypes.foot
                     },
                     {
                         icon: "images/ic5.png",
                         name: "WEAPON",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.weapon
+                        subtype: item_subtypes.weapon
                     },
                     {
                         icon: "images/ic6.png",
                         name: "HAND",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.hand
+                        subtype: item_subtypes.hand
                     },
                     {
                         icon: "images/ic6.png",
                         name: "NECK",
+                        showDetails: false,
                         list: [],
-                        subtype:item_subtypes.nick
+                        subtype: item_subtypes.nick
                     },
                     {
                         icon: "images/ic6.png",
                         name: "RING",
+                        showDetails: false,
                         list: []
                     },
                 ],
@@ -66,11 +74,13 @@ export const store = createStore({
                     {
                         icon: "images/ic6.png",
                         name: "ROAST MEAT",
+                        showDetails: false,
                         list: []
                     },
                     {
                         icon: "images/ic6.png",
                         name: "FISH SOUP",
+                        showDetails: false,
                         list: []
                     },
                 ]
@@ -96,8 +106,14 @@ export const store = createStore({
             }
             state.craftingNumber = value;
         },
-        addItem(state,value){
+        addItem(state, value) {
 
+        },
+        setEquipmentShowDetail(state, index) {
+            state.currRole.bag.equipments[index].showDetails = !state.currRole.bag.equipments[index].showDetails
+        },
+        setFoodShowDetail(state, index) {
+            state.currRole.bag.foods[index].showDetails = !state.currRole.bag.foods[index].showDetails
         }
     },
     actions: {

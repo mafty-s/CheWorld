@@ -37,10 +37,20 @@ for (let i = 0; i < composite_config.length; i++) {
 
     switch (target_define.TYPE) {
         case item_types.equipments:
-            if (store.state.currRole.bag.equipments[target_define.SUBCLASS]) {
-                store.state.currRole.bag.equipments[target_define.SUBCLASS].list.push({
+            if (store.state.currRole.bag.equipments[target_define.SUBCLASS - 1]) {
+                store.state.currRole.bag.equipments[target_define.SUBCLASS - 1].list.push({
                     id: target_define.ID,
-                    name: target_define.NAME
+                    name: target_define.NAME,
+                    pairs: pairs
+                })
+            }
+            break;
+        case item_types.foods:
+            if (store.state.currRole.bag.foods[target_define.SUBCLASS - 9]) {
+                store.state.currRole.bag.foods[target_define.SUBCLASS - 9].list.push({
+                    id: target_define.ID,
+                    name: target_define.NAME,
+                    pairs: pairs
                 })
             }
             break;
