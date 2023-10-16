@@ -14,17 +14,37 @@ app.use(router)
 app.use(store)
 
 
-import {items_config} from "./config/item.js";
-import {composite_config} from "./config/item.js";
+import {items_config, composite_config, item_subtypes, getItemConfigById, item_types} from "./config/item.js";
 
-for (let i = 0; i <= composite_config.length; i++) {
+for (let i = 0; i < composite_config.length; i++) {
     const comp = composite_config[i];
     const pairs = comp.COMPOSITE.split(",").map(pair => {
         const [key, value] = pair.split("|");
         return {key: parseInt(key), value: parseInt(value)};
     });
     console.log(pairs);
-    const target_define = items_config[comp.ID];
+    const target_define = getItemConfigById(comp.ID);
+    if (!target_define) {
+        console.log("comp.ID", comp.ID)
+        continue;
+    }
+
+    // switch (target_define.SUBCLASS) {
+    //     case item_subtypes.hand:
+    //
+    //         break;
+    // }
+
+    switch (target_define.TYPE) {
+        case item_types.equipments:
+            if (store.state.currRole.bag.equipments[target_define.SUBCLASS]) {
+                store.state.currRole.bag.equipments[target_define.SUBCLASS].list.push({
+                    id: target_define.ID,
+                    name: target_define.NAME
+                })
+            }
+            break;
+    }
 
 
 }

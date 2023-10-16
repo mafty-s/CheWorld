@@ -1,5 +1,6 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
+import {item_subtypes} from "../config/item.js";
 
 export const store = createStore({
     state: {
@@ -8,47 +9,52 @@ export const store = createStore({
         account: null,
         showCrafting: false,
         craftingIndex: 1,
-        craftingNumber:1,
+        craftingNumber: 1,
         currRole: {
-            ingredientRecipe:[
-
-            ],
+            ingredientRecipe: [],
             bag: {
                 equipments: [
-                    {
+                    item_subtypes.hand = {
                         icon: "images/ic1.png",
                         name: "HEAD",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.head
                     },
-                    {
+                    item_subtypes.chest =   {
                         icon: "images/ic2.png",
                         name: "CHEST",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.chest
                     },
-                    {
+                    item_subtypes.waist =  {
                         icon: "images/ic3.png",
                         name: "WAIST",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.waist
                     },
                     {
                         icon: "images/ic4.png",
                         name: "FOOT",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.foot
                     },
                     {
                         icon: "images/ic5.png",
                         name: "WEAPON",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.weapon
                     },
                     {
                         icon: "images/ic6.png",
                         name: "HAND",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.hand
                     },
                     {
                         icon: "images/ic6.png",
                         name: "NECK",
-                        list: []
+                        list: [],
+                        subtype:item_subtypes.nick
                     },
                     {
                         icon: "images/ic6.png",
@@ -81,14 +87,17 @@ export const store = createStore({
         setCraftingIndex(state, value) {
             state.craftingIndex = value
         },
-        setCraftingNumber(state,value){
-            if(value<1){
-                value=1;
+        setCraftingNumber(state, value) {
+            if (value < 1) {
+                value = 1;
             }
-            if(value>99){
-                value=99;
+            if (value > 99) {
+                value = 99;
             }
-            state.craftingNumber=value;
+            state.craftingNumber = value;
+        },
+        addItem(state,value){
+
         }
     },
     actions: {

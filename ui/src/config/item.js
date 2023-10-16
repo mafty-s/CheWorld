@@ -64,3 +64,12 @@ export const item_subtypes = {
     meet: 9,
     soup: 10
 }
+
+export const getItemConfigById=(id)=>{
+    for (let i=0;i<items_config.length;i++){
+        let item = items_config[i];
+        if(item.ID===id){
+            return item;
+        }
+    }
+}

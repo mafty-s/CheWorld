@@ -16,9 +16,9 @@
               <ul>
                 <li v-for="(equipment,index) in currRole.bag.equipments" :key="index"  v-show="craftingIndex===1">
                     <h2 class="h2tit"><img :src="equipment.icon" alt=""><span>{{ equipment.name }}</span></h2>
-                    <dl>
-                      <dd>
-                        <a href="#" class="dis">Helmet of Valor</a>
+                    <dl style="display: block">
+                      <dd v-for="(item,index) in equipment.list" :key="index">
+                        <a href="#" class="dis">{{item.name}}</a>
                       </dd>
                     </dl>
                 </li>
