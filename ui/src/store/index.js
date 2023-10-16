@@ -192,7 +192,19 @@ export const store = createStore({
             //
             // console.log('events', events);
 
-        }
+            // const adventurerState = events.find(
+            //     (event) => event.name === "AmbushedByBeast"
+            // ).data[0];
+
+        },
+        async explore(context, till_beast) {
+        },
+        async attack(context, tillDeath, beastData) {
+        },
+        async flee(context, tillDeath, beastData) {
+        },
+        async upgrade(context) {
+        },
     }
 })
 
