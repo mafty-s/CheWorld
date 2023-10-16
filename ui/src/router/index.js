@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/adventure_list',
       name: 'adventure_list',
-      component: MainPage
+      component: AdventureListPage
     }
   ]
 })

@@ -1,5 +1,6 @@
 <template>
-  <ElButton></ElButton>
+  <ElButton @click="connect_wallet">conn</ElButton>
+  <ElButton @click="spawn"></ElButton>
 </template>
 
 <script>
@@ -21,8 +22,20 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['',]),
+    ...mapActions(['connect_wallet', 'start']),
     ...mapMutations(['']),
+    async spawn() {
+      await this.start({
+        startingStrength: 1,
+        startingDexterity: 1,
+        startingVitality: 1,
+        startingIntelligence: 1,
+        startingWisdom: 1,
+        startingCharisma: 1,
+        name: "abc",
+        startingWeapon: 1
+      });
+    }
 
   }
 }

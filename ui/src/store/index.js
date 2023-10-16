@@ -1,6 +1,7 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
+import {getRandomNumber, stringToFelt} from "../utils/index.js";
 
 export const contract_address = "0x02047b8a0f95a8aab8d01534565bdd6eb0b5a81c432e39f0977ab6e165d88ee8";
 
@@ -139,8 +140,8 @@ export const store = createStore({
             const provider = a.provider;
             const account = a.account;
             context.commit("setWalletAddress", wallet_address);
-            context.commit("setAccount",account);
-            context.commit("setProvider",provider)
+            context.commit("setAccount", account);
+            context.commit("setProvider", provider)
         },
         async start(context, formData) {
 
@@ -163,7 +164,7 @@ export const store = createStore({
                 ],
             };
 
-            const tx = await handleSubmitCalls(writeAsync);
+            const tx = await state.account?.execute(mintAdventurerTx);
 
             console.log("tx", tx);
 
@@ -171,7 +172,11 @@ export const store = createStore({
                 retryInterval: 2000,
             });
 
-            console.log('receipt', receipt)
+            console.log('receipt', receipt);
+
+            // const events = await parseEvents(receipt);
+            //
+            // console.log('events', events);
 
         }
     }
