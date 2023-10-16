@@ -6,7 +6,7 @@
       <div class="center">
         <div class="logo"><img src="images/logo.png" alt=""></div>
         <div class="btns">
-          <div class="btn1"><a href="javascript;" @click="connect_wallet">WALLET LOGIN</a></div>
+          <div class="btn1"><a href="javascript:;" @click="login_and_enter">WALLET LOGIN</a></div>
           <div class="btn2">
             <a href="#">social account</a>
             <a href="#">white papper</a>
@@ -20,7 +20,6 @@
 <script>
 
 import {mapState, mapActions} from 'vuex'
-import {connect} from "@argent/get-starknet";
 
 export default {
   name: 'LoginPage',
@@ -36,6 +35,11 @@ export default {
   },
   methods: {
     ...mapActions(['connect_wallet']),
+    async login_and_enter(){
+      await this.connect_wallet();
+      this.$router.push('/main')
+
+    }
   }
 }
 </script>

@@ -3,23 +3,30 @@ import {connect} from "@argent/get-starknet";
 
 export const store = createStore({
     state: {
-        count: 0
+        wallet_address: "",
+        provider:null,
+        account:null,
     },
     mutations: {
-        increment (state) {
-            state.count++
-        }
+        setWalletAddress(state, value) {
+            state.wallet_address = value;
+        },
+
     },
     actions: {
-        increment (context) {
+        increment(context) {
             context.commit('increment')
         },
-        async connect_wallet(){
+        async connect_wallet(context) {
             const a = await connect({
-                modalMode:"alwaysAsk",
-                modalTheme:"dark",
-                chainId:"SN_GOERLI"
+                modalMode: "alwaysAsk",
+                modalTheme: "dark",
+                chainId: "SN_GOERLI"
             });
+            const wallet_address = a.account.address;
+            const provider = a.provider;
+            const account = a.account;
+            context.commit("setWalletAddress", wallet_address);
         }
     }
 })
