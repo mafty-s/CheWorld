@@ -56,11 +56,11 @@
             </div>
             <div class="title2"><img src="images/ic1.png" alt=""><span>Feathered Crest</span></div>
             <div class="num">
-              <i class="ic1"></i>
-              <input type="text" value="10" class="words">
-              <i class="ic2"></i>
+              <i class="ic1" @click="decrCraftingNumber"></i>
+              <input type="text" :value="craftingNumber" class="words">
+              <i class="ic2" @click="incrCraftingNumber"></i>
             </div>
-            <a href="javascript:;" class="Craft">Craft</a>
+            <a href="javascript:;" class="Craft" @click="doCrafting">Craft</a>
           </div>
         </div>
       </div>
@@ -70,6 +70,7 @@
 
 <script>
 import {mapActions, mapMutations, mapState} from "vuex";
+import {ElMessage} from "element-plus";
 
 export default {
   name: 'CraftingComponent',
@@ -77,15 +78,27 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "currRole", "craftingIndex"]),
+  computed: mapState(['wallet_address', "currRole", "craftingIndex","craftingNumber"]),
   data() {
     return {}
   },
   methods: {
     ...mapActions(['connect_wallet']),
-    ...mapMutations(['setShowCrafting',"setCraftingIndex"]),
+    ...mapMutations(['setShowCrafting',"setCraftingIndex","setCraftingNumber"]),
     closeCrafting() {
       this.setShowCrafting(false);
+    },
+    incrCraftingNumber(){
+      this.setCraftingNumber(this.craftingNumber+1);
+    },
+    decrCraftingNumber(){
+      this.setCraftingNumber(this.craftingNumber-1);
+    },
+    async doCrafting(){
+      ElMessage({
+        message: 'Congrats, this is a success message.',
+        type: 'success',
+      })
     }
   }
 }

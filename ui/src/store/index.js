@@ -8,6 +8,7 @@ export const store = createStore({
         account: null,
         showCrafting: false,
         craftingIndex: 1,
+        craftingNumber:1,
         currRole: {
             ingredientRecipe:[
 
@@ -79,6 +80,15 @@ export const store = createStore({
         },
         setCraftingIndex(state, value) {
             state.craftingIndex = value
+        },
+        setCraftingNumber(state,value){
+            if(value<1){
+                value=1;
+            }
+            if(value>99){
+                value=99;
+            }
+            state.craftingNumber=value;
         }
     },
     actions: {
