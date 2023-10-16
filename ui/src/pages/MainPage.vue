@@ -2,7 +2,7 @@
   <div class="game">
     <div class="people" style="cursor: pointer" @click="openCrafting"></div>
     <div class="leftInfor">
-      <div class="user"><img src="images/user.png" alt=""></div>
+      <div class="user"><img src="@/assets/images/user.png" alt=""></div>
       <div class="infor">
         <div class="name">{{ wallet_address }}</div>
         <router-link to="/"><div class="Wallet">Wallet</div></router-link>
@@ -11,7 +11,7 @@
     <div class="typeItem type1">
       <div class="add"></div>
       <div class="ov">
-        <div class="icon"><img src="images/icon1.png" alt=""></div>
+        <div class="icon"><img src="@/assets/images/icon1.png" alt=""></div>
         <div class="val">20/90</div>
         <div class="line"></div>
       </div>
@@ -19,7 +19,7 @@
     <div class="typeItem type2" style="top:120px">
       <div class="add"></div>
       <div class="ov">
-        <div class="icon"><img src="images/icon2.png" alt=""></div>
+        <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
         <div class="val">20/90</div>
         <div class="line"></div>
       </div>
@@ -27,7 +27,7 @@
     <div class="typeItem type3" style="top:220px">
       <div class="add"></div>
       <div class="ov">
-        <div class="icon"><img src="images/icon2.png" alt=""></div>
+        <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
         <div class="val">20/90</div>
         <div class="line"></div>
       </div>

@@ -4,7 +4,7 @@
       <div class="imgbox"
            style="background: url(/images/login.jpg) no-repeat center center;background-size: cover;"></div>
       <div class="center">
-        <div class="logo"><img src="images/logo.png" alt=""></div>
+        <div class="logo"><img src="@/assets/images/logo.png" alt=""></div>
         <div class="btns">
           <div class="btn1"><a href="javascript:;" @click="login_and_enter">WALLET LOGIN</a></div>
           <div class="btn2">

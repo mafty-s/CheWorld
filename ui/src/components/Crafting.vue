@@ -1,7 +1,7 @@
 <template>
   <div class="alertModel">
     <div class="content">
-      <div class="logo"><img src="images/logo2.png" alt=""></div>
+      <div class="logo"><img src="@/assets/images/logo2.png" alt=""></div>
       <div class="close" @click="closeCrafting"></div>
       <div class="tab" id="tab1">
         <div class="left">
@@ -42,7 +42,7 @@
             <div class="title">Ingredient Recipe</div>
             <div class="list">
               <ul>
-                <li><img src="/images/user.png"/></li>
+                <li><img src="@/assets/images/user.png"/></li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -54,7 +54,7 @@
                 <li></li>
               </ul>
             </div>
-            <div class="title2"><img src="images/ic1.png" alt=""><span>Feathered Crest</span></div>
+            <div class="title2"><img src="@/assets/images/ic1.png" alt=""><span>Feathered Crest</span></div>
             <div class="num">
               <i class="ic1" @click="decrCraftingNumber"></i>
               <input type="text" :value="craftingNumber" class="words">
