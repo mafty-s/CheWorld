@@ -9,6 +9,9 @@ export const store = createStore({
         showCrafting: false,
         craftingIndex: 1,
         currRole: {
+            ingredientRecipe:[
+
+            ],
             bag: {
                 equipments: [
                     {

@@ -22,7 +22,6 @@
                       </dd>
                     </dl>
                 </li>
-
                 <li v-for="(food,index) in currRole.bag.foods" :key="index"  v-show="craftingIndex===2">
                   <h2 class="h2tit"><img :src="food.icon" alt=""><span>{{ food.name }}</span></h2>
                   <dl>
@@ -31,8 +30,6 @@
                     </dd>
                   </dl>
                 </li>
-
-
               </ul>
             </div>
           </div>
@@ -45,7 +42,7 @@
             <div class="title">Ingredient Recipe</div>
             <div class="list">
               <ul>
-                <li></li>
+                <li><img src="/images/user.png"/></li>
                 <li></li>
                 <li></li>
                 <li></li>
