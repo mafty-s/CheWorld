@@ -4,7 +4,7 @@ import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
 
-export const contract_address = "0x01b7db5b5fda71d7eed79c14ecb8bedcf3c30e5bfbc3111e6eb622e64da1cfb7";
+export const contract_address = "0x012353cc1b661c390ad633238344f38f71be67dc5f7e2a3ae284df9cfb83f208";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
