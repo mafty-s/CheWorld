@@ -12,7 +12,7 @@ export const store = createStore({
         provider: null,
         account: null,
         showCrafting: false,
-        showInformation:false,
+        showInformation: false,
         craftingIndex: 1,
         craftingNumber: 1,
         currRole: {
@@ -91,7 +91,8 @@ export const store = createStore({
                 ]
             }
         },
-        adventurers: []
+        adventurers: [],
+        adventurer: null
     },
     mutations: {
         setWalletAddress(state, value) {
@@ -130,8 +131,24 @@ export const store = createStore({
         setAdventures(state, value) {
             state.adventurers = value;
         },
-        setShowInformation(state,value){
+        setShowInformation(state, value) {
             state.showInformation = value
+        },
+        doStart(state, name, events) {
+
+            const ad = {
+                id: events[0].data.data.adventurerState.adventurerId,
+                name: name,
+                charisma: events[0].data.data.adventurerState.adventurer.stats.charisma,
+                dexterity: events[0].data.data.adventurerState.adventurer.stats.dexterity,
+                intelligence: events[0].data.data.adventurerState.adventurer.stats.intelligence,
+                strength: events[0].data.data.adventurerState.adventurer.stats.strength,
+                vitality: events[0].data.data.adventurerState.adventurer.stats.vitality,
+                wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
+
+            };
+            state.adventurers = ad;
+            state.adventurers.push(ad)
         }
     },
     actions: {
@@ -162,6 +179,10 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doStart", ["", events])
+
+
         },
         async start(context, formData) {
 
@@ -202,7 +223,7 @@ export const store = createStore({
 
             console.log("tx", tx);
 
-            const receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
+            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
                 retryInterval: 2000,
             });
 
@@ -211,6 +232,8 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doStart", [formData.name, events])
 
             // const adventurerState = events.find(
             //     (event) => event.name === "AmbushedByBeast"

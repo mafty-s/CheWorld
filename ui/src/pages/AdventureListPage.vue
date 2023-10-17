@@ -1,7 +1,7 @@
 <template>
   <!--  <ElButton @click="connect_wallet">conn</ElButton>-->
   <!--  <ElButton @click="spawn">spawn</ElButton>-->
-  <!--  <ElButton @click="test">test</ElButton>-->
+    <ElButton @click="test">test</ElButton>
   <div class="creatMain">
     <!--    <a href="#" class="Skip">Skip</a>-->
     <div class="contBase  itemNase " v-if="step===1" @click="nextStep">
@@ -152,6 +152,10 @@ export default {
   methods: {
     ...mapActions(['connect_wallet', 'start', 'getReceipt']),
     ...mapMutations(['']),
+    async test(){
+      await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');
+      this.$router.push('/main')
+    },
     async enter() {
       await this.spawn();
       this.$router.push('/main')
@@ -215,9 +219,6 @@ export default {
         startingWeapon: 16,
         class: 1
       });
-    },
-    async test() {
-      await this.getReceipt("0x1f7e02d285bc972ab83f23d06a9b8b7618dad1868d1f345e7df172355ff29e1")
     }
   }
 }

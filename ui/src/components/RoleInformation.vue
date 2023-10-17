@@ -25,30 +25,38 @@
           <div class="dec2">
             <p>
               <span class="s1">Strength</span>
-              <span class="s2">50</span>
+              <span class="s2">{{adventurer.strength}}</span>
             </p>
             <p>
-              <span class="s1">Agility</span>
-              <span class="s2">50</span>
+              <span class="s1">Dexterity</span>
+              <span class="s2">{{ adventurer.dexterity }}</span>
             </p>
             <p>
               <span class="s1">Wisdom</span>
-              <span class="s2">50</span>
+              <span class="s2">{{ adventurer.wisdom }}</span>
             </p>
             <p>
               <span class="s1">Intelligence</span>
-              <span class="s2">50</span>
+              <span class="s2">{{adventurer.intelligence}}</span>
+            </p>
+            <p>
+              <span class="s1">Charisma</span>
+              <span class="s2">{{adventurer.charisma}}</span>
+            </p>
+            <p>
+              <span class="s1">Vitality</span>
+              <span class="s2">{{adventurer.vitality}}</span>
             </p>
             <p>
               <span class="s1">Luck</span>
-              <span class="s2">50</span>
+              <span class="s2">{{ adventurer.luck }}</span>
             </p>
           </div>
         </div>
         <div class="right">
-          <div class="title">{{name}}}</div>
+          <div class="title">{{adventurer.name}}}</div>
           <img src="@/assets/images/people.png" class="people" alt="">
-          <button class="btn">Start Adventure</button>
+<!--          <button class="btn">Start Adventure</button>-->
         </div>
       </div>
     </div>
@@ -56,7 +64,7 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: 'RoleInformation',
@@ -64,16 +72,9 @@ export default {
   mounted() {
 
   },
+  computed: mapState(['adventurer']),
   data() {
     return {
-      name: "",
-      Strength: 0,
-      Dexterity: 0,
-      Vitality: 0,
-      Intelligence: 0,
-      Wisdom: 0,
-      Charisma: 0,
-      Luck: 0,
     }
   },
   methods: {
