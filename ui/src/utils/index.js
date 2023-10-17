@@ -24,3 +24,7 @@ export function getKeyFromValue(
 export function convertToBoolean(value) {
     return value === 1;
 }
+
+export function getRandomNumberIn(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

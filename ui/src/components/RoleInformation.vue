@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="creatMain" style="z-index: 2;background: none" @click="close">
     <div class="content3 itemNase">
@@ -48,7 +46,7 @@
           </div>
         </div>
         <div class="right">
-          <div class="title">Some text about name</div>
+          <div class="title">{{name}}}</div>
           <img src="@/assets/images/people.png" class="people" alt="">
           <button class="btn">Start Adventure</button>
         </div>
@@ -57,7 +55,7 @@
   </div>
 </template>
 
-<script >
+<script>
 import {mapMutations} from "vuex";
 
 export default {
@@ -66,9 +64,21 @@ export default {
   mounted() {
 
   },
-  methods:{
+  data() {
+    return {
+      name: "",
+      Strength: 0,
+      Dexterity: 0,
+      Vitality: 0,
+      Intelligence: 0,
+      Wisdom: 0,
+      Charisma: 0,
+      Luck: 0,
+    }
+  },
+  methods: {
     ...mapMutations(['setShowInformation']),
-    close(){
+    close() {
       this.setShowInformation(false)
     }
   }
