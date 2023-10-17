@@ -9,6 +9,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: apibara
       MONGO_INITDB_ROOT_PASSWORD: apibara
     ports:
-      - 27018:27017
+      - 27017:27017
     volumes:
       - ./mongo-goerli:/data/db
