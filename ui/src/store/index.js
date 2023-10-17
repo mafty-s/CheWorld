@@ -90,7 +90,7 @@ export const store = createStore({
                 ]
             }
         },
-        roles: [{}]
+        adventurers: []
     },
     mutations: {
         setWalletAddress(state, value) {
@@ -125,6 +125,9 @@ export const store = createStore({
         },
         setFoodShowDetail(state, index) {
             state.currRole.bag.foods[index].showDetails = !state.currRole.bag.foods[index].showDetails
+        },
+        setAdventures(state, value) {
+            state.adventurers = value;
         }
     },
     actions: {
@@ -144,7 +147,7 @@ export const store = createStore({
             context.commit("setAccount", account);
             context.commit("setProvider", provider)
         },
-        async getReceipt(context,txhash){
+        async getReceipt(context, txhash) {
 
             const receipt = await context.state.account?.waitForTransaction(txhash, {
                 retryInterval: 2000,
@@ -154,7 +157,7 @@ export const store = createStore({
 
             let events = await parseEvents(receipt);
 
-            console.log('events',events);
+            console.log('events', events);
         },
         async start(context, formData) {
 
@@ -203,7 +206,7 @@ export const store = createStore({
 
             let events = await parseEvents(receipt);
 
-            console.log('events',events);
+            console.log('events', events);
 
             // const adventurerState = events.find(
             //     (event) => event.name === "AmbushedByBeast"

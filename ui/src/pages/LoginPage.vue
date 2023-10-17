@@ -19,7 +19,8 @@
 
 <script>
 
-import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions, mapMutations} from 'vuex'
+import {getAdventure} from "../system/graphql.js";
 
 export default {
   name: 'LoginPage',
@@ -27,18 +28,19 @@ export default {
   mounted() {
 
   },
-  computed: mapState({
-
-  }),
+  computed: mapState(['wallet_address']),
   data() {
     return {}
   },
   methods: {
+    ...mapMutations(['setAdventures']),
     ...mapActions(['connect_wallet']),
     async login_and_enter(){
       await this.connect_wallet();
+      let resp =  await getAdventure();
+      console.log(resp)
+      this.setAdventures(resp.data.adventurers);
       this.$router.push('/adventure_list')
-
     }
   }
 }

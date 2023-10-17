@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = "http://3.29.249.78:8080/goerli-graphql";
 
-const getAdventure = async () => {
+export  const getAdventure = async () => {
 
     let query = 'query MyQuery {\n' +
         '  adventurers(\n' +
@@ -56,6 +56,7 @@ const getAdventure = async () => {
     };
 
 
-    const resp = axios.request(config);
-    console.log('resp','resp')
+    const resp = await axios.request(config);
+    console.log('resp',resp)
+    return resp.data;
 }
