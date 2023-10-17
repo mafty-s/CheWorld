@@ -148,6 +148,7 @@ export const store = createStore({
                 strength: events[0].data.data.adventurerState.adventurer.stats.strength,
                 vitality: events[0].data.data.adventurerState.adventurer.stats.vitality,
                 wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
+                luck:0
 
             };
             state.adventurer = ad;
