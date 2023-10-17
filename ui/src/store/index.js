@@ -2,6 +2,7 @@ import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
+import {parseEvents} from "../starknet/start.js";
 
 export const contract_address = "0x01b7db5b5fda71d7eed79c14ecb8bedcf3c30e5bfbc3111e6eb622e64da1cfb7";
 // export const lordsContractAddress :string
@@ -150,6 +151,10 @@ export const store = createStore({
             });
 
             console.log('receipt', receipt);
+
+            let events = parseEvents(receipt);
+
+            console.log('events',events);
         },
         async start(context, formData) {
 
