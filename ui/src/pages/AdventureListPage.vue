@@ -1,7 +1,7 @@
 <template>
   <!--  <ElButton @click="connect_wallet">conn</ElButton>-->
   <!--  <ElButton @click="spawn">spawn</ElButton>-->
-    <ElButton @click="test">test</ElButton>
+<!--    <ElButton @click="test">test</ElButton>-->
   <div class="creatMain">
     <!--    <a href="#" class="Skip">Skip</a>-->
     <div class="contBase  itemNase " v-if="step===1" @click="nextStep">

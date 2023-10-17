@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="right">
-          <div class="title">{{adventurer.name}}}</div>
+          <div class="title">{{adventurer.name}}</div>
           <img src="@/assets/images/people.png" class="people" alt="">
 <!--          <button class="btn">Start Adventure</button>-->
         </div>

@@ -7,7 +7,7 @@
       <div class="user" style="cursor: pointer" @click="openInformation"><img src="@/assets/images/user.png" alt="">
       </div>
       <div class="infor">
-        <div class="name">{{ wallet_address }}</div>
+        <div class="name">{{ adventurer.name }}</div>
         <router-link to="/">
           <div class="Wallet">Wallet</div>
         </router-link>
@@ -70,7 +70,7 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "showCrafting", "showInformation"]),
+  computed: mapState(['wallet_address', "showCrafting", "showInformation",'adventurer']),
   data() {
     return {}
   },
