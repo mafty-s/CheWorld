@@ -56,21 +56,21 @@
     </div>
     <div class="content3 itemNase" v-if="step===5">
       <div class="title">
-        <img src="images/title.png" alt="">
+        <img src="@/assets/images/title.png" alt="">
       </div>
       <div class="con">
         <div class="left">
           <div class="dec1">
             <p>
             <span class="s1">
-              <span class="icon"><img src="images/icon1.png" alt=""></span>
+              <span class="icon"><img src="@/assets/images/icon1.png" alt=""></span>
               <span class="ti">Vitality</span>
             </span>
               <span class="s2">100/100</span>
             </p>
             <p>
             <span class="s1">
-              <span class="icon"><img src="images/icon2.png" alt=""></span>
+              <span class="icon"><img src="@/assets/images/icon2.png" alt=""></span>
               <span class="ti">Morality</span>
             </span>
               <span class="s2">90/90</span>
@@ -101,7 +101,7 @@
         </div>
         <div class="right">
           <div class="title">Some text about name</div>
-          <img src="images/people.png" class="people" alt="">
+          <img src="@/assets/images/people.png" class="people" alt="">
           <button class="btn" @click="enter">Start Adventure</button>
         </div>
       </div>
