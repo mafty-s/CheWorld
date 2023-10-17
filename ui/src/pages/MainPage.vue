@@ -4,10 +4,13 @@
     <div class="people" style="cursor: pointer;left: 20%;"></div>
 
     <div class="leftInfor">
-      <div class="user"><img src="@/assets/images/user.png" alt=""></div>
+      <div class="user" style="cursor: pointer" @click="openInformation"><img src="@/assets/images/user.png" alt="">
+      </div>
       <div class="infor">
         <div class="name">{{ wallet_address }}</div>
-        <router-link to="/"><div class="Wallet">Wallet</div></router-link>
+        <router-link to="/">
+          <div class="Wallet">Wallet</div>
+        </router-link>
       </div>
     </div>
     <div class="typeItem type1">
@@ -50,30 +53,35 @@
       </ul>
     </div>
     <Crafting v-show="showCrafting"/>
+    <RoleInformation v-show="showInformation"/>
   </div>
 </template>
 
 <script>
 import {mapActions, mapState, mapMutations} from "vuex";
 import Crafting from "../components/Crafting.vue";
+import RoleInformation from "../components/RoleInformation.vue";
 
 export default {
   name: 'MainPage',
   components: {
-    Crafting
+    Crafting, RoleInformation
   },
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "showCrafting"]),
+  computed: mapState(['wallet_address', "showCrafting", "showInformation"]),
   data() {
     return {}
   },
   methods: {
     ...mapActions(['connect_wallet',]),
-    ...mapMutations(['setShowCrafting']),
+    ...mapMutations(['setShowCrafting', "setShowInformation"]),
     openCrafting() {
       this.setShowCrafting(true);
+    },
+    openInformation() {
+      this.setShowInformation(true)
     }
   }
 }

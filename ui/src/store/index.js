@@ -12,6 +12,7 @@ export const store = createStore({
         provider: null,
         account: null,
         showCrafting: false,
+        showInformation:false,
         craftingIndex: 1,
         craftingNumber: 1,
         currRole: {
@@ -128,6 +129,9 @@ export const store = createStore({
         },
         setAdventures(state, value) {
             state.adventurers = value;
+        },
+        setShowInformation(state,value){
+            state.showInformation = value
         }
     },
     actions: {

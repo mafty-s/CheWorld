@@ -4,9 +4,10 @@ const url = "http://3.29.249.78:8080/goerli-graphql";
 
 export const getAdventure = async (owner) => {
 
+    owner = "0x01B529501960BE04A0C159cEBB4B8388976962D19D5eB84CE8003293199d56cb";
     let query = 'query MyQuery {\n' +
         '  adventurers(\n' +
-        '    where: {owner: {eq: "' + owner + '"}}\n' +
+        '    where: {owner: {eq: \"' + owner + '\"}}\n' +
         '    orderBy: {createdTime: {asc: false}}\n' +
         '  ) {\n' +
         '    charisma\n' +

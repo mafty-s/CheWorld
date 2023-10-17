@@ -122,7 +122,7 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "showCrafting"]),
+  computed: mapState(['wallet_address', "adventurers"]),
   data() {
     return {}
   },
