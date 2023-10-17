@@ -37,7 +37,7 @@ export default {
     ...mapActions(['connect_wallet']),
     async login_and_enter(){
       await this.connect_wallet();
-      this.$router.push('/main')
+      this.$router.push('/adventure_list')
 
     }
   }
