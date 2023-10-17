@@ -176,7 +176,7 @@ mod Game {
                 @self, adventurer_id
             );
 
-            bag.add_new_item(adventurer, item.item_id);
+            bag.add_new_item(adventurer, item_id);
         }
 
         fn addItem2(ref self: ContractState, adventurer_id: u256,item_id:u8){
