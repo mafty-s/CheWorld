@@ -152,7 +152,8 @@ export default {
   methods: {
     ...mapActions(['connect_wallet', 'start', 'getReceipt']),
     ...mapMutations(['']),
-    enter() {
+    async enter() {
+      await this.spawn();
       this.$router.push('/main')
     },
     getCurrQuesting() {
@@ -198,13 +199,20 @@ export default {
     },
     async spawn() {
       await this.start({
-        startingStrength: this.Strength,
-        startingDexterity: this.Dexterity,
-        startingVitality: this.Vitality,
-        startingIntelligence: this.Intelligence,
-        startingWisdom: this.Wisdom,
-        startingCharisma: this.Charisma,
-        name: "abc",
+        // startingStrength: this.Strength,
+        // startingDexterity: this.Dexterity,
+        // startingVitality: this.Vitality,
+        // startingIntelligence: this.Intelligence,
+        // startingWisdom: this.Wisdom,
+        // startingCharisma: this.Charisma,
+        // name: this.name,
+        startingStrength: 1,
+        startingDexterity: 1,
+        startingVitality: 1,
+        startingIntelligence: 1,
+        startingWisdom: 1,
+        startingCharisma: 1,
+        name: this.name,
         startingWeapon: 16,
         class: 1
       });

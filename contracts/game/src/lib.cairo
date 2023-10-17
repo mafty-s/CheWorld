@@ -156,7 +156,7 @@ mod Game {
             starting_stats: Stats,
         ) {
             _assert_valid_starter_weapon(starting_weapon);
-            _assert_starting_stat_count(starting_stats);
+            //_assert_starting_stat_count(starting_stats);
 
             let caller = get_caller_address();
             let block_number = starknet::get_block_info().unbox().block_number;
