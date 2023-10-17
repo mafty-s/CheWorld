@@ -179,11 +179,11 @@ mod Game {
             bag.add_new_item(adventurer, item_id);
         }
 
-        fn addItem2(ref self: ContractState, adventurer_id: u256,item_id:u8){
-            let mut bag = _bag_unpacked(@self, adventurer_id);
-
-            bag.add_item(ItemPrimitive { id: item_id, xp: 1, metadata: 1 });
-        }
+        // fn addItem2(ref self: ContractState, adventurer_id: u256,item_id:u8){
+        //     let mut bag = _bag_unpacked(@self, adventurer_id);
+        //
+        //     bag.add_item(ItemPrimitive { id: item_id, xp: 1, metadata: 1 });
+        // }
 
 
         //@notice Sends an adventurer to explore.
