@@ -134,7 +134,10 @@ export const store = createStore({
         setShowInformation(state, value) {
             state.showInformation = value
         },
-        doStart(state, name, events) {
+        doStart(state, payload) {
+
+            const name = payload.name;
+            const events = payload.events;
 
             const ad = {
                 id: events[0].data.data.adventurerState.adventurerId,
@@ -147,7 +150,7 @@ export const store = createStore({
                 wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
 
             };
-            state.adventurers = ad;
+            state.adventurer = ad;
             state.adventurers.push(ad)
         }
     },
@@ -180,7 +183,7 @@ export const store = createStore({
 
             console.log('events', events);
 
-            context.commit("doStart", ["", events])
+            context.commit("doStart", {name: "", events: events})
 
 
         },
@@ -233,7 +236,7 @@ export const store = createStore({
 
             console.log('events', events);
 
-            context.commit("doStart", [formData.name, events])
+            context.commit("doStart", {name: formData.name, events: events})
 
             // const adventurerState = events.find(
             //     (event) => event.name === "AmbushedByBeast"
