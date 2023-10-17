@@ -65,7 +65,7 @@
               <span class="icon"><img src="@/assets/images/icon1.png" alt=""></span>
               <span class="ti">Vitality</span>
             </span>
-              <span class="s2">100/100</span>
+              <span class="s2">{{ Vitality }}/{{ Vitality }}</span>
             </p>
             <p>
             <span class="s1">
@@ -191,12 +191,12 @@ export default {
     },
     async spawn() {
       await this.start({
-        startingStrength: 1,
-        startingDexterity: 1,
-        startingVitality: 1,
-        startingIntelligence: 1,
-        startingWisdom: 1,
-        startingCharisma: 1,
+        startingStrength: this.Strength,
+        startingDexterity: this.Dexterity,
+        startingVitality: this.Vitality,
+        startingIntelligence: this.Intelligence,
+        startingWisdom: this.Wisdom,
+        startingCharisma: this.Charisma,
         name: "abc",
         startingWeapon: 16,
         class: 1
