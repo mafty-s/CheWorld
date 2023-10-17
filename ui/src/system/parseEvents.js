@@ -1,32 +1,5 @@
-import {hash} from "starknet";
-
-export const SELECTOR_KEYS ={
-    StartGame: hash.getSelectorFromName("StartGame"),
-    AdventurerUpgraded: hash.getSelectorFromName("AdventurerUpgraded"),
-    DiscoveredHealth: hash.getSelectorFromName("DiscoveredHealth"),
-    DiscoveredGold: hash.getSelectorFromName("DiscoveredGold"),
-    DiscoveredXP: hash.getSelectorFromName("DiscoveredXP"),
-    DodgedObstacle: hash.getSelectorFromName("DodgedObstacle"),
-    HitByObstacle: hash.getSelectorFromName("HitByObstacle"),
-    DiscoveredBeast: hash.getSelectorFromName("DiscoveredBeast"),
-    AmbushedByBeast: hash.getSelectorFromName("AmbushedByBeast"),
-    AttackedBeast: hash.getSelectorFromName("AttackedBeast"),
-    AttackedByBeast: hash.getSelectorFromName("AttackedByBeast"),
-    SlayedBeast: hash.getSelectorFromName("SlayedBeast"),
-    FleeFailed: hash.getSelectorFromName("FleeFailed"),
-    FleeSucceeded: hash.getSelectorFromName("FleeSucceeded"),
-    PurchasedItems: hash.getSelectorFromName("PurchasedItems"),
-    PurchasedPotions: hash.getSelectorFromName("PurchasedPotions"),
-    EquippedItems: hash.getSelectorFromName("EquippedItems"),
-    DroppedItems: hash.getSelectorFromName("DroppedItems"),
-    GreatnessIncreased: hash.getSelectorFromName("GreatnessIncreased"),
-    ItemsLeveledUp: hash.getSelectorFromName("ItemsLeveledUp"),
-    NewHighScore: hash.getSelectorFromName("NewHighScore"),
-    AdventurerDied: hash.getSelectorFromName("AdventurerDied"),
-    AdventurerLeveledUp: hash.getSelectorFromName("AdventurerLeveledUp"),
-    NewItemsAvailable: hash.getSelectorFromName("NewItemsAvailable"),
-    IdleDeathPenalty: hash.getSelectorFromName("IdleDeathPenalty"),
-}
+import {convertToBoolean, getKeyFromValue} from "../utils/index.js";
+import {SELECTOR_KEYS} from "./GameData.js";
 
 function parseAdventurerState(data) {
     return {

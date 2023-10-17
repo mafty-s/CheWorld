@@ -7,3 +7,20 @@ export function stringToFelt(str) {
 export const getRandomNumber = (to) => {
     return (Math.floor(Math.random() * to) + 1).toString();
 };
+
+
+export function getKeyFromValue(
+    data,
+    value
+) {
+    for (const key in data) {
+        if (data[key] === value) {
+            return key;
+        }
+    }
+    return null;
+}
+
+export function convertToBoolean(value) {
+    return value === 1;
+}
