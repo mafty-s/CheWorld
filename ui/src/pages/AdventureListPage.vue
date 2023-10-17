@@ -63,9 +63,9 @@
             <p>
             <span class="s1">
               <span class="icon"><img src="@/assets/images/icon1.png" alt=""></span>
-              <span class="ti">Vitality</span>
+              <span class="ti">HP</span>
             </span>
-              <span class="s2">{{ Vitality }}/{{ Vitality }}</span>
+              <span class="s2">100/100</span>
             </p>
             <p>
             <span class="s1">
@@ -95,6 +95,10 @@
             <p>
               <span class="s1">Charisma</span>
               <span class="s2">{{Charisma}}</span>
+            </p>
+            <p>
+              <span class="s1">Vitality</span>
+              <span class="s2">{{Vitality}}</span>
             </p>
             <p>
               <span class="s1">Luck</span>
@@ -178,6 +182,9 @@ export default {
           break;
         case 'luck':
           this.Luck += getRandomNumberIn(a.min,a.max)
+          break;
+        case 'charisma':
+          this.Charisma += getRandomNumberIn(a.min,a.max)
           break;
       }
 
