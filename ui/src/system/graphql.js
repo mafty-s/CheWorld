@@ -41,7 +41,7 @@ const getAdventure = async () => {
         '}';
 
     let data = JSON.stringify({
-        "query": "query MyQuery {\n  adventurers {\n    gold\n  }\n}",
+        "query": query,
         "operationName": "MyQuery"
     });
 
