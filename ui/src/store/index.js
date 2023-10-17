@@ -3,7 +3,7 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 
-export const contract_address = "0x02047b8a0f95a8aab8d01534565bdd6eb0b5a81c432e39f0977ab6e165d88ee8";
+export const contract_address = "0x01b7db5b5fda71d7eed79c14ecb8bedcf3c30e5bfbc3111e6eb622e64da1cfb7";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
@@ -142,6 +142,14 @@ export const store = createStore({
             context.commit("setWalletAddress", wallet_address);
             context.commit("setAccount", account);
             context.commit("setProvider", provider)
+        },
+        async getReceipt(context,txhash){
+
+            const receipt = await context.state.account?.waitForTransaction(txhash, {
+                retryInterval: 2000,
+            });
+
+            console.log('receipt', receipt);
         },
         async start(context, formData) {
 
