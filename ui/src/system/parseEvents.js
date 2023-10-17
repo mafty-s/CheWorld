@@ -68,7 +68,7 @@ function parseAdventurerState(data) {
     };
 }
 
-export async function parseEvents(receipt){
+export async function parseEvents(receipt) {
     if (!receipt.events) {
         throw new Error(`No events found`);
     }
@@ -88,13 +88,18 @@ export async function parseEvents(receipt){
                         entropy: parseInt(raw.data[43]),
                     },
                 };
-                console.log("startGameData",startGameData);
+                console.log("startGameData", startGameData);
+                const startGameEvent = {
+                    data: startGameData,
+                    event_name: eventName,
+                    transaction_hash: receipt.transaction_hash
+                }
                 // const startGameEvent = processData(
                 //     startGameData,
                 //     eventName,
                 //     receipt.transaction_hash
                 // );
-                // events.push({name: eventName, data: startGameEvent});
+                events.push({name: eventName, data: startGameEvent});
                 break;
         }
 

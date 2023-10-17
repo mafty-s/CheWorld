@@ -201,9 +201,9 @@ export const store = createStore({
 
             console.log('receipt', receipt);
 
-            // const events = await parseEvents(receipt);
-            //
-            // console.log('events', events);
+            let events = await parseEvents(receipt);
+
+            console.log('events',events);
 
             // const adventurerState = events.find(
             //     (event) => event.name === "AmbushedByBeast"
