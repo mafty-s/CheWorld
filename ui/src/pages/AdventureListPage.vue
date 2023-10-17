@@ -12,7 +12,7 @@
       <div class="next"></div>
     </div>
     <div class="content2 itemNase" v-if="step===2">
-      <input type="text" placeholder="Some text about user name" class="words" :value="name">
+      <input type="text" placeholder="Some text about user name" class="words" v-model="name">
       <div class="warning">*Some text about error tips</div>
       <button class="btnBase" @click="nextStep">CONFIRM</button>
     </div>
@@ -90,7 +90,11 @@
             </p>
             <p>
               <span class="s1">Intelligence</span>
-              <span class="s2">{{Intelligence}}}</span>
+              <span class="s2">{{Intelligence}}</span>
+            </p>
+            <p>
+              <span class="s1">Charisma</span>
+              <span class="s2">{{Charisma}}</span>
             </p>
             <p>
               <span class="s1">Luck</span>
