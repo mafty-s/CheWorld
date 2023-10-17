@@ -37,7 +37,7 @@ export default {
     ...mapActions(['connect_wallet']),
     async login_and_enter(){
       await this.connect_wallet();
-      let resp =  await getAdventure();
+      let resp =  await getAdventure(this.wallet_address);
       console.log(resp)
       this.setAdventures(resp.data.adventurers);
       this.$router.push('/adventure_list')

@@ -2,11 +2,11 @@ import axios from "axios";
 
 const url = "http://3.29.249.78:8080/goerli-graphql";
 
-export  const getAdventure = async () => {
+export const getAdventure = async (owner) => {
 
     let query = 'query MyQuery {\n' +
         '  adventurers(\n' +
-        '    where: {owner: {eq: "0x01b529501960be04a0c159cebb4b8388976962d19d5eb84ce8003293199d56cb"}}\n' +
+        '    where: {owner: {eq: "' + owner + '"}}\n' +
         '    orderBy: {createdTime: {asc: false}}\n' +
         '  ) {\n' +
         '    charisma\n' +
@@ -57,6 +57,6 @@ export  const getAdventure = async () => {
 
 
     const resp = await axios.request(config);
-    console.log('resp',resp)
+    console.log('resp', resp)
     return resp.data;
 }
