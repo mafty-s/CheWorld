@@ -1,8 +1,44 @@
 import axios from "axios";
 
-const url = "http://3.29.249.78:8080/graphql";
+const url = "http://3.29.249.78:8080/goerli-graphql";
 
 const getAdventure = async () => {
+
+    let query = 'query MyQuery {\n' +
+        '  adventurers(\n' +
+        '    where: {owner: {eq: "0x01b529501960be04a0c159cebb4b8388976962d19d5eb84ce8003293199d56cb"}}\n' +
+        '    orderBy: {createdTime: {asc: false}}\n' +
+        '  ) {\n' +
+        '    charisma\n' +
+        '    chest\n' +
+        '    classType\n' +
+        '    createdTime\n' +
+        '    id\n' +
+        '    dexterity\n' +
+        '    foot\n' +
+        '    gold\n' +
+        '    hand\n' +
+        '    head\n' +
+        '    health\n' +
+        '    homeRealm\n' +
+        '    intelligence\n' +
+        '    lastAction\n' +
+        '    lastUpdatedTime\n' +
+        '    name\n' +
+        '    neck\n' +
+        '    owner\n' +
+        '    ring\n' +
+        '    statUpgrades\n' +
+        '    strength\n' +
+        '    timestamp\n' +
+        '    vitality\n' +
+        '    waist\n' +
+        '    weapon\n' +
+        '    wisdom\n' +
+        '    xp\n' +
+        '    beastHealth\n' +
+        '  }\n' +
+        '}';
 
     let data = JSON.stringify({
         "query": "query MyQuery {\n  adventurers {\n    gold\n  }\n}",
