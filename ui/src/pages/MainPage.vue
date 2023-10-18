@@ -1,5 +1,9 @@
 <template>
+
   <div class="game">
+    <ElButton @click="test">test</ElButton>
+    <ElButton @click="onClickAttack">attack</ElButton>
+
     <div class="people" style="cursor: pointer" @click="openCrafting"></div>
     <div class="people" style="cursor: pointer;left: 20%;"></div>
 
@@ -8,7 +12,7 @@
       </div>
       <div class="infor">
         <div class="name">{{ adventurer.name }}</div>
-          <div class="Wallet" @click="onClickWallet">Wallet</div>
+        <div class="Wallet" @click="onClickWallet">Wallet</div>
       </div>
     </div>
     <div class="typeItem type1">
@@ -80,20 +84,27 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "showCrafting", "showInformation",'adventurer']),
+  computed: mapState(['wallet_address', "showCrafting", "showInformation", 'adventurer']),
   data() {
     return {}
   },
   methods: {
-    ...mapActions(['connect_wallet',]),
-    ...mapMutations(['setShowCrafting', "setShowInformation",'setCurrPage']),
+    ...mapActions(['connect_wallet', 'getReceipt','attack']),
+    ...mapMutations(['setShowCrafting', "setShowInformation", 'setCurrPage']),
+    async test() {
+      await this.getReceipt('0x678d2d041fee01f3aa894c952c5b2eabc5360f457ef02a214007c511b55897b');
+      // this.setCurrPage('main')
+    },
+    async onClickAttack(){
+      await this.attack(false);
+    },
     openCrafting() {
       this.setShowCrafting(true);
     },
     openInformation() {
       this.setShowInformation(true)
     },
-    onClickWallet(){
+    onClickWallet() {
       this.setCurrPage('login');
     }
   }
