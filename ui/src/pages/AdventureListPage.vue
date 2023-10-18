@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="content3 itemNase" v-if="step===5">
+    <div class="content3 itemNase" v-show="step===5">
       <div class="title">
         <img src="@/assets/images/title.png" alt="">
       </div>
@@ -72,7 +72,7 @@
 
 
         </div>
-        <div v-if="content">
+        <div v-show="content">
           <div class="left">
             <div class="dec1">
               <p>
@@ -92,45 +92,69 @@
             </div>
             <div class="dec2">
               <p>
-               <span class="s1">
-                 <span class="title">Strength</span>
-                 <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
-               </span>
-                <span class="s2">{{ content.Strength }}</span>
+                <span class="s1">
+                  <span class="tit">Strength</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Strength ?? 0 }}</span>
               </p>
+
               <p>
-                <span class="s1">Dexterity</span>
-                <span class="s2">{{ content.Dexterity }}</span>
+                <span class="s1">
+                  <span class="tit">Dexterity</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Dexterity ?? 0 }}</span>
               </p>
+
               <p>
-                <span class="s1">Wisdom</span>
-                <span class="s2">{{ content.Wisdom }}</span>
+                <span class="s1">
+                  <span class="tit">Wisdom</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Wisdom ?? 0 }}</span>
               </p>
+
               <p>
-                <span class="s1">Intelligence</span>
-                <span class="s2">{{ content.Intelligence }}</span>
+                <span class="s1">
+                  <span class="tit">Intelligence</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Intelligence ?? 0 }}</span>
               </p>
+
               <p>
-                <span class="s1">Charisma</span>
-                <span class="s2">{{ content.Charisma }}</span>
+                <span class="s1">
+                  <span class="tit">Charisma</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Charisma ?? 0 }}</span>
               </p>
+
               <p>
-                <span class="s1">Vitality</span>
-                <span class="s2">{{ content.Vitality }}</span>
+                <span class="s1">
+                  <span class="tit">Vitality</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Vitality ?? 0 }}</span>
               </p>
+
               <p>
-                <span class="s1">Luck</span>
-                <span class="s2">{{ content.Luck }}</span>
+                <span class="s1">
+                  <span class="tit">Luck</span>
+                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                </span>
+                <span class="s2">{{ content?.Luck ?? 0 }}</span>
               </p>
             </div>
           </div>
           <div class="right">
-            <div class="title">{{ content.name }}</div>
+            <div class="title">{{ content?.name }}</div>
             <img src="@/assets/images/people.png" class="people" alt="">
             <button class="btn" @click="enter">Start Adventure</button>
           </div>
         </div>
-        <div v-else class="none">
+        <div v-show="content===null" class="none">
           <div class="title">
             <p>
               Uh-oh! It's empty here！
@@ -155,6 +179,7 @@ import Crafting from "../components/Crafting.vue";
 import {mapActions, mapMutations, mapState} from "vuex";
 import {getQuesting} from "../config/questing.js";
 import {getRandomNumberIn} from "../utils/index.js";
+import $ from 'jquery';
 
 export default {
   name: 'AdventureListPage',
@@ -162,6 +187,12 @@ export default {
     Crafting
   },
   mounted() {
+
+    $('.creatMain .content3 .con .left .dec2 p .s1 ').hover(function () {
+      $(this).find('.slide').stop()
+      $(this).find('.slide').slideToggle(200)
+    })
+
     if (this.adventurers.length > 0) {
       this.step = 5;
     }
@@ -193,9 +224,9 @@ export default {
       this.$router.push('/main')
     },
     async enter() {
-      if(this.content.id===0) {
+      if (this.content.id === 0) {
         await this.spawn();
-      }else{
+      } else {
         this.setAdventure(this.adventurers[this.tabIndex])
       }
       this.$router.push('/main')
@@ -208,6 +239,14 @@ export default {
     },
     nextStep() {
       this.step++;
+      if (this.step === 5) {
+        $('.s1 ').hover(function () {
+          alert(1)
+          $(this).find('.slide').stop()
+          $(this).find('.slide').slideToggle(200)
+        })
+        $('.slide').slideToggle(200)
+      }
     },
     awser(value) {
 

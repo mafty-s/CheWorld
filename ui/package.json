@@ -12,6 +12,7 @@
     "axios": "^1.5.1",
     "buffer": "^6.0.3",
     "element-plus": "^2.3.14",
+    "jquery": "^3.7.1",
     "starknet": "^5.19.5",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
