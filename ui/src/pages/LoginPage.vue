@@ -33,7 +33,7 @@ export default {
     return {}
   },
   methods: {
-    ...mapMutations(['setAdventures','setAdventure']),
+    ...mapMutations(['setAdventures','setAdventure',"setCurrPage"]),
     ...mapActions(['connect_wallet']),
     async login_and_enter(){
       await this.connect_wallet();
@@ -41,7 +41,7 @@ export default {
       console.log(resp)
       this.setAdventures(resp.data.adventurers);
       this.setAdventure(resp.data.adventurers[0])
-      this.$router.push('/adventure_list')
+      this.setCurrPage('adventure_list')
     }
   }
 }

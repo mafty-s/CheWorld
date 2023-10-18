@@ -195,9 +195,10 @@ export default {
 
     if (this.adventurers.length > 0) {
       this.step = 5;
+      this.onClickHead(0)
     }
   },
-  computed: mapState(['wallet_address', "adventurers"]),
+  computed: mapState(['wallet_address', "adventurers",]),
   data() {
     return {
       tabIndex: 0,
@@ -218,10 +219,10 @@ export default {
   },
   methods: {
     ...mapActions(['connect_wallet', 'start', 'getReceipt']),
-    ...mapMutations(['setAdventure']),
+    ...mapMutations(['setAdventure','setCurrPage']),
     async test() {
       await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');
-      this.$router.push('/main')
+      this.setCurrPage('main')
     },
     async enter() {
       if (this.content.id === 0) {
@@ -229,7 +230,7 @@ export default {
       } else {
         this.setAdventure(this.adventurers[this.tabIndex])
       }
-      this.$router.push('/main')
+      this.setCurrPage('main')
     },
     async onClickCreateCharacter() {
       this.step = 1;

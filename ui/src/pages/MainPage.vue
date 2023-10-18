@@ -8,9 +8,7 @@
       </div>
       <div class="infor">
         <div class="name">{{ adventurer.name }}</div>
-        <router-link to="/">
-          <div class="Wallet">Wallet</div>
-        </router-link>
+          <div class="Wallet" @click="onClickWallet">Wallet</div>
       </div>
     </div>
     <div class="typeItem type1">
@@ -88,12 +86,15 @@ export default {
   },
   methods: {
     ...mapActions(['connect_wallet',]),
-    ...mapMutations(['setShowCrafting', "setShowInformation"]),
+    ...mapMutations(['setShowCrafting', "setShowInformation",'setCurrPage']),
     openCrafting() {
       this.setShowCrafting(true);
     },
     openInformation() {
       this.setShowInformation(true)
+    },
+    onClickWallet(){
+      this.setCurrPage('login');
     }
   }
 }

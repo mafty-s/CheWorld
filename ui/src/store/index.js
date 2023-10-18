@@ -15,6 +15,7 @@ export const store = createStore({
         showInformation: false,
         craftingIndex: 1,
         craftingNumber: 1,
+        currPage: 'login',
         currRole: {
             ingredientRecipe: [],
             bag: {
@@ -137,6 +138,9 @@ export const store = createStore({
         setShowInformation(state, value) {
             state.showInformation = value
         },
+        setCurrPage(state, value) {
+            state.currPage = value
+        },
         doStart(state, payload) {
 
             const name = payload.name;
@@ -151,7 +155,7 @@ export const store = createStore({
                 strength: events[0].data.data.adventurerState.adventurer.stats.strength,
                 vitality: events[0].data.data.adventurerState.adventurer.stats.vitality,
                 wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
-                luck:0
+                luck: 0
 
             };
             state.adventurer = ad;
