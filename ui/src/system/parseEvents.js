@@ -324,6 +324,18 @@ export async function parseEvents(receipt) {
                 break;
             case "AdventurerLeveledUp":
                 console.log("AdventurerLeveledUp", raw.data);
+                const adventurerLeveledUpData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    previousLevel: parseInt(raw.data[40]),
+                    newLevel: parseInt(raw.data[41]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: adventurerLeveledUpData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "NewItemsAvailable":
                 console.log("NewItemsAvailable", raw.data);
