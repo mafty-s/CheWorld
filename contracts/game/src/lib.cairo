@@ -168,8 +168,8 @@ mod Game {
             //_payout(ref self, caller, block_number, interface_id);
         }
 
-        // fn addItem(ref self: ContractState, adventurer_id: u256,item_id:u8){
-        //     let mut bag = _bag_unpacked(@self, adventurer_id);
+        fn addItem(ref self: ContractState, adventurer_id: u256,item_id:u8){
+            let mut bag = _bag_unpacked(@self, adventurer_id);
         //
         //     // get adventurer from storage and apply stat boosts
         //     let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
@@ -177,8 +177,8 @@ mod Game {
         //     );
         //
         //     bag.add_new_item(adventurer, item_id);
-        // }
-        //
+        }
+
         // fn addItem2(ref self: ContractState, adventurer_id: u256,item_id:u8){
         //     let mut bag = _bag_unpacked(@self, adventurer_id);
         //

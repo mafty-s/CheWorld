@@ -32,7 +32,7 @@ trait IGame<TContractState> {
     fn slay_idle_adventurers(ref self: TContractState, adventurer_ids: Array<u256>);
     fn rotate_global_entropy(ref self: TContractState);
 
-    // fn addItem(ref self: TContractState, adventurer_id: u256,item_id:u8);
+     fn addItem(ref self: TContractState, adventurer_id: u256,item_id:u8);
     // fn addItem2(ref self: TContractState, adventurer_id: u256,item_id:u8);
 
     // --------- view functions ---------

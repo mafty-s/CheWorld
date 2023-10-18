@@ -39,10 +39,22 @@
     </div>
     <div class="controls">
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>
+          <img src="images/set1.png" alt="">
+          <div class="num">99</div>
+        </li>
+        <li>
+          <img src="images/set2.png" alt="">
+          <div class="num">99</div>
+        </li>
+        <li>
+          <img src="images/set3.png" alt="">
+          <div class="num">99</div>
+        </li>
+        <li>
+          <img src="images/set4.png" alt="">
+          <div class="num">99</div>
+        </li>
         <li></li>
         <li></li>
         <li></li>

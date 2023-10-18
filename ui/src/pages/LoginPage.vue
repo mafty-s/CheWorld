@@ -33,13 +33,14 @@ export default {
     return {}
   },
   methods: {
-    ...mapMutations(['setAdventures']),
+    ...mapMutations(['setAdventures','setAdventure']),
     ...mapActions(['connect_wallet']),
     async login_and_enter(){
       await this.connect_wallet();
       let resp =  await getAdventure(this.wallet_address);
       console.log(resp)
       this.setAdventures(resp.data.adventurers);
+      this.setAdventure(resp.data.adventurers[0])
       this.$router.push('/adventure_list')
     }
   }

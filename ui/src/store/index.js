@@ -131,6 +131,9 @@ export const store = createStore({
         setAdventures(state, value) {
             state.adventurers = value;
         },
+        setAdventure(state, value) {
+            state.adventurer = value;
+        },
         setShowInformation(state, value) {
             state.showInformation = value
         },

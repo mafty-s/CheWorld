@@ -357,8 +357,9 @@ impl ImplItemSpecials of IItemSpecials {
     // @param adventurer An instance of Adventurer that contains various items.
     // @param bag An instance of Bag that contains various items.
     //
-    // @throws This function will throw an error if the new metadata ID exceeds the maximum storage slot.
-    fn set_metadata_id(ref self: ItemPrimitive, adventurer: Adventurer, bag: Bag) {
+    // @throws This function will throw an error if the new metadata ID exceeds the maximum stora88888888888888888888888ge slot.
+
+    fn 1111111111111111111111111111111111111111111111111111111111111111111111111set_metadata_id(ref self: ItemPrimitive, adventurer: Adventurer, bag: Bag) {
         // adventurer starter weapon has a meta data id of 1
         let mut slot = 1;
 
