@@ -322,7 +322,58 @@ export const store = createStore({
 
             console.log('receipt', receipt);
         },
-        async upgrade(context) {
+        async upgrade(context,payload) {
+
+            const currenUpgrades =payload.currenUpgrades;
+            const items = payload.items;
+            const potions = payload.potions;
+
+            const potionAmount = potions;
+            const upgrades = currenUpgrades;
+            const purchaseItems = items;
+
+            const upgradeTx = {
+                contractAddress: contract_address,
+                entrypoint: "upgrade_adventurer",
+                calldata: [
+                    context.state.adventurer?.id?.toString() ?? "",
+                    "0",
+                    potions ? potions.toString() : potionAmount.toString(),
+                    currenUpgrades
+                        ? currenUpgrades["Strength"].toString()
+                        : upgrades["Strength"].toString(),
+                    currenUpgrades
+                        ? currenUpgrades["Dexterity"].toString()
+                        : upgrades["Dexterity"].toString(),
+                    currenUpgrades
+                        ? currenUpgrades["Vitality"].toString()
+                        : upgrades["Vitality"].toString(),
+                    currenUpgrades
+                        ? currenUpgrades["Intelligence"].toString()
+                        : upgrades["Intelligence"].toString(),
+                    currenUpgrades
+                        ? currenUpgrades["Wisdom"].toString()
+                        : upgrades["Wisdom"].toString(),
+                    currenUpgrades
+                        ? currenUpgrades["Charisma"].toString()
+                        : upgrades["Charisma"].toString(),
+                    items ? items.length.toString() : purchaseItems.length.toString(),
+                    ...(items
+                        ? items.flatMap(Object.values)
+                        : purchaseItems.flatMap(Object.values)),
+                ],
+            };
+
+
+            const tx = await context.state.account?.execute(upgradeTx);
+
+            console.log("tx", tx);
+
+            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
+                retryInterval: 2000,
+            });
+
+            console.log('receipt', receipt);
         },
     }
 })

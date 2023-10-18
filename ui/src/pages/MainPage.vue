@@ -3,7 +3,9 @@
   <div class="game">
     <ElButton @click="test">test</ElButton>
     <ElButton @click="onClickAttack">attack</ElButton>
-
+    <ElButton @click="onClickFlee">flee</ElButton>
+    <ElButton @click="onClickExplore">explore</ElButton>
+    <ElButton @click="onClickUpgrade">upgrade</ElButton>
     <div class="people" style="cursor: pointer" @click="openCrafting"></div>
     <div class="people" style="cursor: pointer;left: 20%;"></div>
 
@@ -89,14 +91,38 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['connect_wallet', 'getReceipt','attack']),
+    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade']),
     ...mapMutations(['setShowCrafting', "setShowInformation", 'setCurrPage']),
     async test() {
       await this.getReceipt('0x678d2d041fee01f3aa894c952c5b2eabc5360f457ef02a214007c511b55897b');
       // this.setCurrPage('main')
     },
-    async onClickAttack(){
-      await this.attack(false);
+    async onClickAttack() {
+      await this.attack(false, null);
+    },
+    async onClickExplore() {
+      await this.explore(false);
+    },
+    async onClickFlee() {
+      await this.flee(false, null);
+    },
+    async onClickUpgrade() {
+      const currenUpgrades = {
+        Strength: 1,
+        Dexterity: 0,
+        Vitality: 0,
+        Intelligence: 0,
+        Wisdom: 0,
+        Charisma: 0,
+        Luck: 0
+      }
+      const potions = 1;
+      const items = [];
+      await this.upgrade({
+        currenUpgrades:currenUpgrades,
+        potions:potions,
+        items:items
+      });
     },
     openCrafting() {
       this.setShowCrafting(true);
