@@ -101,6 +101,79 @@ export async function parseEvents(receipt) {
                 // );
                 events.push({name: eventName, data: startGameEvent});
                 break;
+            case "AdventurerUpgraded":
+                console.log("AdventurerUpgraded", raw.data);
+                break;
+            case "DiscoveredHealth":
+                console.log("DiscoveredHealth", raw.data);
+                break;
+            case "DiscoveredGold":
+                console.log("DiscoveredGold", raw.data);
+                break;
+            case "DiscoveredXP":
+                console.log("DiscoveredXP", raw.data);
+                break;
+            case "DodgedObstacle":
+                console.log("DodgedObstacle", raw.data);
+                break;
+            case "HitByObstacle":
+                console.log("HitByObstacle", raw.data);
+                break;
+            case "DiscoveredBeast":
+                console.log("DiscoveredBeast", raw.data);
+                break;
+            case "AmbushedByBeast":
+                console.log("AmbushedByBeast", raw.data);
+                break;
+            case "AttackedBeast":
+                console.log("AttackedBeast", raw.data);
+                break;
+            case "AttackedByBeast":
+                console.log("AttackedByBeast", raw.data);
+                break;
+            case "SlayedBeast":
+                console.log("SlayedBeast", raw.data);
+                break;
+            case "FleeFailed":
+                console.log("FleeFailed", raw.data);
+                break;
+            case "FleeSucceeded":
+                console.log("FleeSucceeded", raw.data);
+                break;
+            case "PurchasedItems":
+                console.log("PurchasedItems", raw.data);
+                break;
+            case "PurchasedPotions":
+                console.log("PurchasedPotions", raw.data);
+                break;
+            case "EquippedItems":
+                console.log("EquippedItems", raw.data);
+                break;
+            case "DroppedItems":
+                console.log("DroppedItems", raw.data);
+                break;
+            case "GreatnessIncreased":
+                console.log("GreatnessIncreased", raw.data);
+                break;
+            case "ItemsLeveledUp":
+                console.log("ItemsLeveledUp", raw.data);
+                break;
+            case "NewHighScore":
+                console.log("NewHighScore", raw.data);
+                break;
+            case "AdventurerDied":
+                console.log("AdventurerDied", raw.data);
+                break;
+            case "AdventurerLeveledUp":
+                console.log("AdventurerLeveledUp", raw.data);
+                break;
+            case "NewItemsAvailable":
+                console.log("NewItemsAvailable", raw.data);
+                break;
+            case "IdleDeathPenalty":
+                console.log("IdleDeathPenalty", raw.data);
+                break;
+
         }
 
     }
