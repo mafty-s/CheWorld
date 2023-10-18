@@ -3,6 +3,8 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
+import { getChecksumAddress } from 'starknet';
+
 
 export const contract_address = "0x012353cc1b661c390ad633238344f38f71be67dc5f7e2a3ae284df9cfb83f208";
 // export const lordsContractAddress :string
@@ -172,9 +174,13 @@ export const store = createStore({
                 modalTheme: "dark",
                 chainId: "SN_GOERLI"
             });
-            const wallet_address = a.account.address;
+            let wallet_address = a.account.address;
             const provider = a.provider;
             const account = a.account;
+
+            wallet_address = getChecksumAddress(wallet_address);
+
+
             context.commit("setWalletAddress", wallet_address);
             context.commit("setAccount", account);
             context.commit("setProvider", provider)
