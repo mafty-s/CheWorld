@@ -62,13 +62,13 @@
         <div class="tab">
 
           <div v-for="index in range" :key="index">
-            <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]" v-if="adventurers.length>index" @click="onClickHead(index)">
+            <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]" v-if="adventurers.length>index"
+               @click="onClickHead(index)">
               <img src="@/assets/images/user.png" alt="">
               <span class="name">{{ adventurers[index].name }}</span>
             </a>
             <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]" v-else @click="onClickHead(index)"></a>
           </div>
-
 
 
         </div>
@@ -139,7 +139,7 @@
               Create a character by answering questions!
             </p>
           </div>
-          <button class="btn">Create Character</button>
+          <button class="btn" @click="onClickCreateCharacter">Create Character</button>
         </div>
       </div>
     </div>
@@ -169,8 +169,8 @@ export default {
   computed: mapState(['wallet_address', "adventurers"]),
   data() {
     return {
-      tabIndex:0,
-      range:[0,1,2,3,4],
+      tabIndex: 0,
+      range: [0, 1, 2, 3, 4],
       content: null,
       questings: getQuesting(),
       questingIndex: 0,
@@ -187,14 +187,21 @@ export default {
   },
   methods: {
     ...mapActions(['connect_wallet', 'start', 'getReceipt']),
-    ...mapMutations(['']),
+    ...mapMutations(['setAdventure']),
     async test() {
       await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');
       this.$router.push('/main')
     },
     async enter() {
-      await this.spawn();
+      if(this.content.id===0) {
+        await this.spawn();
+      }else{
+        this.setAdventure(this.adventurers[this.tabIndex])
+      }
       this.$router.push('/main')
+    },
+    async onClickCreateCharacter() {
+      this.step = 1;
     },
     getCurrQuesting() {
       return this.questings[this.questingIndex];
@@ -231,6 +238,17 @@ export default {
 
 
       if ((this.questingIndex + 1) >= this.questings.length) {
+        this.content = {
+          id: 0,
+          name: this.name,
+          Strength: this.Strength,
+          Dexterity: this.Dexterity,
+          Vitality: this.Vitality,
+          Intelligence: this.Intelligence,
+          Wisdom: this.Wisdom,
+          Charisma: this.Charisma,
+          Luck: 0,
+        }
         this.step++;
       } else {
         this.questingIndex++;
@@ -258,21 +276,21 @@ export default {
     },
 
     async onClickHead(index) {
-      this.tabIndex=index;
-      if(index>this.adventurers.length){
+      this.tabIndex = index;
+      if (index >= this.adventurers.length) {
         this.content = null
-      }else {
+      } else {
         const ad = this.adventurers[index];
         console.log("ad", ad)
         this.content = {
-          id: 0,
-          name: "",
-          Strength: 0,
-          Dexterity: 0,
-          Vitality: 0,
-          Intelligence: 0,
-          Wisdom: 0,
-          Charisma: 0,
+          id: ad.id,
+          name: ad.name,
+          Strength: ad.strength,
+          Dexterity: ad.dexterity,
+          Vitality: ad.vitality,
+          Intelligence: ad.intelligence,
+          Wisdom: ad.wisdom,
+          Charisma: ad.charisma,
           Luck: 0,
         }
       }
