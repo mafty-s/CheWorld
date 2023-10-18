@@ -338,7 +338,7 @@ export const store = createStore({
                 calldata: [
                     context.state.adventurer?.id?.toString() ?? "",
                     "0",
-                    potions ? potions.toString() : potionAmount.toString(),
+                    potions ? potions.toString() :"0",
                     currenUpgrades
                         ? currenUpgrades["Strength"].toString()
                         : upgrades["Strength"].toString(),

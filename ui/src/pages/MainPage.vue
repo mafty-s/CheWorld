@@ -6,6 +6,25 @@
     <ElButton @click="onClickFlee">flee</ElButton>
     <ElButton @click="onClickExplore">explore</ElButton>
     <ElButton @click="onClickUpgrade">upgrade</ElButton>
+
+    <el-dialog
+        v-model="dialogVisible"
+        title="Tips"
+        width="30%"
+        :before-close="handleClose"
+    >
+      <el-input v-model="txid" placeholder="Please input tx hash" />
+      <pre></pre>
+      <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="onClickGetReceipt">
+          Confirm
+        </el-button>
+      </span>
+      </template>
+    </el-dialog>
+
     <div class="people" style="cursor: pointer" @click="openCrafting"></div>
     <div class="people" style="cursor: pointer;left: 20%;"></div>
 
@@ -88,14 +107,24 @@ export default {
   },
   computed: mapState(['wallet_address', "showCrafting", "showInformation", 'adventurer']),
   data() {
-    return {}
+    return {
+      dialogVisible:false,
+      txid:"",
+    }
   },
   methods: {
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade']),
     ...mapMutations(['setShowCrafting', "setShowInformation", 'setCurrPage']),
+    handleClose(done) {
+      this.dialogVisible = false
+    },
     async test() {
-      await this.getReceipt('0x678d2d041fee01f3aa894c952c5b2eabc5360f457ef02a214007c511b55897b');
+      this.dialogVisible=true
+      // await this.getReceipt('0x678d2d041fee01f3aa894c952c5b2eabc5360f457ef02a214007c511b55897b');
       // this.setCurrPage('main')
+    },
+    async onClickGetReceipt() {
+      await this.getReceipt(this.txid);
     },
     async onClickAttack() {
       await this.attack(false, null);
@@ -116,7 +145,7 @@ export default {
         Charisma: 0,
         Luck: 0
       }
-      const potions = 1;
+      const potions = 0;
       const items = [];
       await this.upgrade({
         currenUpgrades:currenUpgrades,

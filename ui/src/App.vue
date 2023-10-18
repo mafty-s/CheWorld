@@ -3,6 +3,7 @@
   <!--  <RouterView />-->
   <!--  </div>-->
   <div>
+
     <LoginPage v-if="currPage==='login'"/>
     <MainPage  v-if="currPage==='main'"/>
     <AdventureListPage  v-if="currPage==='adventure_list'"/>
