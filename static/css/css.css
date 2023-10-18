@@ -330,6 +330,7 @@ transform: none;
   background-size: 100%;
   left: 49%;
   bottom: 30%;
+  display: none;
 }
 
 .game .leftInfor {
@@ -495,7 +496,20 @@ transform: none;
 .game .controls ul {
   /* Your styles for the <ul> element within .controls go here */
 }
-
+.game .controls ul li img{
+  width: 62%;
+  height: 100%;
+  object-fit: contain;
+}
+.game .controls ul li .num{
+  position: absolute;
+  color: white;
+  text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+  right: 10px;
+  bottom: 10px;
+  z-index: 44;
+  font-size: 14px;
+}
 .game .controls ul li {
   /* Your styles for the <li> elements within .controls ul go here */
   width: 78px;
@@ -504,6 +518,8 @@ transform: none;
   background: url(../images/common_item_bg.png) no-repeat center center;
   background-size: 100%;
   cursor: pointer;
+  vertical-align: middle;
+  position: relative;
 }
 
 
@@ -1227,15 +1243,36 @@ left: auto;
     
 bottom: auto;
 }
+.creatMain .content3 >*{
+    /* position: relative; */
+    /* z-index: 4; */
+}
+.creatMain .content3 .con:after{
+
+background: url(../images/common_popup_frame014.png) no-repeat center center;
+
+content: "";
+
+background-size: 100% 100%;
+
+position: absolute;
+
+left: 0px;
+
+top: 0px;
+
+width: 100%;
+
+height: 100%;
+
+z-index: 3;
+}
 .creatMain .content3{
     
 width: 1100px;
     
 height: 714px;
-    
-background: url(../images/common_popup_frame014.png) no-repeat center center;
-    
-background-size: 100% 100%;
+
     
 position: absolute;
     
@@ -1260,6 +1297,10 @@ position: absolute;
 left: 24px;
 
 top: -26px;
+
+/* position: relative; */
+
+z-index: 4;
 }
 .creatMain .content3 .con .left .dec1{
   border-bottom: 2px solid #5D4D44;
@@ -1279,6 +1320,10 @@ margin-left: 82px;
 margin-top: 73px;
 
 padding: 24px;
+
+position: relative;
+
+z-index: 5;
 }
 
 .creatMain .content3 .con .left .dec1 p {font-size: 24px;font-family: Grandstander;font-weight: bold;color: #0A0316;line-height: 40px;zoom: 1;overflow: hidden;padding-bottom: 26px;}
@@ -1348,7 +1393,19 @@ vertical-align: middle;
 float: right;
 }
 
-.creatMain .content3 .con .left .dec2 p {font-size: 20px;font-family: Grandstander;font-weight: bold;color: #0A0316;line-height: 2;padding-bottom: 20px;zoom: 1;overflow: hidden;}
+.creatMain .content3 .con .left .dec2 p:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.creatMain .content3 .con .left .dec2 p {
+    font-size: 20px;
+    font-family: Grandstander;
+    font-weight: bold;
+    color: #0A0316;
+    line-height: 2.4;
+    padding-bottom: 20px;
+    }
 .creatMain .content3 .con .left .dec2 {
   padding-top:20px;
   padding-left: 5px;
@@ -1361,8 +1418,12 @@ float: right;
 .creatMain .content3 .con .left .dec2 .s2 {
 
 }
-
-.creatMain .content3 .con .left .dec2 p .s1 {float: left;}
+.creatMain .content3 .con .left .dec2 p .s1 .slide{position: absolute;width: 346px;height: 205px;background: url(../images/slide.png) no-repeat center center;background-size: 100% 100%;font-size: 16px;font-family: Grandstander;font-weight: 300;color: #F8EED5;line-height: 24px;padding: 22px;left: 100%;top: 34px;display: none;}
+.creatMain .content3 .con .left .dec2 p .s1 .tit{
+    display: block;
+    cursor: pointer;
+}
+.creatMain .content3 .con .left .dec2 p .s1 {float: left;position: relative;}
 
 .creatMain .content3 .con .left .dec2 p .s2 {float: right;}
 
@@ -1375,7 +1436,39 @@ float: right;
 text-align: center;
     
 width: 600px;
+    
+position: relative;
+    
+z-index: 5;
 }
+  .creatMain .content3 .con .right .imgbox{
+    
+display: inline-block;
+    
+position: relative;
+    
+margin-top: 75px;
+    
+margin-bottom: 56px;
+  }
+  .creatMain .content3 .con .right .delet{
+    
+width: 47px;
+    
+height: 47px;
+    
+background: url(../images/button_delete.png) no-repeat center center;
+    
+position: absolute;
+    
+right: 0;
+    
+bottom: 0;
+    
+cursor: pointer;
+    
+right: -68px;
+  }
 .creatMain .content3 .con .right .people {
 
 display: block;
@@ -1384,9 +1477,9 @@ margin: auto;
 
 width: 209px;
 
-margin-top: 75px;
+/* margin-top: 75px; */
 
-margin-bottom: 66px;
+/* margin-bottom: 66px; */
 }
 
 .creatMain .content3 .con .right .btn {
@@ -1398,6 +1491,10 @@ height: 50px;
 background: url(../images/common_button_015.png) no-repeat center center;
 
 border: none;
+
+margin: auto;
+
+display: block;
 
 font-size: 24px;
 
@@ -1420,4 +1517,240 @@ color: #0A0316;
 }
 .itemNase {
     z-index: 2;
+}
+
+
+.creatMain .content3 .con .tab{
+    
+position: absolute;
+    
+left: -117px;
+    
+top: 22px;
+    
+width: 128px;
+    
+z-index: 1;
+}
+.creatMain .content3 .con .tab a.current{
+    
+background: url(../images/role_button_list_s.png) no-repeat center center;
+    
+background-size: 100% 100%;
+    
+/* padding-top: 16px; */
+}
+.creatMain .content3 .con .tab a{
+    
+display: block;
+    
+margin-bottom: 6px;
+    
+background: url(../images/role_button_add.png) no-repeat center center;
+    
+height: 126px;
+    
+position: relative;
+    
+text-align: center;
+    
+background-size: 100% 100%;
+    
+padding-top: 16px;
+    
+padding-left: 10px;
+}
+.creatMain .content3 .con .tab a img{
+    
+display: block;
+    
+margin: auto;
+}
+.creatMain .content3 .con .tab a .name{
+    
+font-size: 16px;
+    
+font-family: Grandstander;
+    
+font-weight: bold;
+    
+color: #0A0316;
+    
+display: block;
+    
+padding-top: 5px;
+}
+.creatMain .content3 .con .none{
+    
+z-index: 12;
+    
+position: relative;
+    
+text-align: center;
+    
+position: absolute;
+    
+top: 50%;
+    
+left: 50%;
+    
+-o-transform: translate(-50%, -50%);
+    
+-webkit-transform: translate(-50%, -50%);
+    
+-moz-transform: translate(-50%, -50%);
+    
+-ms-transform: translate(-50%, -50%);
+    
+transform: translate(-50%, -50%);
+    
+width: 100%;
+}
+.creatMain .content3 .con .none .title{
+    font-size: 20px;
+    font-family: Grandstander;
+    font-weight: 400;
+    color: #5D4D44;
+    position: static;
+}
+.creatMain .content3 .con .none .btn{
+    
+width: 316px;
+    
+height: 50px;
+    
+background: url(../images/common_button_015.png) no-repeat center center;
+    
+border: none;
+    
+margin: auto;
+    
+display: block;
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: bold;
+    
+color: #0A0316;
+    
+margin-top: 59px;
+}
+
+.alertmodel{
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: rgba(0,0,0,0.5);
+}
+.alertmodel .center{
+    background: url(../images/common_popup_frame01a.png) no-repeat center center;
+    background-size: 100% 100%;
+    width: 672px;
+    height: 458px;
+
+position:absolute;
+top: 50%;
+left: 50%;
+-o-transform: translate(-50%, -50%);
+-webkit-transform: translate(-50%, -50%);
+-moz-transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+text-align: center;
+}
+.alertmodel .close{
+    
+cursor: pointer;
+    
+width: 52px;
+    
+height: 52px;
+    
+position: absolute;
+    
+right: -13px;
+    
+top: -1px;
+    
+background: url(../images/close.png) no-repeat center center;
+    
+background-size: 100%;
+}
+.alertmodel .title{
+    
+font-size: 30px;
+    
+font-weight: 400;
+    
+color: #000000;
+    
+padding-top: 44px;
+}
+.alertmodel .dec{
+    
+height: 274px;
+    
+display: -webkit-box;
+    
+display: -moz-box;
+    
+display: -webkit-flex;
+    
+display: -moz-flex;
+    
+display: -ms-flexbox;
+    
+display: flex;
+    
+flex-direction: column;
+    
+justify-content: center;
+    
+width: 428px;
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: bold;
+    
+color: #000000;
+    
+margin: auto;
+    
+line-height: 1.7;
+}
+.alertmodel .dec b{
+    
+color: #B53B3B;
+}
+.alertmodel .btns{
+    font-size: 0px;
+}
+.alertmodel .btns *{
+    margin: 0px 38px;
+    width: 206px;
+    height: 50px;
+    font-size: 24px;
+    font-family: Grandstander;
+    font-weight: bold;
+    color: #0A0316;
+    border: none;
+}
+.alertmodel .btns .btn1{
+    
+background: url(../images/btm1.png) no-repeat center center;
+    
+background-size: 100% 100%;
+}
+.alertmodel .btns .btn2{
+    
+background: url(../images/btm2.png) no-repeat center center;
+    
+background-size: 100% 100%;
 }

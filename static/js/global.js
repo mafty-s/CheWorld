@@ -89,8 +89,14 @@ initTab('#tab2');
 initTab('#tab3');
 
 
+$('.creatMain .content3 .con .left .dec2 p .s1 ').hover(function(){
+  $(this).find('.slide').stop()
+  $(this).find('.slide').slideToggle(200)
+})
 
 
-
+$('.alertmodel .close').click(function(){
+  $(this).parents('.alertmodel').fadeOut(200)
+})
 
 });
