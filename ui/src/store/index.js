@@ -3,7 +3,7 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
-import { getChecksumAddress } from 'starknet';
+import {getChecksumAddress} from 'starknet';
 
 
 export const contract_address = "0x012353cc1b661c390ad633238344f38f71be67dc5f7e2a3ae284df9cfb83f208";
@@ -258,10 +258,59 @@ export const store = createStore({
 
         },
         async explore(context, till_beast) {
+
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "explore",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", till_beast ? "1" : "0"],
+            };
+
+            const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            console.log("tx", tx);
+
+            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
+                retryInterval: 2000,
+            });
+
+            console.log('receipt', receipt);
+
         },
         async attack(context, tillDeath, beastData) {
+
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "attack",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", tillDeath ? "1" : "0"],
+            }
+
+            const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            console.log("tx", tx);
+
+            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
+                retryInterval: 2000,
+            });
+
+            console.log('receipt', receipt);
         },
         async flee(context, tillDeath, beastData) {
+
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "flee",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", tillDeath ? "1" : "0"],
+            }
+
+            const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            console.log("tx", tx);
+
+            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
+                retryInterval: 2000,
+            });
+
+            console.log('receipt', receipt);
         },
         async upgrade(context) {
         },

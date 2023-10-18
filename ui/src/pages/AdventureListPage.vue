@@ -94,7 +94,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Strength</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Strength }}</span>
                 </span>
                 <span class="s2">{{ content?.Strength ?? 0 }}</span>
               </p>
@@ -102,7 +102,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Dexterity</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Dexterity }}</span>
                 </span>
                 <span class="s2">{{ content?.Dexterity ?? 0 }}</span>
               </p>
@@ -110,7 +110,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Wisdom</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Wisdom }}</span>
                 </span>
                 <span class="s2">{{ content?.Wisdom ?? 0 }}</span>
               </p>
@@ -118,7 +118,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Intelligence</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Intelligence }}</span>
                 </span>
                 <span class="s2">{{ content?.Intelligence ?? 0 }}</span>
               </p>
@@ -126,7 +126,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Charisma</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Charisma }}</span>
                 </span>
                 <span class="s2">{{ content?.Charisma ?? 0 }}</span>
               </p>
@@ -134,7 +134,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Vitality</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Vitality }}</span>
                 </span>
                 <span class="s2">{{ content?.Vitality ?? 0 }}</span>
               </p>
@@ -142,7 +142,7 @@
               <p>
                 <span class="s1">
                   <span class="tit">Luck</span>
-                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
+                  <span class="slide">{{ stat_desc.Luck }}</span>
                 </span>
                 <span class="s2">{{ content?.Luck ?? 0 }}</span>
               </p>
@@ -180,6 +180,7 @@ import {mapActions, mapMutations, mapState} from "vuex";
 import {getQuesting} from "../config/questing.js";
 import {getRandomNumberIn} from "../utils/index.js";
 import $ from 'jquery';
+import {stat_desc} from "../config/stat.js";
 
 export default {
   name: 'AdventureListPage',
@@ -201,6 +202,7 @@ export default {
   computed: mapState(['wallet_address', "adventurers",]),
   data() {
     return {
+      stat_desc: stat_desc,
       tabIndex: 0,
       range: [0, 1, 2, 3, 4],
       content: null,
@@ -219,7 +221,7 @@ export default {
   },
   methods: {
     ...mapActions(['connect_wallet', 'start', 'getReceipt']),
-    ...mapMutations(['setAdventure','setCurrPage']),
+    ...mapMutations(['setAdventure', 'setCurrPage']),
     async test() {
       await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');
       this.setCurrPage('main')

@@ -1418,7 +1418,7 @@ float: right;
 .creatMain .content3 .con .left .dec2 .s2 {
 
 }
-.creatMain .content3 .con .left .dec2 p .s1 .slide{position: absolute;width: 346px;height: 205px;background: url(../images/slide.png) no-repeat center center;background-size: 100% 100%;font-size: 16px;font-family: Grandstander;font-weight: 300;color: #F8EED5;line-height: 24px;padding: 22px;left: 100%;top: 34px;display: none;}
+.creatMain .content3 .con .left .dec2 p .s1 .slide{position: absolute;width: 346px;height: auto;background: url(../images/slide.png) no-repeat center center;background-size: 100% 100%;font-size: 16px;font-family: Grandstander;font-weight: 300;color: #F8EED5;line-height: 24px;padding: 22px;left: 100%;top: 34px;display: none;}
 .creatMain .content3 .con .left .dec2 p .s1 .tit{
     display: block;
     cursor: pointer;
