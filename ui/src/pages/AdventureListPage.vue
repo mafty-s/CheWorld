@@ -53,69 +53,97 @@
         </ul>
       </div>
     </div>
+
     <div class="content3 itemNase" v-if="step===5">
       <div class="title">
         <img src="@/assets/images/title.png" alt="">
       </div>
       <div class="con">
-        <div class="left">
-          <div class="dec1">
-            <p>
+        <div class="tab">
+
+          <div v-for="index in range" :key="index">
+            <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]" v-if="adventurers.length>index" @click="onClickHead(index)">
+              <img src="@/assets/images/user.png" alt="">
+              <span class="name">{{ adventurers[index].name }}</span>
+            </a>
+            <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]" v-else @click="onClickHead(index)"></a>
+          </div>
+
+
+
+        </div>
+        <div v-if="content">
+          <div class="left">
+            <div class="dec1">
+              <p>
             <span class="s1">
               <span class="icon"><img src="@/assets/images/icon1.png" alt=""></span>
               <span class="ti">HP</span>
             </span>
-              <span class="s2">100/100</span>
-            </p>
-            <p>
+                <span class="s2">100/100</span>
+              </p>
+              <p>
             <span class="s1">
               <span class="icon"><img src="@/assets/images/icon2.png" alt=""></span>
               <span class="ti">Morality</span>
             </span>
-              <span class="s2">90/90</span>
-            </p>
-          </div>
-          <div class="dec2">
-            <p>
+                <span class="s2">90/90</span>
+              </p>
+            </div>
+            <div class="dec2">
+              <p>
                <span class="s1">
                  <span class="title">Strength</span>
                  <span class="slide">The wisdom attribute represents a character's wisdom and insight. Characters with high wisdom excel at solving puzzles and making wise decisions. In the game, wisdom influences dialogues, decisions, and a character's learning speed.</span>
                </span>
-               <span class="s2">{{ Strength }}</span>
-            </p>
-            <p>
-              <span class="s1">Dexterity</span>
-              <span class="s2">{{ Dexterity }}</span>
-            </p>
-            <p>
-              <span class="s1">Wisdom</span>
-              <span class="s2">{{ Wisdom }}</span>
-            </p>
-            <p>
-              <span class="s1">Intelligence</span>
-              <span class="s2">{{ Intelligence }}</span>
-            </p>
-            <p>
-              <span class="s1">Charisma</span>
-              <span class="s2">{{ Charisma }}</span>
-            </p>
-            <p>
-              <span class="s1">Vitality</span>
-              <span class="s2">{{ Vitality }}</span>
-            </p>
-            <p>
-              <span class="s1">Luck</span>
-              <span class="s2">{{ Luck }}</span>
-            </p>
+                <span class="s2">{{ content.Strength }}</span>
+              </p>
+              <p>
+                <span class="s1">Dexterity</span>
+                <span class="s2">{{ content.Dexterity }}</span>
+              </p>
+              <p>
+                <span class="s1">Wisdom</span>
+                <span class="s2">{{ content.Wisdom }}</span>
+              </p>
+              <p>
+                <span class="s1">Intelligence</span>
+                <span class="s2">{{ content.Intelligence }}</span>
+              </p>
+              <p>
+                <span class="s1">Charisma</span>
+                <span class="s2">{{ content.Charisma }}</span>
+              </p>
+              <p>
+                <span class="s1">Vitality</span>
+                <span class="s2">{{ content.Vitality }}</span>
+              </p>
+              <p>
+                <span class="s1">Luck</span>
+                <span class="s2">{{ content.Luck }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="right">
+            <div class="title">{{ content.name }}</div>
+            <img src="@/assets/images/people.png" class="people" alt="">
+            <button class="btn" @click="enter">Start Adventure</button>
           </div>
         </div>
-        <div class="right">
-          <div class="title">{{ name }}</div>
-          <img src="@/assets/images/people.png" class="people" alt="">
-          <button class="btn" @click="enter">Start Adventure</button>
+        <div v-else class="none">
+          <div class="title">
+            <p>
+              Uh-oh! It's empty here！
+            </p>
+            <p>
+              Create a character by answering questions!
+            </p>
+          </div>
+          <button class="btn">Create Character</button>
         </div>
       </div>
     </div>
+
     <div class="shadow"></div>
   </div>
 </template>
@@ -134,11 +162,16 @@ export default {
     Crafting
   },
   mounted() {
-
+    if (this.adventurers.length > 0) {
+      this.step = 5;
+    }
   },
   computed: mapState(['wallet_address', "adventurers"]),
   data() {
     return {
+      tabIndex:0,
+      range:[0,1,2,3,4],
+      content: null,
       questings: getQuesting(),
       questingIndex: 0,
       step: 1,
@@ -222,6 +255,27 @@ export default {
         startingWeapon: 16,
         class: 1
       });
+    },
+
+    async onClickHead(index) {
+      this.tabIndex=index;
+      if(index>this.adventurers.length){
+        this.content = null
+      }else {
+        const ad = this.adventurers[index];
+        console.log("ad", ad)
+        this.content = {
+          id: 0,
+          name: "",
+          Strength: 0,
+          Dexterity: 0,
+          Vitality: 0,
+          Intelligence: 0,
+          Wisdom: 0,
+          Charisma: 0,
+          Luck: 0,
+        }
+      }
     }
   }
 }
