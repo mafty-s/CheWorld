@@ -162,6 +162,16 @@ export const store = createStore({
             };
             state.adventurer = ad;
             state.adventurers.push(ad)
+        },
+        doEvents(state, events) {
+            for (let i = 0; i < events.length; i++) {
+                const event = events[i];
+                switch (event.name) {
+                    case "AdventurerDied":
+                        break;
+
+                }
+            }
         }
     },
     actions: {
