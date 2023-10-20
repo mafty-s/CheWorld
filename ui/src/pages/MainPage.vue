@@ -25,8 +25,35 @@
       </template>
     </el-dialog>
 
-    <div class="people" style="cursor: pointer" @click="openCrafting"></div>
-    <div class="people" style="cursor: pointer;left: 20%;"></div>
+
+    <div class="people people1" @click="openCrafting">
+      <img src="@/assets/images/people.png" alt="">
+    </div>
+
+    <div class="people people2">
+      <div class="infor">
+        <div class="name">Jacob</div>
+        <div class="pos">Exchange Administrator</div>
+      </div>
+      <img src="@/assets/images/people2.png" alt="">
+    </div>
+    <div class="people people3">
+      <div class="infor">
+        <div class="name">Jacob</div>
+        <div class="pos">Exchange Administrator</div>
+      </div>
+      <img src="@/assets/images/people3.png" alt="">
+    </div>
+    <div class="people people4">
+      <div class="infor">
+        <div class="name">Jacob</div>
+        <div class="pos">Exchange Administrator</div>
+      </div>
+      <img src="@/assets/images/people4.png" alt="">
+    </div>
+
+<!--    <div class="people" style="cursor: pointer" ></div>-->
+<!--    <div class="people" style="cursor: pointer;left: 20%;"></div>-->
 
     <div class="leftInfor">
       <div class="user" style="cursor: pointer" @click="openInformation"><img src="@/assets/images/user.png" alt="">
