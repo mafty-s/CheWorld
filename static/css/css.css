@@ -323,16 +323,52 @@ transform: none;
 
 .game .people {
   /* Your styles for the .people element within .game go here */
-  width: 129px;
+  /*  width: 129px;
   height: 212px;
   position: absolute;
   background: url(../images/people.png) no-repeat center center;
-  background-size: 100%;
+  background-size: 100%;*/
+  /* left: 49%; */
+  /* bottom: 30%; */
+  /* display: none; */
+  text-align: center;
+  position: absolute;
+  cursor: pointer;
+}
+.game .people.people1{
   left: 49%;
-  bottom: 30%;
-  display: none;
+  bottom: 33%;
+}
+.game .people.people2{
+  left: 36%;
+  bottom: 48%;
+}
+.game .people.people3{
+  left: 13%;
+  bottom: 39%;
+}
+.game .people.people4{
+  right: 27%;
+  top: 8%;
 }
 
+.game .people .name{
+  font-size: 24px;
+  font-family: Grandstander;
+  font-weight: bold;
+  line-height: 1;
+  color: #F8EED5;
+  text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+}
+.game .people .pos{
+  font-size: 16px;
+  font-family: Grandstander;
+  font-weight: bold;
+  line-height: 1;
+  color: #F8EED5;
+  text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+  margin-bottom: 10px;
+}
 .game .leftInfor {
   /* Your styles for the .leftInfor element within .game go here */
   position: absolute;
@@ -358,13 +394,13 @@ transform: none;
   font-weight: bold;
   line-height: 1;
   
-   /* Ã¨Â®Â¾Ã§Â½Â®Ã¦â€“â€¡Ã¥Â­â€”Ã©Â¢Å“Ã¨â€°Â² */
-  color: white; /* Ã¨Â®Â¾Ã§Â½Â®Ã¦â€“â€¡Ã¥Â­â€”Ã©Â¢Å“Ã¨â€°Â²Ã¤Â¸ÂºÃ§â„¢Â½Ã¨â€°Â² */
+   /* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â² */
+  color: white; /* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ¨Ã¢â‚¬Â°Ã‚Â² */
   text-shadow: 
     -2px -2px 0 black,  
     2px -2px 0 black, 
     -2px 2px 0 black, 
-    2px 2px 0 black; /* Ã¦Â·Â»Ã¥Å Â Ã¨Â¾Æ’Ã¥Â¤Â§Ã§Å¡â€žÃ©Â»â€˜Ã¨â€°Â²Ã¦ÂÂÃ¨Â¾Â¹ */
+    2px 2px 0 black; /* ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â¾Ã†â€™ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â¾Ã‚Â¹ */
 }
 
 .game .leftInfor .infor .Wallet {
@@ -374,12 +410,12 @@ transform: none;
   font-weight: 100;
   line-height: 24px;
   display: inline-block;
-  color: white; /* Ã¨Â®Â¾Ã§Â½Â®Ã¦â€“â€¡Ã¥Â­â€”Ã©Â¢Å“Ã¨â€°Â²Ã¤Â¸ÂºÃ§â„¢Â½Ã¨â€°Â² */
+  color: white; /* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ¨Ã¢â‚¬Â°Ã‚Â² */
   text-shadow: 
     -2px -2px 0 black,  
     2px -2px 0 black, 
     -2px 2px 0 black, 
-    2px 2px 0 black; /* Ã¦Â·Â»Ã¥Å Â Ã¨Â¾Æ’Ã¥Â¤Â§Ã§Å¡â€žÃ©Â»â€˜Ã¨â€°Â²Ã¦ÂÂÃ¨Â¾Â¹ */
+    2px 2px 0 black; /* ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â¾Ã†â€™ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â¾Ã‚Â¹ */
   padding-left: 44px;
   background: url(../images/wallet.png) no-repeat left center;
   background-size: auto 100%;
@@ -535,6 +571,7 @@ transform: none;
   width: 100%;
   height: 100%;
   z-index: 55;
+  /* display: none; */
 }
 
 .alertModel .content {
@@ -640,11 +677,11 @@ transform: none;
   top:0px;
   right:14px;
   width:24px;
-  -webkit-transition: all 0.4s;
-  -o-transition:all 0.4s;
-  -moz-transition:all 0.4s;
-  -ms-transition:all 0.4s;
-  transition:all 0.4s;
+  -webkit-transition: all 0.2s;
+  -o-transition:all 0.2s;
+  -moz-transition:all 0.2s;
+  -ms-transition:all 0.2s;
+  transition:all 0.2s;
   transform: rotate(180deg);
 }
 .alertModel .tab .left .bd .model .h2tit {
@@ -991,37 +1028,29 @@ overflow: hidden;
     z-index: 4;
     text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
 }
+.creatMain .contBase:after,
 
-.creatMain .contBase{
-    
+.step3 .contBase:after{
+        
 background: url(../images/common_dialogue_frame.png) no-repeat center center;
     
 background-size: 100%;
-    
-width: 1118px;
-    
-height: 165px;
-    
+content: "";
+width: 100%;
+height: 100%;
 position: absolute;
-    
-padding: 39px 46px;
-    
-position: absolute;
-    
-left: 50%;
-    
--o-transform: translate(-50%, 0%);
-    
--webkit-transform: translate(-50%, 0%);
-    
--moz-transform: translate(-50%, 0%);
-    
--ms-transform: translate(-50%, 0%);
-    
-transform: translate(-50%, 0%);
-    
-bottom: 67px;
+left: 0px;
+top: 0px;
+
+-webkit-transition:all 0.2s;
+-o-transition:all 0.2s;
+-moz-transition:all 0.2s;
+-ms-transition:all 0.2s;
+transition:all 0.2s;
+
 }
+
+.creatMain .contBase{width: 1118px;height: 165px;position: absolute;padding: 39px 46px;position: absolute;left: 50%;-o-transform: translate(-50%, 0%);-webkit-transform: translate(-50%, 0%);-moz-transform: translate(-50%, 0%);-ms-transform: translate(-50%, 0%);transform: translate(-50%, 0%);bottom: 67px;cursor: pointer;}
 .creatMain .contBase .title{
     font-size: 28px;
     font-family: Grandstander;
@@ -1032,6 +1061,7 @@ bottom: 67px;
     position: absolute;
     left: 11px;
     top: -11px;
+    z-index: 3;
 }
 .creatMain .contBase .text{
     font-size: 24px;
@@ -1039,6 +1069,8 @@ bottom: 67px;
     font-weight: 400;
     color: #F8EED5;
     line-height: 1.2;
+    z-index: 3;
+    position: relative;
 }
 .creatMain .contBase .next{
     
@@ -1055,6 +1087,8 @@ bottom: 33px;
 width: 27px;
     
 height: 14px;
+    
+z-index: 6;
 }
 .creatMain .content2{
     
@@ -1223,6 +1257,14 @@ left: 50%;
 
 transform: translate(-50%, -50%);
 }
+  .creatMain .contBase:hover:after,
+  .step3 .contBase:hover:after{
+    
+
+
+transform: scale(.96,.96);
+  }
+
 .step3 .contBase{
     
 position: relative;
@@ -1451,8 +1493,17 @@ margin-top: 75px;
     
 margin-bottom: 56px;
   }
+  .creatMain .content3 .con .right .delet:hover{
+    background-size: 96%;
+  }
   .creatMain .content3 .con .right .delet{
     
+-webkit-transition:all 0.2s;
+-o-transition:all 0.2s;
+-moz-transition:all 0.2s;
+-ms-transition:all 0.2s;
+transition:all 0.2s;
+
 width: 47px;
     
 height: 47px;
@@ -1503,6 +1554,8 @@ font-family: Grandstander;
 font-weight: bold;
 
 color: #0A0316;
+
+transition: all 0.2s;
 }
 
 .creatMain .shadow{
@@ -1519,7 +1572,10 @@ color: #0A0316;
     z-index: 2;
 }
 
-
+.creatMain .content3 .con .tab a.current:hover{
+  background: url(../images/role_button_list_s.png) no-repeat center right;
+  background-size: 96% 96%;
+}
 .creatMain .content3 .con .tab{
     
 position: absolute;
@@ -1534,19 +1590,23 @@ z-index: 1;
 }
 .creatMain .content3 .con .tab a.current{
     
-background: url(../images/role_button_list_s.png) no-repeat center center;
+background: url(../images/role_button_list_n.png) no-repeat center center;
     
 background-size: 100% 100%;
     
 /* padding-top: 16px; */
 }
+  .creatMain .content3 .con .tab a:hover{
+    background: url(../images/role_button_addcur.png) no-repeat right center;
+    background-size: 96% 96%;
+  }
 .creatMain .content3 .con .tab a{
     
 display: block;
     
 margin-bottom: 6px;
     
-background: url(../images/role_button_add.png) no-repeat center center;
+background: url(../images/role_button_add.png) no-repeat right center;
     
 height: 126px;
     
@@ -1559,6 +1619,8 @@ background-size: 100% 100%;
 padding-top: 16px;
     
 padding-left: 10px;
+    
+transition: all 0.2s;
 }
 .creatMain .content3 .con .tab a img{
     
@@ -1753,4 +1815,14 @@ background-size: 100% 100%;
 background: url(../images/btm2.png) no-repeat center center;
     
 background-size: 100% 100%;
+}
+.btnBase,
+.creatMain .content3 .con .none .btn{
+    transition:all 0.2s;
+}
+.btnBase:hover,
+.creatMain .content3 .con .none .btn:hover,
+.creatMain .content3 .con .right .btn:hover{
+transform: scale(.96,.96);
+  
 }
