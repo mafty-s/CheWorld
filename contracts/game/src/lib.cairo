@@ -47,6 +47,7 @@ mod Game {
         adventurer::{Adventurer, ImplAdventurer, IAdventurer}, adventurer_stats::{Stats, StatUtils},
         item_primitive::{ImplItemPrimitive, ItemPrimitive}, bag::{Bag, IBag, ImplBag},
         adventurer_meta::{AdventurerMetadata}, exploration::ExploreUtils,
+        adventure_res::{AdventurerRes},
         constants::{
             discovery_constants::DiscoveryEnums::{ExploreResult, DiscoveryType},
             adventurer_constants::{
@@ -74,6 +75,7 @@ mod Game {
         _adventurer: LegacyMap::<u256, felt252>,
         _owner: LegacyMap::<u256, ContractAddress>,
         _adventurer_meta: LegacyMap::<u256, felt252>,
+        _adventure_res: LegacyMap::<u256, felt252>,
         _loot: LegacyMap::<u256, felt252>,
         _loot_special_names: LegacyMap::<(u256, u256), felt252>,
         _bag: LegacyMap::<u256, felt252>,
@@ -1080,6 +1082,12 @@ mod Game {
             home_realm: adventurer_meta.home_realm,
             class: adventurer_meta.class,
             entropy: adventurer_entropy
+        };
+
+        let adventure_res = AdventurerRes {
+            egg:0,
+            meat:0,
+            fish:0
         };
 
         // emit a StartGame event 
