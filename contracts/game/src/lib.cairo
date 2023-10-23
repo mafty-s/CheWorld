@@ -1097,6 +1097,8 @@ mod Game {
             entropy: adventurer_entropy
         };
 
+        let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
+
         let adventure_res = AdventurerRes {
             egg:0,
             meat:0,
@@ -1118,6 +1120,7 @@ mod Game {
             sterling_silver:0,
             graphite:0,
             platinum:0,
+            last_timestamp:timestamp
         };
 
         // emit a StartGame event 

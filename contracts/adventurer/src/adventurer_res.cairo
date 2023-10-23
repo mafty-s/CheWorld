@@ -26,6 +26,7 @@ struct AdventurerRes {
     sterling_silver:u16,
     graphite:u16,
     platinum:u16,
+    last_timestamp:u64,
 }
 
 impl PackingAdventurerRes of Packing<AdventurerRes> {
@@ -49,7 +50,8 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
             + self.silver.into() * pow::TWO_POW_144
             + self.sterling_silver.into() * pow::TWO_POW_153
             + self.graphite.into() * pow::TWO_POW_162
-            + self.platinum.into() * pow::TWO_POW_171
+            + self.platinum.into() * pow::TWO_POW_171,
+            + self.last_timestamp.into() * pow::TWO_POW_207
         )
         .try_into()
         .expect('pack AdventurerRes')
@@ -77,28 +79,30 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
         let (packed, sterling_silver) = rshift_split(packed, pow::TWO_POW_162);
         let (packed, graphite) = rshift_split(packed, pow::TWO_POW_171);
         let (packed, platinum) = rshift_split(packed, pow::TWO_POW_180);
+        let (packed, last_timestamp) = rshift_split(packed, pow::TWO_POW_180);
 
         AdventurerRes {
             egg: egg.try_into().expect('unpack AdventurerRes egg'),
             meat: meat.try_into().expect('unpack AdventurerRes meat'),
             fish: fish.try_into().expect('unpack AdventurerRes fish'),
-            soft_skin:0,
-            crusty:0,
-            berry:0,
-            bamboo:0,
-            balsa_wood:0,
-            fir_wood:0,
-            teak:0,
-            hemlock:0,
-            mahogany:0,
-            pine:0,
-            coal:0,
-            copper:0,
-            iron:0,
-            silver:0,
-            sterling_silver:0,
-            graphite:0,
-            platinum:0,
+            soft_skin: soft_skin.try_into().expect('unpack AdventurerRes soft_skin'),
+            crusty: crusty.try_into().expect('unpack AdventurerRes crusty'),
+            berry: berry.try_into().expect('unpack AdventurerRes berry'),
+            bamboo: bamboo.try_into().expect('unpack AdventurerRes bamboo'),
+            balsa_wood: balsa_wood.try_into().expect('unpack AdventurerRes balsa_wood'),
+            fir_wood: fir_wood.try_into().expect('unpack AdventurerRes fir_wood'),
+            teak: teak.try_into().expect('unpack AdventurerRes teak'),
+            hemlock: hemlock.try_into().expect('unpack AdventurerRes hemlock'),
+            mahogany: mahogany.try_into().expect('unpack AdventurerRes mahogany'),
+            pine: pine.try_into().expect('unpack AdventurerRes pine'),
+            coal: coal.try_into().expect('unpack AdventurerRes coal'),
+            copper: copper.try_into().expect('unpack AdventurerRes copper'),
+            iron: iron.try_into().expect('unpack AdventurerRes iron'),
+            silver: silver.try_into().expect('unpack AdventurerRes silver'),
+            sterling_silver: sterling_silver.try_into().expect('unpack AdventurerRes sterling_silver'),
+            graphite: graphite.try_into().expect('unpack AdventurerRes graphite'),
+            platinum: platinum.try_into().expect('unpack AdventurerRes platinum'),
+            last_timestamp: last_timestamp.try_into().expect('unpack AdventurerRes last_timestamp'),
         }
     }
 
@@ -133,6 +137,7 @@ fn test_res() {
         sterling_silver:0,
         graphite:0,
         platinum:0,
+        last_timestamp:0
     };
 
     let packed = res.pack();
