@@ -11,6 +11,7 @@ use beasts::beast::Beast;
 #[starknet::interface]
 trait IGame<TContractState> {
     // actions ---------------------------------------------------
+    fn add_resources( ref self: TContractState,adventurer_id: u256);
     fn start(
         ref self: TContractState,
         interface_id: ContractAddress,

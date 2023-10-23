@@ -144,6 +144,15 @@ mod Game {
 
     #[external(v0)]
     impl Game of IGame<ContractState> {
+
+    fn add_resources(ref self: ContractState,adventurer_id: u256){
+        let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
+        let tick: u64  = timestamp / 60;
+        let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+        res.fish = res.fish + 1;
+        _pack_adventurer_res(ref self,adventurer_id,res);
+    }
+
         //@notice Initiates the adventure for an adventurer with specific starting configurations.
         //@param self The current state of the contract.
         //@param interface_id The address of the specific contract interface.
@@ -2399,16 +2408,7 @@ mod Game {
         }
     }
 
-    fn AddResources(ref self: ContractState,adventurer_id: u256){
-        let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
-        let tick: u64  = timestamp / 60;
 
-
-        let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-
-        res.fish = res.fish + 1;
-        _pack_adventurer_res(ref self,adventurer_id,res);
-    }
 
 
     fn _rotate_global_entropy(ref self: ContractState) {
