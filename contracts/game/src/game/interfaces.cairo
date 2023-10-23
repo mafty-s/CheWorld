@@ -1,6 +1,7 @@
 use starknet::ContractAddress;
 use survivor::{
     bag::Bag, adventurer::{Adventurer, Stats}, adventurer_meta::AdventurerMetadata,
+    adventurer_res::AdventurerRes,
     item_meta::{ItemSpecials, ItemSpecialsStorage}
 };
 use lootitems::loot::{Loot};
@@ -41,6 +42,7 @@ trait IGame<TContractState> {
     fn get_adventurer(self: @TContractState, adventurer_id: u256) -> Adventurer;
     fn get_adventurer_no_boosts(self: @TContractState, adventurer_id: u256) -> Adventurer;
     fn get_adventurer_meta(self: @TContractState, adventurer_id: u256) -> AdventurerMetadata;
+    fn get_adventurer_res(self: @TContractState, adventurer_id: u256) -> AdventurerRes;
     fn get_health(self: @TContractState, adventurer_id: u256) -> u16;
     fn get_xp(self: @TContractState, adventurer_id: u256) -> u16;
     fn get_level(self: @TContractState, adventurer_id: u256) -> u8;

@@ -47,7 +47,7 @@ mod Game {
         adventurer::{Adventurer, ImplAdventurer, IAdventurer}, adventurer_stats::{Stats, StatUtils},
         item_primitive::{ImplItemPrimitive, ItemPrimitive}, bag::{Bag, IBag, ImplBag},
         adventurer_meta::{AdventurerMetadata}, exploration::ExploreUtils,
-        adventure_res::{AdventurerRes},
+        adventurer_res::{AdventurerRes},
         constants::{
             discovery_constants::DiscoveryEnums::{ExploreResult, DiscoveryType},
             adventurer_constants::{
@@ -545,6 +545,9 @@ mod Game {
         }
         fn get_adventurer_meta(self: @ContractState, adventurer_id: u256) -> AdventurerMetadata {
             _adventurer_meta_unpacked(self, adventurer_id)
+        }
+        fn get_adventurer_res(self: @ContractState, adventurer_id: u256) -> AdventurerRes {
+            _adventurer_res_unpacked(self, adventurer_id)
         }
         fn get_bag(self: @ContractState, adventurer_id: u256) -> Bag {
             _bag_unpacked(self, adventurer_id)
@@ -2448,6 +2451,11 @@ mod Game {
     #[inline(always)]
     fn _adventurer_meta_unpacked(self: @ContractState, adventurer_id: u256) -> AdventurerMetadata {
         Packing::unpack(self._adventurer_meta.read(adventurer_id))
+    }
+
+    #[inline(always)]
+    fn _adventurer_res_unpacked(self: @ContractState, adventurer_id: u256) -> AdventurerRes {
+        Packing::unpack(self._adventurer_res.read(adventurer_id))
     }
 
     #[inline(always)]
