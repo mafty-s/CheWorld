@@ -6,7 +6,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {getChecksumAddress} from 'starknet';
 
 
-export const contract_address = "0x057662875b0d963300bd8b902a10f8c1d2294716e2bdd5dae077e589c595aaf7";
+export const contract_address = "0x026065387684e0094ce2d680a8718ba6c22db85657be641ab5c489177c05cd52";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
