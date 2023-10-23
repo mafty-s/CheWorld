@@ -1,5 +1,6 @@
 use pack::constants::pow;
 use pack::pack::{Packing, rshift_split};
+use integer::{u8_overflowing_add, u16_overflowing_add, u16_overflowing_sub};
 
 //The maximum value of an unsigned 32-bit integer (u32) is (2^32 - 1), which is 4,294,967,295.
 #[derive(Drop, Copy, Serde)]
@@ -12,7 +13,9 @@ struct AdventurerRes {
 impl PackingAdventurerRes of Packing<AdventurerRes> {
     fn pack(self: AdventurerRes) -> felt252 {
         (self.egg.into()).try_into()
-            .expect('pack AdventurerRes')
+            + self.meat.into() * pow::TWO_POW_9)
+        .try_into()
+        .expect('pack AdventurerRes')
     }
 
     fn unpack(packed: felt252) -> AdventurerRes {
