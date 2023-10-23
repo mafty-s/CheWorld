@@ -15,7 +15,7 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
             .expect('pack AdventurerRes')
     }
 
-    fn unpack(packed: felt252) -> Adventurer {
+    fn unpack(packed: felt252) -> AdventurerRes {
         let packed = packed.into();
         let (packed, egg) = rshift_split(packed, pow::TWO_POW_9);
 
