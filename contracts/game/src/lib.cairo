@@ -93,6 +93,7 @@ mod Game {
     #[derive(Drop, starknet::Event)]
     enum Event {
         StartGame: StartGame,
+        ResUpdate: ResUpdate,
         UpgradesAvailable: UpgradesAvailable,
         DiscoveredHealth: DiscoveredHealth,
         DiscoveredGold: DiscoveredGold,
@@ -2398,9 +2399,15 @@ mod Game {
         }
     }
 
-    fn AddResources(ref self: ContractState) {
+    fn AddResources(ref self: ContractState,adventurer_id: u256){
         let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
-        let tick = timestamp / 60;
+        let tick: u64  = timestamp / 60;
+
+
+        let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+
+        res.fish = res.fish + 1;
+        _pack_adventurer_res(ref self,adventurer_id,res);
     }
 
 
@@ -2521,6 +2528,11 @@ mod Game {
     struct StartGame {
         adventurer_state: AdventurerState,
         adventurer_meta: AdventurerMetadata
+    }
+
+    #[derive(Drop, starknet::Event)]
+    struct ResUpdate {
+        adventurer_res: AdventurerRes
     }
 
     #[derive(Drop, Serde, starknet::Event)]
