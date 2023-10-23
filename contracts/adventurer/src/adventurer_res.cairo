@@ -109,9 +109,92 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
 
     // TODO: add overflow pack protection
     fn overflow_pack_protection(self: AdventurerRes) -> AdventurerRes {
-        self
+        let mut overflow_protected_stats = self;
+
+        if self.egg > MAX_RES_EGG_VALUE {
+            overflow_protected_stats.egg = MAX_RES_EGG_VALUE;
+        };
+        if self.meat > MAX_RES_MEAT_VALUE {
+            overflow_protected_stats.meat = MAX_RES_MEAT_VALUE;
+        };
+        if self.fish > MAX_RES_FISH_VALUE {
+            overflow_protected_stats.fish = MAX_RES_FISH_VALUE;
+        };
+        if self.soft_skin > MAX_RES_SOFT_SKIN_VALUE {
+            overflow_protected_stats.soft_skin = MAX_RES_SOFT_SKIN_VALUE;
+        };
+        if self.berry > MAX_RES_BERRY_VALUE {
+            overflow_protected_stats.berry = MAX_RES_BERRY_VALUE;
+        };
+        if self.bamboo > MAX_RES_BAMBOO_VALUE {
+            overflow_protected_stats.bamboo = MAX_RES_BAMBOO_VALUE;
+        };
+        if self.balsa_wood > MAX_RES_BALSA_WOOD_VALUE {
+            overflow_protected_stats.balsa_wood = MAX_RES_BALSA_WOOD_VALUE;
+        };
+        if self.fir_wood > MAX_RES_FIR_WOOD_VALUE {
+            overflow_protected_stats.fir_wood = MAX_RES_FIR_WOOD_VALUE;
+        };
+        if self.teak > MAX_RES_TEAK_VALUE {
+            overflow_protected_stats.teak = MAX_RES_TEAK_VALUE;
+        };
+        if self.hemlock > MAX_RES_HEMLOCK_VALUE {
+            overflow_protected_stats.hemlock = MAX_RES_HEMLOCK_VALUE;
+        };
+        if self.mahogany > MAX_RES_MAHOGANY_VALUE {
+            overflow_protected_stats.mahogany = MAX_RES_MAHOGANY_VALUE;
+        };
+        if self.pine > MAX_RES_PINE_VALUE {
+            overflow_protected_stats.pine = MAX_RES_PINE_VALUE;
+        };
+        if self.coal > MAX_RES_COAL_VALUE {
+            overflow_protected_stats.coal = MAX_RES_COAL_VALUE;
+        };
+        if self.copper > MAX_RES_COPPER_VALUE {
+            overflow_protected_stats.copper = MAX_RES_COPPER_VALUE;
+        };
+        if self.iron > MAX_RES_IRON_VALUE {
+            overflow_protected_stats.iron = MAX_RES_IRON_VALUE;
+        };
+        if self.silver > MAX_RES_SILVER_VALUE {
+            overflow_protected_stats.silver = MAX_RES_SILVER_VALUE;
+        };
+        if self.sterling_silver > MAX_RES_STERLING_SILVER_VALUE {
+            overflow_protected_stats.sterling_silver = MAX_RES_STERLING_SILVER_VALUE;
+        };
+        if self.graphite > MAX_RES_GRAPHITE_VALUE {
+            overflow_protected_stats.graphite = MAX_RES_GRAPHITE_VALUE;
+        };
+        if self.platinum > MAX_RES_PLATINUM_VALUE {
+            overflow_protected_stats.platinum = MAX_RES_PLATINUM_VALUE;
+        };
+
+
+        overflow_protected_stats
     }
 }
+
+const MAX_RES_EGG_VALUE: u16 = 200;
+const MAX_RES_MEAT_VALUE: u16 = 200;
+const MAX_RES_FISH_VALUE: u16 = 200;
+const MAX_RES_SOFT_SKIN_VALUE: u16 = 200;
+const MAX_RES_CRUSTY_VALUE: u16 = 500;
+const MAX_RES_BERRY_VALUE: u16 = 500;
+const MAX_RES_BAMBOO_VALUE: u16 = 500;
+const MAX_RES_BALSA_WOOD_VALUE: u16 = 500;
+const MAX_RES_FIR_WOOD_VALUE: u16 = 500;
+const MAX_RES_TEAK_VALUE: u16 = 500;
+const MAX_RES_HEMLOCK_VALUE: u16 = 500;
+const MAX_RES_MAHOGANY_VALUE: u16 = 300;
+const MAX_RES_PINE_VALUE: u16 = 300;
+const MAX_RES_COAL_VALUE: u16 = 200;
+const MAX_RES_COPPER_VALUE: u16 = 500;
+const MAX_RES_IRON_VALUE: u16 = 500;
+const MAX_RES_SILVER_VALUE: u16 = 500;
+const MAX_RES_STERLING_SILVER_VALUE: u16 = 500;
+const MAX_RES_GRAPHITE_VALUE: u16 = 300;
+const MAX_RES_PLATINUM_VALUE: u16 = 300;
+
 
 //scarb test
 #[cfg(test)]
