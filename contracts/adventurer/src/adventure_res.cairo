@@ -9,6 +9,23 @@ struct AdventurerRes {
     egg:u16,//9 bits
     meat:u16,
     fish:u16,
+    soft_skin:u16,
+    crusty:u16,
+    berry:u16,
+    bamboo:u16,
+    balsa_wood:u16,
+    fir_wood:u16,
+    teak:u16,
+    hemlock:u16,
+    mahogany:u16,
+    pine:u16,
+    coal:u16,
+    copper:u16,
+    iron:u16,
+    silver:u16,
+    sterling_silver:u16,
+    graphite:u16,
+    platinum:u16,
 }
 
 impl PackingAdventurerRes of Packing<AdventurerRes> {
@@ -25,11 +42,31 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
         let (packed, egg) = rshift_split(packed, pow::TWO_POW_9);
         let (packed, meat) = rshift_split(packed, pow::TWO_POW_18);
         let (packed, fish) = rshift_split(packed, pow::TWO_POW_27);
+        let (packed, soft_skin) = rshift_split(packed, pow::TWO_POW_27);
+        let (packed, crusty) = rshift_split(packed, pow::TWO_POW_27);
+        let (packed, crusty) = rshift_split(packed, pow::TWO_POW_27);
 
         AdventurerRes {
             egg: egg.try_into().expect('unpack AdventurerRes egg'),
             meat: meat.try_into().expect('unpack AdventurerRes meat'),
             fish: fish.try_into().expect('unpack AdventurerRes fish'),
+            soft_skin:0,
+            crusty:0,
+            berry:0,
+            bamboo:0,
+            balsa_wood:0,
+            fir_wood:0,
+            teak:0,
+            hemlock:0,
+            mahogany:0,
+            pine:0,
+            coal:0,
+            copper:0,
+            iron:0,
+            silver:0,
+            sterling_silver:0,
+            graphite:0,
+            platinum:0,
         }
     }
 
@@ -46,7 +83,24 @@ fn test_res() {
     let res = AdventurerRes {
         egg:1,
         meat:2,
-        fish:3
+        fish:3,
+        soft_skin:0,
+        crusty:0,
+        berry:0,
+        bamboo:0,
+        balsa_wood:0,
+        fir_wood:0,
+        teak:0,
+        hemlock:0,
+        mahogany:0,
+        pine:0,
+        coal:0,
+        copper:0,
+        iron:0,
+        silver:0,
+        sterling_silver:0,
+        graphite:0,
+        platinum:0,
     };
 
     let packed = res.pack();
