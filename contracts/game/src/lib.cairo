@@ -75,7 +75,7 @@ mod Game {
         _adventurer: LegacyMap::<u256, felt252>,
         _owner: LegacyMap::<u256, ContractAddress>,
         _adventurer_meta: LegacyMap::<u256, felt252>,
-        _adventure_res: LegacyMap::<u256, felt252>,
+        _adventurer_res: LegacyMap::<u256, felt252>,
         _loot: LegacyMap::<u256, felt252>,
         _loot_special_names: LegacyMap::<(u256, u256), felt252>,
         _bag: LegacyMap::<u256, felt252>,
@@ -1103,6 +1103,7 @@ mod Game {
         // pack and save new adventurer and metadata
         _pack_adventurer(ref self, adventurer_id, new_adventurer);
         _pack_adventurer_meta(ref self, adventurer_id, adventurer_meta);
+        _pack_adventurer_res(ref self, adventurer_id, adventure_res);
 
         // increment the adventurer id counter
         self._counter.write(adventurer_id);
@@ -2069,6 +2070,15 @@ mod Game {
         self._adventurer_meta.write(adventurer_id, adventurer_meta.pack());
     }
 
+
+    #[inline(always)]
+    fn _pack_adventurer_res(
+        ref self: ContractState, adventurer_id: u256, adventurer_res: AdventurerRes
+    ) {
+        self._adventurer_res.write(adventurer_id, adventurer_res.pack());
+    }
+
+
     #[inline(always)]
     fn _pack_loot_special_names_storage(
         ref self: ContractState,
@@ -2367,6 +2377,12 @@ mod Game {
             }
         }
     }
+
+    fn AddResources(ref self: ContractState) {
+        let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
+        let tick = timestamp / 60;
+    }
+
 
     fn _rotate_global_entropy(ref self: ContractState) {
         // let hash: felt252  = starknet::get_tx_info().unbox().transaction_hash.into();

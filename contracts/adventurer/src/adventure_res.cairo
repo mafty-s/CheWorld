@@ -6,7 +6,7 @@ use traits::{TryInto, Into};
 //The maximum value of an unsigned 32-bit integer (u32) is (2^32 - 1), which is 4,294,967,295.
 #[derive(Drop, Copy, Serde)]
 struct AdventurerRes {
-    egg:u16,
+    egg:u16,//9 bits
     meat:u16,
     fish:u16,
 }
@@ -29,7 +29,7 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
         AdventurerRes {
             egg: egg.try_into().expect('unpack AdventurerRes egg'),
             meat: meat.try_into().expect('unpack AdventurerRes meat'),
-            fish: fish.try_into().expect('unpack AdventurerRes meat'),
+            fish: fish.try_into().expect('unpack AdventurerRes fish'),
         }
     }
 
