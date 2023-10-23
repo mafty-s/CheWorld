@@ -30,9 +30,27 @@ struct AdventurerRes {
 
 impl PackingAdventurerRes of Packing<AdventurerRes> {
     fn pack(self: AdventurerRes) -> felt252 {
-        (self.egg.into()
+        (     self.egg.into()
             + self.meat.into() * pow::TWO_POW_9
-            + self.fish.into() * pow::TWO_POW_18)
+            + self.fish.into() * pow::TWO_POW_18
+            + self.soft_skin.into() * pow::TWO_POW_27
+            + self.crusty.into() * pow::TWO_POW_36
+            + self.berry.into() * pow::TWO_POW_45
+            + self.bamboo.into() * pow::TWO_POW_54
+            + self.balsa_wood.into() * pow::TWO_POW_63
+            + self.fir_wood.into() * pow::TWO_POW_72
+            + self.teak.into() * pow::TWO_POW_81
+            + self.hemlock.into() * pow::TWO_POW_90
+            + self.mahogany.into() * pow::TWO_POW_99
+            + self.pine.into() * pow::TWO_POW_108
+            + self.coal.into() * pow::TWO_POW_117
+            + self.copper.into() * pow::TWO_POW_126
+            + self.iron.into() * pow::TWO_POW_135
+            + self.silver.into() * pow::TWO_POW_144
+            + self.sterling_silver.into() * pow::TWO_POW_153
+            + self.graphite.into() * pow::TWO_POW_162
+            + self.platinum.into() * pow::TWO_POW_171
+        )
         .try_into()
         .expect('pack AdventurerRes')
     }
@@ -42,9 +60,23 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
         let (packed, egg) = rshift_split(packed, pow::TWO_POW_9);
         let (packed, meat) = rshift_split(packed, pow::TWO_POW_18);
         let (packed, fish) = rshift_split(packed, pow::TWO_POW_27);
-        let (packed, soft_skin) = rshift_split(packed, pow::TWO_POW_27);
-        let (packed, crusty) = rshift_split(packed, pow::TWO_POW_27);
-        let (packed, crusty) = rshift_split(packed, pow::TWO_POW_27);
+        let (packed, soft_skin) = rshift_split(packed, pow::TWO_POW_36);
+        let (packed, crusty) = rshift_split(packed, pow::TWO_POW_45);
+        let (packed, berry) = rshift_split(packed, pow::TWO_POW_54);
+        let (packed, bamboo) = rshift_split(packed, pow::TWO_POW_63);
+        let (packed, balsa_wood) = rshift_split(packed, pow::TWO_POW_72);
+        let (packed, fir_wood) = rshift_split(packed, pow::TWO_POW_81);
+        let (packed, teak) = rshift_split(packed, pow::TWO_POW_90);
+        let (packed, hemlock) = rshift_split(packed, pow::TWO_POW_99);
+        let (packed, mahogany) = rshift_split(packed, pow::TWO_POW_108);
+        let (packed, pine) = rshift_split(packed, pow::TWO_POW_117);
+        let (packed, coal) = rshift_split(packed, pow::TWO_POW_126);
+        let (packed, copper) = rshift_split(packed, pow::TWO_POW_135);
+        let (packed, iron) = rshift_split(packed, pow::TWO_POW_144);
+        let (packed, silver) = rshift_split(packed, pow::TWO_POW_153);
+        let (packed, sterling_silver) = rshift_split(packed, pow::TWO_POW_162);
+        let (packed, graphite) = rshift_split(packed, pow::TWO_POW_171);
+        let (packed, platinum) = rshift_split(packed, pow::TWO_POW_180);
 
         AdventurerRes {
             egg: egg.try_into().expect('unpack AdventurerRes egg'),

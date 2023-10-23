@@ -121,14 +121,14 @@ mod Game {
     #[constructor]
     fn constructor(
         ref self: ContractState,
-        lords: ContractAddress,
-        dao: ContractAddress,
-        collectible_beasts: ContractAddress
+        // lords: ContractAddress,
+        // dao: ContractAddress,
+        // collectible_beasts: ContractAddress
     ) {
         // set the contract addresses
-        self._lords.write(lords);
-        self._dao.write(dao);
-        self._collectible_beasts.write(collectible_beasts);
+        // self._lords.write(lords);
+        // self._dao.write(dao);
+        // self._collectible_beasts.write(collectible_beasts);
 
         // set the genesis block
         self._genesis_block.write(starknet::get_block_info().unbox().block_number.into());
