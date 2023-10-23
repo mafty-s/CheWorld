@@ -50,6 +50,7 @@ struct Adventurer {
     beast_health: u16, // 9 bits
     stat_points_available: u8, // 3 bits
     mutated: bool, // not packed
+
 }
 
 impl AdventurerPacking of Packing<Adventurer> {

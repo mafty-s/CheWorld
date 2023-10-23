@@ -2,6 +2,7 @@ mod adventurer;
 mod adventurer_meta;
 mod adventurer_utils;
 mod adventurer_stats;
+mod adventure_res;
 mod item_primitive;
 mod item_meta;
 mod exploration;
