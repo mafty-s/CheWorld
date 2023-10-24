@@ -1,4 +1,3 @@
-
 <template>
   <div class="game map">
 
@@ -132,7 +131,7 @@
       <div class="infor">
         <div class="icon"><img src="images/action_icon_logging.png" alt=""></div>
         <div class="title1">In the process of logging...</div>
-        <div class="time">00:15</div>
+        <div class="time">{{ countdown }}</div>
         <div class="decs">
           <p>
             <span class="s1">10:20</span>
@@ -193,9 +192,6 @@
         </div>
       </div>
     </div>
-
-
-
 
 
     <div class="leftInfor">
@@ -273,20 +269,73 @@
     </div>
 
 
-
-
   </div>
 </template>
 
 
 <script>
+import $ from 'jquery';
 
 
 export default {
   name: 'WorldPage',
   components: {},
   mounted() {
+    var scale = 1.0; // 初始缩放比例
+    var maxScale = 2.0; // 最大缩放比例
+    var minScale = 0.5; // 最小缩放比例
+    var step = 0.01; // 缩放步长
 
+    $(".zoomable-div").on("wheel", function (event) {
+      // 阻止页面滚动
+      event.preventDefault();
+
+      // 获取鼠标滚轮事件的 deltaY 值，正值表示向上滚动，负值表示向下滚动
+      var delta = event.originalEvent.deltaY;
+
+      // 计算新的缩放比例
+      scale += (delta > 0) ? -step : step;
+
+      // 限制缩放比例在最大和最小值之间
+      if (scale > maxScale) {
+        scale = maxScale;
+      } else if (scale < minScale) {
+        scale = minScale;
+      }
+
+      // 应用缩放
+      $(this).css({
+        transform: "scale(" + scale + ")"
+      });
+    });
+
+
+    $('.sideInfor .switch').click(function () {
+      $('.sideInfor').toggleClass('current')
+    })
+
+    this.startCountdown();
+
+  },
+  data() {
+    return {
+      targetTime: new Date().getTime() + 60000, // 设置目标时间为当前时间的1分钟后
+      countdown: '00:00' // 初始倒计时显示为"00:00"
+    };
+  },
+  methods: {
+    startCountdown() {
+      setInterval(() => {
+        const currentTime = new Date().getTime();
+        const remainingTime = Math.max(this.targetTime - currentTime, 0);
+        const minutes = Math.floor(remainingTime / (1000 * 60));
+        const seconds = Math.floor((remainingTime / 1000) % 60);
+        this.countdown = `${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
+      }, 1000);
+    },
+    formatTime(time) {
+      return String(time).padStart(2, '0');
+    }
   }
 }
 
