@@ -206,6 +206,7 @@ export const store = createStore({
                         break;
                     case "AdventurerUpgraded":
                         ElMessage('AdventurerUpgraded')
+
                         break;
                     case "DiscoveredHealth":
                         ElMessage('DiscoveredHealth')
@@ -271,7 +272,7 @@ export const store = createStore({
                         ElMessage('AdventurerLeveledUp')
                         state.adventurer.xp = event.data.data.adventurerState.adventurer.xp;
                         state.adventurer.gold = event.data.data.adventurerState.adventurer.gold;
-                        state.adventurer.statPointsAvailable = event.data.data.adventurerState.adventurer.statPointsAvailable;
+                        state.adventurer.statUpgrades = event.data.data.adventurerState.adventurer.statPointsAvailable;
                         state.showInformation = true;
                         break;
                     case "NewItemsAvailable":

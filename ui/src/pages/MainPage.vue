@@ -82,7 +82,7 @@
     </div>
     <ShortcutBar/>
     <Crafting v-show="showCrafting"/>
-    <RoleInformation v-show="showInformation"/>
+    <RoleInformation v-if="showInformation"/>
   </div>
 </template>
 

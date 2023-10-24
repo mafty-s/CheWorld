@@ -149,7 +149,7 @@
 
     <ShortcutBar/>
     <MissionCompleteModal v-if="showMissionCompleted"/>
-    <RoleInformation v-show="showInformation"/>
+    <RoleInformation v-if="showInformation"/>
   </div>
 </template>
 

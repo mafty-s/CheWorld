@@ -96,7 +96,7 @@
           </div>
           <div class="Point">
             <div class="s1">Point</div>
-            <div class="s2">{{ point }}</div>
+            <div class="s2">{{ this.point.toString() }}</div>
           </div>
           <div class="peopleDetail">
             <img src="@/assets/images/people.png" class="" style="    display: block;
@@ -159,6 +159,7 @@ export default {
     ...mapMutations(['setShowInformation']),
     ...mapActions(['upgrade']),
     init(){
+      console.log(this.adventurer);
       this.currenUpgrades={
         Strength: 0,
             Dexterity: 0,
@@ -168,7 +169,7 @@ export default {
             Charisma: 0,
             Luck: 0
       };
-      this.point= this.adventurer.statPointsAvailable;
+      this.point= (Number)(this.adventurer.statUpgrades);
     },
     calculateLevel(xp) {
       return Math.max(Math.floor(Math.sqrt(xp)), 1);
@@ -179,8 +180,9 @@ export default {
     onClockClose() {
       this.setShowInformation(false)
     },
-    async onClickAddState(key) {
-      if (this.point <= 0) {
+    onClickAddState(key) {
+      console.log(key,this.point);
+      if (isNaN(this.point) || this.point <= 0) {
         return;
       }
       this.point--;
