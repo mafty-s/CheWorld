@@ -6,7 +6,7 @@
         <div class="items1">
           <div class="item">
             <img src="@/assets/images/gold1.png" alt="">
-            <span>999999</span>
+            <span>{{ adventurer.gold }}</span>
             <a href="javascript:;" class="add"></a>
           </div>
           <div class="item">
@@ -103,7 +103,7 @@
           <div class="dot"></div>
         </div>
 
-        <div class="block block8 ui3" @click="onClick">
+        <div class="block block8 ui3" @click="onClickHarvesting">
           <div class="text">
             Elm wood<br>99/100
           </div>
@@ -166,7 +166,7 @@ import EventLogModal from "../components/EventLogModal.vue";
 export default {
   name: 'WorldPage',
   components: {EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
-  computed: mapState(['wallet_address', "adventurers", "showMissionCompleted", "showInformation"]),
+  computed: mapState(['wallet_address', "adventurer", "showMissionCompleted", "showInformation"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例
@@ -208,8 +208,9 @@ export default {
   },
   methods: {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
-    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade']),
-    async onClick() {
+    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
+    async onClickHarvesting() {
+      await this.harvesting();
       this.setShowMissionCompleted(true);
     },
     async onClickAttack() {

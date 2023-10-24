@@ -526,7 +526,7 @@ export const store = createStore({
         async harvesting(context) {
             const mintAdventurerTx = {
                 contractAddress: contract_address,
-                entrypoint: "explore",
+                entrypoint: "harvesting",
                 calldata: [context.state.adventurer?.id?.toString() ?? "", "0"],
             };
 
