@@ -11,7 +11,7 @@
           </div>
           <div class="item">
             <img src="@/assets/images/gold2.png" alt="">
-            <span>999999</span>
+            <span>0</span>
             <a href="javascript:;" class="add"></a>
           </div>
         </div>
@@ -127,26 +127,7 @@
 
     <EventLogModal/>
     <AvatarComponent/>
-
-    <div class="typeItem type0">
-      <div class="add"></div>
-      <div class="ov">
-        <div class="icon"><img src="@/assets/images/icon1.png" alt=""></div>
-        <div class="val">20/90</div>
-        <div class="line"></div>
-      </div>
-    </div>
-
-    <div class="typeItem type2" style="top:150px">
-      <div class="add"></div>
-      <div class="ov">
-        <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
-        <div class="val">20/90</div>
-        <div class="line"></div>
-      </div>
-    </div>
-
-
+    <FloatingBall/>
     <ShortcutBar/>
     <MissionCompleteModal v-if="showMissionCompleted"/>
     <RoleInformation v-if="showInformation"/>
@@ -162,10 +143,11 @@ import ShortcutBar from "../components/ShortcutBar.vue";
 import AvatarComponent from "../components/AvatarComponent.vue";
 import RoleInformation from "../components/RoleInformation.vue";
 import EventLogModal from "../components/EventLogModal.vue";
+import FloatingBall from "../components/FloatingBall.vue";
 
 export default {
   name: 'WorldPage',
-  components: {EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
+  components: {FloatingBall, EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
   computed: mapState(['wallet_address', "adventurer", "showMissionCompleted", "showInformation"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
@@ -210,7 +192,7 @@ export default {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
-      await this.harvesting();
+      // await this.harvesting();
       this.setShowMissionCompleted(true);
     },
     async onClickAttack() {

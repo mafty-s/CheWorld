@@ -55,31 +55,8 @@
     <!--    <div class="people" style="cursor: pointer" ></div>-->
     <!--    <div class="people" style="cursor: pointer;left: 20%;"></div>-->
 
-   <AvatarComponent/>
-    <div class="typeItem type1">
-      <div class="add"></div>
-      <div class="ov">
-        <div class="icon"><img src="@/assets/images/icon1.png" alt=""></div>
-        <div class="val">20/90</div>
-        <div class="line"></div>
-      </div>
-    </div>
-    <div class="typeItem type2" style="top:120px">
-      <div class="add"></div>
-      <div class="ov">
-        <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
-        <div class="val">20/90</div>
-        <div class="line"></div>
-      </div>
-    </div>
-    <div class="typeItem type3" style="top:220px">
-      <div class="add"></div>
-      <div class="ov">
-        <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
-        <div class="val">20/90</div>
-        <div class="line"></div>
-      </div>
-    </div>
+    <AvatarComponent/>
+    <FloatingBall/>
     <ShortcutBar/>
     <Crafting v-show="showCrafting"/>
     <RoleInformation v-if="showInformation"/>
@@ -92,10 +69,12 @@ import Crafting from "../components/Crafting.vue";
 import RoleInformation from "../components/RoleInformation.vue";
 import ShortcutBar from "../components/ShortcutBar.vue";
 import AvatarComponent from "../components/AvatarComponent.vue";
+import FloatingBall from "../components/FloatingBall.vue";
 
 export default {
   name: 'MainPage',
   components: {
+    FloatingBall,
     AvatarComponent,
     Crafting, RoleInformation, ShortcutBar
   },
@@ -110,7 +89,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade','loadResources']),
+    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'loadResources']),
     ...mapMutations(['setShowCrafting', "setShowInformation", 'setCurrPage']),
     handleClose(done) {
       this.dialogVisible = false
