@@ -110,7 +110,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade']),
+    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade','loadResources']),
     ...mapMutations(['setShowCrafting', "setShowInformation", 'setCurrPage']),
     handleClose(done) {
       this.dialogVisible = false
@@ -153,7 +153,8 @@ export default {
     openCrafting() {
       this.setShowCrafting(true);
     },
-    onClickEnterWorld() {
+    async onClickEnterWorld() {
+      await this.loadResources();
       this.setCurrPage('world');
     }
   }

@@ -3,10 +3,11 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
-import {getChecksumAddress} from 'starknet';
+import {Contract, getChecksumAddress} from 'starknet';
 
 
 export const contract_address = "0x00d495aac3215853cebdf6f95a4b90fd790b760b112202df338c70ad641baf12";
+import contract_abi from "./abi.json";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
@@ -161,8 +162,36 @@ export const store = createStore({
                 strength: events[0].data.data.adventurerState.adventurer.stats.strength,
                 vitality: events[0].data.data.adventurerState.adventurer.stats.vitality,
                 wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
-                luck: 0
-
+                luck: 0,
+                xp:0,
+                gold:0,
+                health:100,
+                battles: [
+                    {
+                        "adventurerHealth": 100,  // 冒险者生命值
+                        "adventurerId": 5,  // 冒险者ID
+                        "attacker": "Beast",  // 攻击者
+                        "beast": "Fairy",  // 兽类
+                        "beastHealth": 5,  // 兽类生命值
+                        "beastLevel": 1,  // 兽类等级
+                        "blockTime": "2023-09-22T14:57:31.870Z",  // 区块时间
+                        "criticalHit": false,  // 是否暴击
+                        "damageDealt": 0,  // 造成伤害
+                        "damageLocation": "Foot",  // 伤害位置
+                        "damageTaken": 10,  // 承受伤害
+                        "discoveryTime": "2023-09-22T14:57:31.870Z",  // 发现时间
+                        "fled": false,  // 是否逃跑
+                        "goldEarned": 0,  // 获得金币
+                        "seed": "0x0000000000000000000000000000000000000000000000000000000000000000",  // 种子
+                        "special1": null,  // 特殊属性1
+                        "special2": null,  // 特殊属性2
+                        "special3": null,  // 特殊属性3
+                        "timestamp": "2023-09-22T14:57:31.870Z",  // 时间戳
+                        "txHash": "0x02063f1a064203b50ecd3e25f092aa5423c31ab49401dd5193364faab6aded25",  // 交易哈希
+                        "xpEarnedAdventurer": 0,  // 冒险者获得经验值
+                        "xpEarnedItems": 0  // 物品获得经验值
+                    }
+                ]
             };
             state.adventurer = ad;
             state.adventurers.push(ad)
@@ -179,9 +208,6 @@ export const store = createStore({
         }
     },
     actions: {
-        increment(context) {
-            context.commit('increment')
-        },
         async connect_wallet(context) {
             const a = await connect({
                 modalMode: "alwaysAsk",
@@ -402,6 +428,15 @@ export const store = createStore({
 
             console.log('receipt', receipt);
         },
+        async harvesting(context) {
+
+        },
+        async loadResources(context) {
+            const contract = new Contract(contract_abi, contract_address,context.state.account);
+            const resouces = await contract.get_adventurer_res(1);
+            console.log("resouces", resouces);
+            // context.state.adventurer?.resource = resouces;
+        }
     }
 })
 
