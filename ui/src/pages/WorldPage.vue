@@ -103,7 +103,7 @@
           <div class="dot"></div>
         </div>
 
-        <div class="block block8 ui3">
+        <div class="block block8 ui3" @click="onClick">
           <div class="text">
             Elm wood<br>99/100
           </div>
@@ -268,18 +268,20 @@
       </ul>
     </div>
 
-
+    <MissionCompleteModal v-if="showMissionCompleted"/>
   </div>
 </template>
 
 
 <script>
 import $ from 'jquery';
-
+import {mapActions, mapMutations, mapState} from "vuex";
+import MissionCompleteModal from "../components/MissionCompleteModal.vue";
 
 export default {
   name: 'WorldPage',
-  components: {},
+  components: {MissionCompleteModal},
+  computed: mapState(['wallet_address', "adventurers","showMissionCompleted"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例
@@ -324,6 +326,10 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
+    async onClick() {
+      this.setShowMissionCompleted(true);
+    },
     startCountdown() {
       setInterval(() => {
         const currentTime = new Date().getTime();

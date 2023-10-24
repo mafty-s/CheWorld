@@ -15,6 +15,7 @@ export const store = createStore({
         account: null,
         showCrafting: false,
         showInformation: false,
+        showMissionCompleted: false,
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'world',
@@ -139,6 +140,9 @@ export const store = createStore({
         },
         setShowInformation(state, value) {
             state.showInformation = value
+        },
+        setShowMissionCompleted(state, value) {
+            state.showMissionCompleted = value
         },
         setCurrPage(state, value) {
             state.currPage = value
