@@ -13,8 +13,7 @@
     </div>
     <div class="content2 itemNase" v-if="step===2">
       <input type="text" placeholder="Some text about user name" class="words" v-model="name">
-      <div class="warning">*The string can only contain uppercase or lowercase letters or numbers, with a maximum length
-        of 6 digits
+      <div class="warning">* {{error_msg}}
       </div>
       <button class="btnBase" @click="checkName()">CONFIRM</button>
     </div>
@@ -185,6 +184,7 @@ import {getQuesting} from "../config/questing.js";
 import {getRandomNumberIn} from "../utils/index.js";
 import $ from 'jquery';
 import {stat_desc} from "../config/stat.js";
+import {ElMessage} from "element-plus";
 
 export default {
   name: 'AdventureListPage',
@@ -206,6 +206,7 @@ export default {
   computed: mapState(['wallet_address', "adventurers",]),
   data() {
     return {
+      err_msg:"The name can only contain uppercase or lowercase letters or numbers, with a maximum length of 6 digits",
       stat_desc: stat_desc,
       tabIndex: 0,
       range: [0, 1, 2, 3, 4],
@@ -263,6 +264,8 @@ export default {
       let res = this.validateString(this.name);
       if (res) {
         this.step++;
+      }else{
+        ElMessage.error(this.err_msg)
       }
     },
     nextStep() {
