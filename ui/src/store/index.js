@@ -149,62 +149,61 @@ export const store = createStore({
         setCurrPage(state, value) {
             state.currPage = value
         },
-        doStart(state, payload) {
-
-            const name = payload.name;
-            const events = payload.events;
-
-            const id = events[0].data.data.adventurerState.adventurerId;
-            const id_num = uint256.uint256ToBN(id)
-
-            const ad = {
-                id: id_num,
-                name: name,
-                charisma: events[0].data.data.adventurerState.adventurer.stats.charisma,
-                dexterity: events[0].data.data.adventurerState.adventurer.stats.dexterity,
-                intelligence: events[0].data.data.adventurerState.adventurer.stats.intelligence,
-                strength: events[0].data.data.adventurerState.adventurer.stats.strength,
-                vitality: events[0].data.data.adventurerState.adventurer.stats.vitality,
-                wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
-                luck: 0,
-                xp: 0,
-                gold: 0,
-                health: 100,
-                statUpgrades: 0,
-                battles: [
-                    {
-                        "adventurerHealth": 100,  // 冒险者生命值
-                        "adventurerId": 5,  // 冒险者ID
-                        "attacker": "Beast",  // 攻击者
-                        "beast": "Fairy",  // 兽类
-                        "beastHealth": 5,  // 兽类生命值
-                        "beastLevel": 1,  // 兽类等级
-                        "blockTime": "2023-09-22T14:57:31.870Z",  // 区块时间
-                        "criticalHit": false,  // 是否暴击
-                        "damageDealt": 0,  // 造成伤害
-                        "damageLocation": "Foot",  // 伤害位置
-                        "damageTaken": 10,  // 承受伤害
-                        "discoveryTime": "2023-09-22T14:57:31.870Z",  // 发现时间
-                        "fled": false,  // 是否逃跑
-                        "goldEarned": 0,  // 获得金币
-                        "seed": "0x0000000000000000000000000000000000000000000000000000000000000000",  // 种子
-                        "special1": null,  // 特殊属性1
-                        "special2": null,  // 特殊属性2
-                        "special3": null,  // 特殊属性3
-                        "timestamp": "2023-09-22T14:57:31.870Z",  // 时间戳
-                        "txHash": "0x02063f1a064203b50ecd3e25f092aa5423c31ab49401dd5193364faab6aded25",  // 交易哈希
-                        "xpEarnedAdventurer": 0,  // 冒险者获得经验值
-                        "xpEarnedItems": 0  // 物品获得经验值
-                    }
-                ]
-            };
-            state.adventurer = ad;
-            state.adventurers.push(ad)
+        setAdventurerName(state, value) {
+            state.adventurer.name = value;
         },
         doEvents(state, events) {
             for (let i = 0; i < events.length; i++) {
                 const event = events[i];
                 switch (event.name) {
+                    case "StartGame":
+                        const id = event.data.data.adventurerState.adventurerId;
+                        const id_num = uint256.uint256ToBN(id)
+
+                        const ad = {
+                            id: id_num,
+                            name: "loading",
+                            charisma: event.data.data.adventurerState.adventurer.stats.charisma,
+                            dexterity: event.data.data.adventurerState.adventurer.stats.dexterity,
+                            intelligence: event.data.data.adventurerState.adventurer.stats.intelligence,
+                            strength: event.data.data.adventurerState.adventurer.stats.strength,
+                            vitality: event.data.data.adventurerState.adventurer.stats.vitality,
+                            wisdom: event.data.data.adventurerState.adventurer.stats.wisdom,
+                            luck: 0,
+                            xp: 0,
+                            gold: 0,
+                            health: 100,
+                            statUpgrades: 0,
+                            battles: [
+                                {
+                                    "adventurerHealth": 100,  // 冒险者生命值
+                                    "adventurerId": 5,  // 冒险者ID
+                                    "attacker": "Beast",  // 攻击者
+                                    "beast": "Fairy",  // 兽类
+                                    "beastHealth": 5,  // 兽类生命值
+                                    "beastLevel": 1,  // 兽类等级
+                                    "blockTime": "2023-09-22T14:57:31.870Z",  // 区块时间
+                                    "criticalHit": false,  // 是否暴击
+                                    "damageDealt": 0,  // 造成伤害
+                                    "damageLocation": "Foot",  // 伤害位置
+                                    "damageTaken": 10,  // 承受伤害
+                                    "discoveryTime": "2023-09-22T14:57:31.870Z",  // 发现时间
+                                    "fled": false,  // 是否逃跑
+                                    "goldEarned": 0,  // 获得金币
+                                    "seed": "0x0000000000000000000000000000000000000000000000000000000000000000",  // 种子
+                                    "special1": null,  // 特殊属性1
+                                    "special2": null,  // 特殊属性2
+                                    "special3": null,  // 特殊属性3
+                                    "timestamp": "2023-09-22T14:57:31.870Z",  // 时间戳
+                                    "txHash": "0x02063f1a064203b50ecd3e25f092aa5423c31ab49401dd5193364faab6aded25",  // 交易哈希
+                                    "xpEarnedAdventurer": 0,  // 冒险者获得经验值
+                                    "xpEarnedItems": 0  // 物品获得经验值
+                                }
+                            ]
+                        };
+                        state.adventurer = ad;
+                        state.adventurers.push(ad)
+                        break;
                     case "AdventurerUpgraded":
                         ElMessage('AdventurerUpgraded')
                         break;
@@ -270,10 +269,10 @@ export const store = createStore({
                         break;
                     case "AdventurerLeveledUp":
                         ElMessage('AdventurerLeveledUp')
-                        state.adventurer.xp = event.adventurerState.adventurer.xp;
-                        state.adventurer.gold = event.adventurerState.adventurer.gold;
-                        state.adventurer.statPointsAvailable = event.adventurerState.adventurer.statPointsAvailable;
-                        state.showInformation=true;
+                        state.adventurer.xp = event.data.data.adventurerState.adventurer.xp;
+                        state.adventurer.gold = event.data.data.adventurerState.adventurer.gold;
+                        state.adventurer.statPointsAvailable = event.data.data.adventurerState.adventurer.statPointsAvailable;
+                        state.showInformation = true;
                         break;
                     case "NewItemsAvailable":
                         ElMessage('NewItemsAvailable')
@@ -386,26 +385,12 @@ export const store = createStore({
             const tx = await context.state.account?.execute(mintAdventurerTx);
 
             console.log("tx", tx);
-
-            // let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
-            //     retryInterval: 2000,
-            // });
-
             const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
-
-
             console.log('receipt', receipt);
-
             let events = await parseEvents(receipt);
-
             console.log('events', events);
-
-            context.commit("doStart", {name: formData.name, events: events})
-
-            // const adventurerState = events.find(
-            //     (event) => event.name === "AmbushedByBeast"
-            // ).data[0];
-
+            context.commit("doEvents", events)
+            context.commit("setAdventurerName",formData.name);
         },
         async explore(context, till_beast) {
 

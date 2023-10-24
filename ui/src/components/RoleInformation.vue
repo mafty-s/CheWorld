@@ -96,7 +96,7 @@
           </div>
           <div class="Point">
             <div class="s1">Point</div>
-            <div class="s2">{{ this.adventurer.statUpgrades }}</div>
+            <div class="s2">{{ point }}</div>
           </div>
           <div class="peopleDetail">
             <img src="@/assets/images/people.png" class="" style="    display: block;
@@ -131,7 +131,7 @@ export default {
   name: 'RoleInformation',
   components: {},
   mounted() {
-
+    this.init();
   },
   computed: {
     stat_desc() {
@@ -151,13 +151,25 @@ export default {
         Charisma: 0,
         Luck: 0
       },
-      point: 3,
+      point: 0,
     }
   },
 
   methods: {
     ...mapMutations(['setShowInformation']),
     ...mapActions(['upgrade']),
+    init(){
+      this.currenUpgrades={
+        Strength: 0,
+            Dexterity: 0,
+            Vitality: 0,
+            Intelligence: 0,
+            Wisdom: 0,
+            Charisma: 0,
+            Luck: 0
+      };
+      this.point= this.adventurer.statPointsAvailable;
+    },
     calculateLevel(xp) {
       return Math.max(Math.floor(Math.sqrt(xp)), 1);
     },
@@ -168,11 +180,11 @@ export default {
       this.setShowInformation(false)
     },
     async onClickAddState(key) {
-      if (this.point === 0) {
+      if (this.point <= 0) {
         return;
       }
-      this.currenUpgrades[key]++;
       this.point--;
+      this.currenUpgrades[key]++;
     },
     async onClickUpgrade() {
       const potions = 0;
