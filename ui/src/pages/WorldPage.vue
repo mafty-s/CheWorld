@@ -274,7 +274,7 @@ export default {
   },
   data() {
     return {
-      targetTime: new Date().getTime() + 60000, // 设置目标时间为当前时间的1分钟后
+      targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
       countdown: '00:00' // 初始倒计时显示为"00:00"
     };
   },

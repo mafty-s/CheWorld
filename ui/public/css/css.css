@@ -1450,7 +1450,6 @@ z-index: 3;
 width: 1100px;
     
 height: 714px;
-
     
 position: absolute;
     
@@ -1467,6 +1466,8 @@ left: 50%;
 -ms-transform: translate(-50%, -50%);
     
 transform: translate(-50%, -50%);
+    
+z-index: 44;
 }
 .creatMain .content3 .title {
 
@@ -2552,3 +2553,256 @@ padding-bottom: 105px;
 }
 
 
+
+.creatMain.nopad{
+    padding: 0px;
+    height: auto;
+    background: none;
+}
+.creatMain.nopad .content3{
+    width: 1200px;
+    height: 714px;
+}
+.alertmodel .center4  {
+  /* Your styles for .alertmodel .center4  here */
+  width: 1200px;
+  height: 714px;
+  background: url(../images/common_popup_frame014.png) no-repeat center center;
+  background-size: 100% 100%;
+  text-align: left;
+}
+
+.alertmodel .center4  .close {
+  /* Your styles for .close here */
+}
+
+.alertmodel .center4  .titlero {
+  /* Your styles for .titlero here */
+  position: absolute;
+  left: 15px;
+  top: -20px;
+}
+
+.alertmodel .center4  .titlero img {
+  /* Your styles for images inside .titlero here */
+}
+
+.alertmodel .center4  .con {
+  /* Your styles for .con here */
+}
+
+.alertmodel .center4  .left2 {
+  /* Your styles for .left2 here */
+  width: 469px;
+  float: left;
+  margin-top: 65px;
+  margin-left: 65px;
+}
+
+.alertmodel .center4  .titles {
+  /* Your styles for .titles here */
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: bold;
+  color: #0A0316;
+  line-height: 24px;
+  text-transform: uppercase;
+  margin-bottom: 11px;
+}
+
+.alertmodel .center4 .left2 .list ul {
+  /* Your styles for lists inside .list ul here */
+  overflow: auto;
+  padding-right: 8px;
+  height: 544px;
+  overflow: auto;
+}
+
+.alertmodel .center4 .left2 .list li {
+  /* Your styles for list items inside .list ul here */
+  height: 76px;
+  border: 2px solid #5D4D44;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: 400;
+  color: #0A0316;
+}
+
+.alertmodel .center4 .left2 .list .s1 {
+  /* Your styles for .s1 here */
+  padding-top: 6px;
+  padding-bottom: 11px;
+}
+
+.alertmodel .center4  .list .icon {
+  /* Your styles for .icon here */
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+}
+
+.alertmodel .center4  .list .icon img {
+  /* Your styles for images inside .icon here */
+}
+
+.alertmodel .center4  .list .tit {
+  /* Your styles for .tit here */
+  display: inline-block;
+}
+
+.alertmodel .center4 .left2 .list .s2 {
+  /* Your styles for .s2 here */
+  font-size: 16px;
+  padding-left: 12px;
+}
+
+.alertmodel .center4  .right {
+  /* Your styles for .right here */
+  float: right;
+  margin-top: 64px;
+  margin-right: 81px;
+  width: 477px;
+}
+
+.alertmodel .center4  .xt {
+  /* Your styles for .xt here */
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: bold;
+  color: #0A0316;
+  /* display: flex; */
+  zoom: 1;
+  overflow: hidden;
+}
+.alertmodel .center4 .xt  .val{
+  width: 100%;
+  height: 16px;
+  background: #000000;
+  position: relative;
+  float: right;
+  width: calc(100% - 85px);
+}
+.alertmodel .center4  .xt .tit {
+  /* Your styles for .tit inside .xt here */
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: bold;
+  color: #0A0316;
+  width: 85px;
+  float: left;
+}
+
+.alertmodel .center4  .xt .val em {
+  /* Your styles for em inside .val here */
+  height: 12px;
+  background: #86503A;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 30%;
+}
+
+.alertmodel .center4  .Point {
+  /* Your styles for .Point here */
+  height: 36px;
+  background: #877764;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: 400;
+  color: #0A0316;
+  padding: 0px 18px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 38px;
+}
+
+.alertmodel .center4  .Point .s1 {
+  /* Your styles for .s1 inside .Point here */
+}
+
+.alertmodel .center4  .Point .s2 {
+  /* Your styles for .s2 inside .Point here */
+}
+
+.alertmodel .center4  .peopleDetail {
+  /* Your styles for .peopleDetail here */
+  height: 495px;
+  background: rgb(135 119 100 / 50%);
+  padding-top: 23px;
+}
+
+.alertmodel .center4  .peopleDetail img.people {
+  /* Your styles for .people inside img.people here */
+  display: block;
+  margin: auto;
+  height: 299px;
+  margin-bottom: 33px;
+}
+
+.alertmodel .center4  .peopleDetail .list ul {
+  /* Your styles for lists inside .list ul here */
+  padding-left: 42px;
+  height: auto;
+  padding-right: 26px;
+}
+.alertmodel .center4 .peopleDetail .list li:nth-child(2n){
+float:right;
+}
+.alertmodel .center4  .peopleDetail .list li {
+  /* Your styles for list items inside .list ul here */
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: 400;
+  color: #0A0316;
+  float: left;
+  width: 44%;
+  margin-bottom: 18px;
+}
+
+.alertmodel .center4  .peopleDetail .list{
+    
+}
+.alertmodel .center4  .peopleDetail .list .s1 {
+  /* Your styles for .s1 inside .list here */
+  float: left;
+  width: 59%;
+}
+
+.alertmodel .center4  .peopleDetail .list .s2 {
+  /* Your styles for .s2 inside .list here */
+  float: left;
+  width: 22%;
+  text-align: right;
+}
+
+.alertmodel .center4  .peopleDetail .list .s3 {
+  /* Your styles for .s3 inside .list here */
+  float: right;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  background: url(../images/adds1.png) no-repeat center center;
+  background-size: 100% !important;
+}
+.alertmodel .center4  .peopleDetail .list .s3:hover{
+  background: url(../images/adds1hover.png) no-repeat center center;
+}
+.alertmodel .center4  .peopleDetail .list .s3.current {
+transform: scale(.8);
+}
+.alertmodel .center4  .peopleDetail .list .s3.grey{
+  background: url(../images/grey.png) no-repeat center center !important;
+  transform: scale(1) !important;
+}
+
+.alertmodel .center4  .btn {
+  /* Your styles for .btn here */
+}
+
+.alertmodel .center4 .list .s2 p{
+  float:left;
+  width:25%;
+}
