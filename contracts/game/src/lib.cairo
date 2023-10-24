@@ -1133,7 +1133,7 @@ mod Game {
         };
 
         // emit a StartGame event 
-        __event_StartGame(ref self, new_adventurer, adventurer_id, adventurer_meta);
+        __event_StartGame(ref self, new_adventurer, adventurer_id, adventurer_meta,adventure_res);
 
         // adventurer immediately gets ambushed by a starter beast
         let beast_battle_details = _starter_beast_ambush(
@@ -2544,7 +2544,8 @@ mod Game {
 
     #[derive(Drop, starknet::Event)]
     struct ResUpdate {
-        adventurer_res: AdventurerRes
+        adventurer_res: AdventurerRes,
+        changes:AdventurerRes
     }
 
     #[derive(Drop, Serde, starknet::Event)]
@@ -2815,12 +2816,17 @@ mod Game {
         ref self: ContractState,
         adventurer: Adventurer,
         adventurer_id: u256,
-        adventurer_meta: AdventurerMetadata
+        adventurer_meta: AdventurerMetadata,
+        adventurer_res:AdventurerRes
     ) {
         let adventurer_state = AdventurerState {
             owner: get_caller_address(), adventurer_id, adventurer
         };
         self.emit(StartGame { adventurer_state, adventurer_meta });
+        self.emit(ResUpdate {
+            adventurer_res:adventurer_res,
+            changes:adventurer_res
+        })
     }
 
     fn __event_Discovery(
