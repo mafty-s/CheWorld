@@ -144,6 +144,7 @@ import AvatarComponent from "../components/AvatarComponent.vue";
 import RoleInformation from "../components/RoleInformation.vue";
 import EventLogModal from "../components/EventLogModal.vue";
 import FloatingBall from "../components/FloatingBall.vue";
+import {ElMessage} from "element-plus";
 
 export default {
   name: 'WorldPage',
@@ -189,14 +190,25 @@ export default {
     return {};
   },
   methods: {
-    ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
+    ...mapMutations(['setShowMissionCompleted', 'setCurrPage','setShowInformation']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
       // await this.harvesting();
       this.setShowMissionCompleted(true);
     },
     async onClickAttack() {
-      await this.attack(false, null);
+      let monster = this.adventurer.beastSpecs;
+      if(monster){
+        await this.attack(false, null);
+      }else{
+        if(this.adventurer.statUpgrades>0){
+          ElMessage.error('Please upgrade your character first')
+          this.setShowInformation(true);
+        }else {
+          await this.explore(true);
+        }
+      }
+
     },
     async onClickBackHome() {
       this.setCurrPage('main');

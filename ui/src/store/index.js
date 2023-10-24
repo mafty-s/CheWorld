@@ -205,23 +205,23 @@ export const store = createStore({
                         break;
                     case "AdventurerUpgraded":
                         ElMessage('AdventurerUpgraded')
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         break;
                     case "DiscoveredHealth":
                         ElMessage('DiscoveredHealth')
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         break;
                     case "DiscoveredGold":
                         ElMessage('DiscoveredGold')
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         break;
                     case "DiscoveredXP":
                         ElMessage('DiscoveredXP')
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         break;
                     case "DodgedObstacle":
                         ElMessage('DodgedObstacle')
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         break;
                     case "HitByObstacle":
                         ElMessage('HitByObstacle')
@@ -231,8 +231,8 @@ export const store = createStore({
                         break;
                     case "AmbushedByBeast":
                         ElMessage('AmbushedByBeast')
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
-                        state.adventurer.beastSpecs = event.data.data.beastSpecs ;
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+                        state.adventurer.beastSpecs = event.data.data.beastSpecs;
                         break;
                     case "AttackedBeast":
                         ElMessage('AttackedBeast')
@@ -242,6 +242,7 @@ export const store = createStore({
                         break;
                     case "SlayedBeast":
                         ElMessage('SlayedBeast')
+                        state.adventurer.beastSpecs = null;
                         break;
                     case "FleeFailed":
                         ElMessage('FleeFailed')
@@ -276,7 +277,7 @@ export const store = createStore({
                     case "AdventurerLeveledUp":
                         ElMessage('AdventurerLeveledUp')
 
-                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         state.showInformation = true;
                         break;
                     case "NewItemsAvailable":
@@ -333,6 +334,12 @@ export const store = createStore({
 
         },
         async poolReceipt(context, txhash) {
+
+            ElMessage({
+                message: '' + txhash,
+                type: 'success',
+            })
+
             let receipt = null;
             let retryCount = 0;
             const maxRetryCount = 10; // 最大重试次数
