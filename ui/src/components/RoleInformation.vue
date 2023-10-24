@@ -89,14 +89,14 @@
         </div>
         <div class="right">
           <div class="xt">
-            <div class="tit">LV 999</div>
+            <div class="tit">LV {{ calculateLevel(this.adventurer.xp) }}</div>
             <div class="val">
               <em></em>
             </div>
           </div>
           <div class="Point">
             <div class="s1">Point</div>
-            <div class="s2">9</div>
+            <div class="s2">{{ this.adventurer.statUpgrades }}</div>
           </div>
           <div class="peopleDetail">
             <img src="@/assets/images/people.png" class="" style="    display: block;
@@ -105,109 +105,27 @@
     margin-bottom: 33px;" alt="">
             <div class="list">
               <ul>
-                <li>
-                  <div class="s1">Strength</div>
-                  <div class="s2">{{ adventurer.strength }}</div>
-                  <div class="s3"></div>
-                </li>
-                <li>
-                  <div class="s1">Dexterity</div>
-                  <div class="s2">{{ adventurer.dexterity }}</div>
-                  <div class="s3"></div>
-                </li>
-                <li>
-                  <div class="s1">Wisdom</div>
-                  <div class="s2">{{ adventurer.wisdom }}</div>
-                  <div class="s3"></div>
-                </li>
-                <li>
-                  <div class="s1">Intelligence</div>
-                  <div class="s2">{{ adventurer.intelligence }}</div>
-                  <div class="s3"></div>
-                </li>
-                <li>
-                  <div class="s1">Charisma</div>
-                  <div class="s2">{{ adventurer.charisma }}</div>
-                  <div class="s3 grey"></div>
-                </li>
-                <li>
-                  <div class="s1">Vitality</div>
-                  <div class="s2">{{ adventurer.vitality }}</div>
-                  <div class="s3 grey"></div>
+                <li v-for="(value, key) in stat_desc" :key="key">
+                  <div class="s1">{{ key }}</div>
+                  <div class="s2">{{ stat(key.toLowerCase()) }}</div>
+                  <div class="s3" @click="onClickAddState(key.toLowerCase())"></div>
                 </li>
               </ul>
             </div>
+          </div>
+          <div class="btns">
+            <button class="btn2" @click="onClickUpgrade">confirm</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!--  <div class="creatMain" style="z-index: 2;background: none" @click="close">-->
-  <!--    <div class="content3 itemNase">-->
-  <!--      <div class="title">-->
-  <!--        <img src="@/assets@/assets@/assets/images///title.png" alt="">-->
-  <!--      </div>-->
-  <!--      <div class="con">-->
-  <!--        <div class="left">-->
-  <!--          <div class="dec1">-->
-  <!--            <p>-->
-  <!--            <span class="s1">-->
-  <!--              <span class="icon"><img src="@/assets@/assets@/assets/images///icon1.png" alt=""></span>-->
-  <!--              <span class="ti">Vitality</span>-->
-  <!--            </span>-->
-  <!--              <span class="s2">100/100</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--            <span class="s1">-->
-  <!--              <span class="icon"><img src="@/assets@/assets@/assets/images///icon2.png" alt=""></span>-->
-  <!--              <span class="ti">Morality</span>-->
-  <!--            </span>-->
-  <!--              <span class="s2">90/90</span>-->
-  <!--            </p>-->
-  <!--          </div>-->
-  <!--          <div class="dec2">-->
-  <!--            <p>-->
-  <!--              <span class="s1">Strength</span>-->
-  <!--              <span class="s2">{{adventurer.strength}}</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--              <span class="s1">Dexterity</span>-->
-  <!--              <span class="s2">{{ adventurer.dexterity }}</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--              <span class="s1">Wisdom</span>-->
-  <!--              <span class="s2">{{ adventurer.wisdom }}</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--              <span class="s1">Intelligence</span>-->
-  <!--              <span class="s2">{{adventurer.intelligence}}</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--              <span class="s1">Charisma</span>-->
-  <!--              <span class="s2">{{adventurer.charisma}}</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--              <span class="s1">Vitality</span>-->
-  <!--              <span class="s2">{{adventurer.vitality}}</span>-->
-  <!--            </p>-->
-  <!--            <p>-->
-  <!--              <span class="s1">Luck</span>-->
-  <!--              <span class="s2">{{ adventurer.luck }}</span>-->
-  <!--            </p>-->
-  <!--          </div>-->
-  <!--        </div>-->
-  <!--        <div class="right">-->
-  <!--          <div class="title">{{adventurer.name}}</div>-->
-  <!--          <img src="@/assets@/assets@/assets/images///people.png" class="people" alt="">-->
-  <!--&lt;!&ndash;          <button class="btn">Start Adventure</button>&ndash;&gt;-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
+
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
+import {stat_desc} from "../config/stat.js";
 
 export default {
   name: 'RoleInformation',
@@ -215,16 +133,52 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['adventurer']),
-  data() {
-    return {}
+  computed: {
+    stat_desc() {
+      return stat_desc
+    },
+    ...mapState(['adventurer']),
+
   },
+  data() {
+    return {
+      currenUpgrades: {
+        strength: 0,
+        Dexterity: 0,
+        Vitality: 0,
+        Intelligence: 0,
+        Wisdom: 0,
+        Charisma: 0,
+        Luck: 0
+      },
+      point: 0,
+    }
+  },
+
   methods: {
     ...mapMutations(['setShowInformation']),
+    ...mapActions(['upgrade']),
+    calculateLevel(xp) {
+      return Math.max(Math.floor(Math.sqrt(xp)), 1);
+    },
+    stat: function (key) {
+      return this.adventurer[key] + this.currenUpgrades[key];
+    },
     onClockClose() {
       this.setShowInformation(false)
     },
-
+    async onClickAddState(key) {
+      this.currenUpgrades[key]++;
+    },
+    async onClickUpgrade() {
+      const potions = 0;
+      const items = [];
+      await this.upgrade({
+        currenUpgrades: this.currenUpgrades,
+        potions: potions,
+        items: items
+      });
+    },
   }
 }
 </script>

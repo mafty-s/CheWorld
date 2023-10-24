@@ -163,9 +163,10 @@ export const store = createStore({
                 vitality: events[0].data.data.adventurerState.adventurer.stats.vitality,
                 wisdom: events[0].data.data.adventurerState.adventurer.stats.wisdom,
                 luck: 0,
-                xp:0,
-                gold:0,
-                health:100,
+                xp: 0,
+                gold: 0,
+                health: 100,
+                statUpgrades: 0,
                 battles: [
                     {
                         "adventurerHealth": 100,  // 冒险者生命值
@@ -276,6 +277,9 @@ export const store = createStore({
             //     calldata: [contract_address, (100 * 10 ** 18).toString(), "0"],
             // };
 
+            if (formData.name === "") {
+                return;
+            }
 
             const mintAdventurerTx = {
                 contractAddress: contract_address,
@@ -429,10 +433,17 @@ export const store = createStore({
             console.log('receipt', receipt);
         },
         async harvesting(context) {
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "explore",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", till_beast ? "1" : "0"],
+            };
+
+            const tx = await context.state.account?.execute(mintAdventurerTx);
 
         },
         async loadResources(context) {
-            const contract = new Contract(contract_abi, contract_address,context.state.account);
+            const contract = new Contract(contract_abi, contract_address, context.state.account);
             const resouces = await contract.get_adventurer_res(1);
             console.log("resouces", resouces);
             // context.state.adventurer?.resource = resouces;
