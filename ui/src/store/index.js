@@ -284,7 +284,7 @@ export const store = createStore({
                     case "RewardDistribution":
                         ElMessage('RewardDistribution')
                         break;
-                    case "ResUpdateData":
+                    case "ResUpdate":
                         state.adventurer.resources = event.data.data.adventurer_res;
                         break;
                     default:
