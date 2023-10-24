@@ -125,77 +125,8 @@
       </div>
     </div>
 
-
-    <div class="sideInfor">
-      <div class="switch"></div>
-      <div class="infor">
-        <div class="icon"><img src="@/assets/images/action_icon_logging.png" alt=""></div>
-        <div class="title1">In the process of logging...</div>
-        <div class="time">{{ countdown }}</div>
-        <div class="decs">
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">some text more and more ,maybe some fighting</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-          <p>
-            <span class="s1">10:20</span>
-            <span class="s2">high-quality wood x99</span>
-          </p>
-        </div>
-      </div>
-    </div>
-
-
+    <EventLogModal/>
     <AvatarComponent/>
-
 
     <div class="typeItem type0">
       <div class="add"></div>
@@ -230,10 +161,11 @@ import MissionCompleteModal from "../components/MissionCompleteModal.vue";
 import ShortcutBar from "../components/ShortcutBar.vue";
 import AvatarComponent from "../components/AvatarComponent.vue";
 import RoleInformation from "../components/RoleInformation.vue";
+import EventLogModal from "../components/EventLogModal.vue";
 
 export default {
   name: 'WorldPage',
-  components: {RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
+  components: {EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
   computed: mapState(['wallet_address', "adventurers", "showMissionCompleted", "showInformation"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
@@ -269,13 +201,11 @@ export default {
       $('.sideInfor').toggleClass('current')
     })
 
-    this.startCountdown();
 
   },
   data() {
     return {
-      targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
-      countdown: '00:00' // 初始倒计时显示为"00:00"
+
     };
   },
   methods: {
@@ -290,18 +220,7 @@ export default {
     async onClickBackHome() {
       this.setCurrPage('main');
     },
-    startCountdown() {
-      setInterval(() => {
-        const currentTime = new Date().getTime();
-        const remainingTime = Math.max(this.targetTime - currentTime, 0);
-        const minutes = Math.floor(remainingTime / (1000 * 60));
-        const seconds = Math.floor((remainingTime / 1000) % 60);
-        this.countdown = `${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
-      }, 1000);
-    },
-    formatTime(time) {
-      return String(time).padStart(2, '0');
-    }
+
   }
 }
 
