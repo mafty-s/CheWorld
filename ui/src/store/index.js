@@ -348,6 +348,8 @@ export const store = createStore({
         },
         async attack(context, tillDeath, beastData) {
 
+            console.log("attack", tillDeath, context.state.adventurer?.id?.toString());
+
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "attack",
@@ -441,12 +443,12 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
-            },
+        },
         async harvesting(context) {
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "explore",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", till_beast ? "1" : "0"],
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0"],
             };
 
             const tx = await context.state.account?.execute(mintAdventurerTx);

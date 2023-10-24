@@ -107,8 +107,8 @@
               <ul>
                 <li v-for="(value, key) in stat_desc" :key="key">
                   <div class="s1">{{ key }}</div>
-                  <div class="s2">{{ stat(key.toLowerCase()) }}</div>
-                  <div class="s3" @click="onClickAddState(key.toLowerCase())"></div>
+                  <div class="s2">{{ stat(key) }}</div>
+                  <div class="s3" @click="onClickAddState(key)"></div>
                 </li>
               </ul>
             </div>
@@ -143,7 +143,7 @@ export default {
   data() {
     return {
       currenUpgrades: {
-        strength: 0,
+        Strength: 0,
         Dexterity: 0,
         Vitality: 0,
         Intelligence: 0,
@@ -151,7 +151,7 @@ export default {
         Charisma: 0,
         Luck: 0
       },
-      point: 0,
+      point: 3,
     }
   },
 
@@ -162,13 +162,17 @@ export default {
       return Math.max(Math.floor(Math.sqrt(xp)), 1);
     },
     stat: function (key) {
-      return this.adventurer[key] + this.currenUpgrades[key];
+      return this.adventurer[key.toLowerCase()] + this.currenUpgrades[key];
     },
     onClockClose() {
       this.setShowInformation(false)
     },
     async onClickAddState(key) {
+      if (this.point === 0) {
+        return;
+      }
       this.currenUpgrades[key]++;
+      this.point--;
     },
     async onClickUpgrade() {
       const potions = 0;
