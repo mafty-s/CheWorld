@@ -1,12 +1,12 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
-import {getRandomNumber, stringToFelt} from "../utils/index.js";
+import {formatAdventurerState, getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, uint256} from 'starknet';
 
 
-export const contract_address = "0x074bdd2c07ca25967ceaa46653fca27d59658f0a65c3b84c2e1086c13399acdc";
+export const contract_address = "0x0524d66e57fee8ce3ac9e41c8b62eff50cfa78abb89844bdff17c9cedd4aa56b";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 // export const lordsContractAddress :string
@@ -159,7 +159,6 @@ export const store = createStore({
                     case "StartGame":
                         const id = event.data.data.adventurerState.adventurerId;
                         const id_num = uint256.uint256ToBN(id)
-
                         const ad = {
                             id: id_num,
                             name: "loading",
@@ -206,19 +205,23 @@ export const store = createStore({
                         break;
                     case "AdventurerUpgraded":
                         ElMessage('AdventurerUpgraded')
-
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
                         break;
                     case "DiscoveredHealth":
                         ElMessage('DiscoveredHealth')
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
                         break;
                     case "DiscoveredGold":
                         ElMessage('DiscoveredGold')
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
                         break;
                     case "DiscoveredXP":
                         ElMessage('DiscoveredXP')
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
                         break;
                     case "DodgedObstacle":
                         ElMessage('DodgedObstacle')
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
                         break;
                     case "HitByObstacle":
                         ElMessage('HitByObstacle')
@@ -228,6 +231,8 @@ export const store = createStore({
                         break;
                     case "AmbushedByBeast":
                         ElMessage('AmbushedByBeast')
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
+                        state.adventurer.beastSpecs = event.data.data.beastSpecs ;
                         break;
                     case "AttackedBeast":
                         ElMessage('AttackedBeast')
@@ -270,9 +275,8 @@ export const store = createStore({
                         break;
                     case "AdventurerLeveledUp":
                         ElMessage('AdventurerLeveledUp')
-                        state.adventurer.xp = event.data.data.adventurerState.adventurer.xp;
-                        state.adventurer.gold = event.data.data.adventurerState.adventurer.gold;
-                        state.adventurer.statUpgrades = event.data.data.adventurerState.adventurer.statPointsAvailable;
+
+                        state.adventurer = formatAdventurerState(state.adventurer,event.data.data.adventurerState);
                         state.showInformation = true;
                         break;
                     case "NewItemsAvailable":
