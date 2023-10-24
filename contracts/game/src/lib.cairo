@@ -148,13 +148,13 @@ mod Game {
         fn harvesting(ref self: ContractState,adventurer_id: u256){
             let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-            let count = (timestamp - res.last_timestamp)/600
+            let count = (timestamp - res.last_timestamp)/600;
 
-            res.egg  = res.egg  + count;
-            res.meat = res.meat + count;
-            res.fish = res.fish + count;
-            res.soft_skin = res.soft_skin + count;
-            res.coal = res.coal + count;
+            res.egg  = res.egg  + count.into();
+            res.meat = res.meat + count.into();
+            res.fish = res.fish + count.into();
+            res.soft_skin = res.soft_skin + count.into();
+            res.coal = res.coal + count.into();
             res.last_timestamp = timestamp;
 
             _pack_adventurer_res(ref self,adventurer_id,res);

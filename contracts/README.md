@@ -12,6 +12,7 @@ export STARKNET_ACCOUNT="/root/account-goerli.json"
 ```
 
 ```bash
+scarb build
 starkli declare ./target/dev/game_Game.sierra.json
 ```
 
@@ -23,6 +24,7 @@ Not declaring class as it's already declared. Class hash:
 ```bash
 export LORDS_ADDRESS=0;
 export DAO_ADDRESS=0;
+export 
 export CLASS_HASH=0x047248f039a8a4daa6448878b6ea7fa01ff6557467eadb0af409fff150866f36;
 starkli deploy $CLASS_HASH   
 
