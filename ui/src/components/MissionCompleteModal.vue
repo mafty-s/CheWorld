@@ -1,7 +1,7 @@
 <template>
   <div class="alertmodel">
     <div class="center center2">
-      <div class="close"></div>
+      <div class="close" @click="onClick"></div>
 
       <div class="icon"><img src="images/titleimg1.png" alt=""></div>
       <div class="title2">Emergency</div>
@@ -19,19 +19,27 @@
         Power <span>+99</span>  Luck    <b>-99</b>
       </div>
       <div class="btns">
-        <button class="btn2">confirm</button>
+        <button class="btn2" @click="onClick">confirm</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   name: 'MissionCompleteModal',
   components: {},
   mounted() {
 
   },
+  methods: {
+    ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
+    async onClick() {
+      this.setShowMissionCompleted(false);
+    },
+  }
 }
 </script>
 
