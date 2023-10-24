@@ -13,7 +13,7 @@
         width="30%"
         :before-close="handleClose"
     >
-      <el-input v-model="txid" placeholder="Please input tx hash" />
+      <el-input v-model="txid" placeholder="Please input tx hash"/>
       <pre></pre>
       <template #footer>
       <span class="dialog-footer">
@@ -52,8 +52,8 @@
       <img src="@/assets/images/people4.png" alt="">
     </div>
 
-<!--    <div class="people" style="cursor: pointer" ></div>-->
-<!--    <div class="people" style="cursor: pointer;left: 20%;"></div>-->
+    <!--    <div class="people" style="cursor: pointer" ></div>-->
+    <!--    <div class="people" style="cursor: pointer;left: 20%;"></div>-->
 
     <div class="leftInfor">
       <div class="user" style="cursor: pointer" @click="openInformation"><img src="@/assets/images/user.png" alt="">
@@ -87,33 +87,7 @@
         <div class="line"></div>
       </div>
     </div>
-    <div class="controls">
-      <ul>
-        <li>
-          <img src="@/assets/images/set1.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li>
-          <img src="@/assets/images/set2.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li>
-          <img src="@/assets/images/set3.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li>
-          <img src="@/assets/images/set4.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
+    <ShortcutBar/>
     <Crafting v-show="showCrafting"/>
     <RoleInformation v-show="showInformation"/>
   </div>
@@ -123,11 +97,12 @@
 import {mapActions, mapState, mapMutations} from "vuex";
 import Crafting from "../components/Crafting.vue";
 import RoleInformation from "../components/RoleInformation.vue";
+import ShortcutBar from "../components/ShortcutBar.vue";
 
 export default {
   name: 'MainPage',
   components: {
-    Crafting, RoleInformation
+    Crafting, RoleInformation, ShortcutBar
   },
   mounted() {
 
@@ -135,8 +110,8 @@ export default {
   computed: mapState(['wallet_address', "showCrafting", "showInformation", 'adventurer']),
   data() {
     return {
-      dialogVisible:false,
-      txid:"",
+      dialogVisible: false,
+      txid: "",
     }
   },
   methods: {
@@ -146,7 +121,7 @@ export default {
       this.dialogVisible = false
     },
     async test() {
-      this.dialogVisible=true
+      this.dialogVisible = true
       // await this.getReceipt('0x678d2d041fee01f3aa894c952c5b2eabc5360f457ef02a214007c511b55897b');
       // this.setCurrPage('main')
     },
@@ -175,9 +150,9 @@ export default {
       const potions = 0;
       const items = [];
       await this.upgrade({
-        currenUpgrades:currenUpgrades,
-        potions:potions,
-        items:items
+        currenUpgrades: currenUpgrades,
+        potions: potions,
+        items: items
       });
     },
     openCrafting() {

@@ -18,7 +18,7 @@ export const store = createStore({
         showMissionCompleted: false,
         craftingIndex: 1,
         craftingNumber: 1,
-        currPage: 'world',
+        currPage: 'login',
         currRole: {
             ingredientRecipe: [],
             bag: {
@@ -215,6 +215,26 @@ export const store = createStore({
 
 
         },
+        async poolReceipt(context, txhash) {
+            let receipt = null;
+            let retryCount = 0;
+            const maxRetryCount = 10; // 最大重试次数
+
+            while (retryCount < maxRetryCount) {
+                try {
+                    console.log("trying to execute the transaction:", txhash, retryCount);
+                    receipt = await context.state.account?.waitForTransaction(txhash, {
+                        retryInterval: 3000,
+                    });
+                    return receipt; // 返回收据
+                } catch (error) {
+                    console.error('Error occurred while executing the transaction:', error);
+                    retryCount++;
+                }
+            }
+
+            return null; // 达到最大重试次数时返回null
+        },
         async start(context, formData) {
 
 
@@ -254,9 +274,12 @@ export const store = createStore({
 
             console.log("tx", tx);
 
-            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
-                retryInterval: 2000,
-            });
+            // let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
+            //     retryInterval: 2000,
+            // });
+
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
+
 
             console.log('receipt', receipt);
 
@@ -326,9 +349,9 @@ export const store = createStore({
 
             console.log('receipt', receipt);
         },
-        async upgrade(context,payload) {
+        async upgrade(context, payload) {
 
-            const currenUpgrades =payload.currenUpgrades;
+            const currenUpgrades = payload.currenUpgrades;
             const items = payload.items;
             const potions = payload.potions;
 
@@ -342,7 +365,7 @@ export const store = createStore({
                 calldata: [
                     context.state.adventurer?.id?.toString() ?? "",
                     "0",
-                    potions ? potions.toString() :"0",
+                    potions ? potions.toString() : "0",
                     currenUpgrades
                         ? currenUpgrades["Strength"].toString()
                         : upgrades["Strength"].toString(),

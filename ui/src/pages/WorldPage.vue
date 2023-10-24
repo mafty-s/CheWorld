@@ -5,27 +5,27 @@
       <div class="bg">
         <div class="items1">
           <div class="item">
-            <img src="images/gold1.png" alt="">
+            <img src="@/assets/images/gold1.png" alt="">
             <span>999999</span>
             <a href="javascript:;" class="add"></a>
           </div>
           <div class="item">
-            <img src="images/gold2.png" alt="">
+            <img src="@/assets/images/gold2.png" alt="">
             <span>999999</span>
             <a href="javascript:;" class="add"></a>
           </div>
         </div>
         <div class="items2">
           <div class="item">
-            <img src="images/gold3.png" alt="">
+            <img src="@/assets/images/gold3.png" alt="">
             <span>9999</span>
           </div>
           <div class="item">
-            <img src="images/gold4.png" alt="">
+            <img src="@/assets/images/gold4.png" alt="">
             <span>9999</span>
           </div>
           <div class="item">
-            <img src="images/gold5.png" alt="">
+            <img src="@/assets/images/gold5.png" alt="">
             <span>9999</span>
           </div>
         </div>
@@ -42,17 +42,17 @@
             Iron ore <br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui1.png" alt="">
+            <img src="@/assets/images/ui1.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
 
-        <div class="block block2 ui2">
+        <div class="block block2 ui2" @click="onClickAttack">
           <div class="text">
             Wild boar <br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui2.png" alt="">
+            <img src="@/assets/images/ui2.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
@@ -61,7 +61,7 @@
             Wild boar <br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui2.png" alt="">
+            <img src="@/assets/images/ui2.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
@@ -70,7 +70,7 @@
             Elm wood<br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui3.png" alt="">
+            <img src="@/assets/images/ui3.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
@@ -79,7 +79,7 @@
             Iron ore<br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui1.png" alt="">
+            <img src="@/assets/images/ui1.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
@@ -89,7 +89,7 @@
             Wild boar<br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui2.png" alt="">
+            <img src="@/assets/images/ui2.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
@@ -98,7 +98,7 @@
             Apple<br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui4.png" alt="">
+            <img src="@/assets/images/ui4.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
@@ -108,18 +108,18 @@
             Elm wood<br>99/100
           </div>
           <div class="icon">
-            <img src="images/ui3.png" alt="">
+            <img src="@/assets/images/ui3.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
 
         <div class="centerPeople">
-          <img src="images/userimg.png" alt="">
+          <img src="@/assets/images/userimg.png" alt="">
         </div>
 
-        <div class="home"><img src="images/home.png" alt=""></div>
+        <div class="home" @click="onClickBackHome"><img src="@/assets/images/home.png" alt=""></div>
 
-        <div class="homePosition"><i></i><img src="images/home.png" alt=""></div>
+        <div class="homePosition" @click="onClickBackHome"><i></i><img src="@/assets/images/home.png" alt=""></div>
 
 
       </div>
@@ -129,7 +129,7 @@
     <div class="sideInfor">
       <div class="switch"></div>
       <div class="infor">
-        <div class="icon"><img src="images/action_icon_logging.png" alt=""></div>
+        <div class="icon"><img src="@/assets/images/action_icon_logging.png" alt=""></div>
         <div class="title1">In the process of logging...</div>
         <div class="time">{{ countdown }}</div>
         <div class="decs">
@@ -195,7 +195,7 @@
 
 
     <div class="leftInfor">
-      <div class="user"><img src="images/user.png" alt=""></div>
+      <div class="user"><img src="@/assets/images/user.png" alt=""></div>
       <div class="infor">
         <div class="name">Some text about name</div>
         <div class="Wallet">Wallet</div>
@@ -206,7 +206,7 @@
     <div class="typeItem type0">
       <div class="add"></div>
       <div class="ov">
-        <div class="icon"><img src="images/icon1.png" alt=""></div>
+        <div class="icon"><img src="@/assets/images/icon1.png" alt=""></div>
         <div class="val">20/90</div>
         <div class="line"></div>
       </div>
@@ -215,59 +215,14 @@
     <div class="typeItem type2" style="top:150px">
       <div class="add"></div>
       <div class="ov">
-        <div class="icon"><img src="images/icon2.png" alt=""></div>
+        <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
         <div class="val">20/90</div>
         <div class="line"></div>
       </div>
     </div>
 
-    <div class="controls">
-      <ul>
-        <li>
-          <img src="images/set1.png" alt="">
-          <div class="num">99</div>
-          <div class="slide">
-            <div class="if1">
-              <div class="icn"><img src="images/set1.png" alt=""></div>
-              <div class="ri">
-                <p>
-                  <b>Item: </b>wild berries
-                </p>
-                <p>
-                  <b>Type:</b>wild berries
-                </p>
-                <p>
-                  <b>Quantity: </b>999
-                </p>
-              </div>
-            </div>
-            <div class="if2">
-              Wild berries are precious forest resources, providing both nourishment and healing.
-            </div>
-          </div>
-        </li>
-        <li>
-          <img src="images/set2.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li>
-          <img src="images/set3.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li>
-          <img src="images/set4.png" alt="">
-          <div class="num">99</div>
-        </li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
 
+    <ShortcutBar/>
     <MissionCompleteModal v-if="showMissionCompleted"/>
   </div>
 </template>
@@ -277,10 +232,11 @@
 import $ from 'jquery';
 import {mapActions, mapMutations, mapState} from "vuex";
 import MissionCompleteModal from "../components/MissionCompleteModal.vue";
+import ShortcutBar from "../components/ShortcutBar.vue";
 
 export default {
   name: 'WorldPage',
-  components: {MissionCompleteModal},
+  components: {MissionCompleteModal,ShortcutBar},
   computed: mapState(['wallet_address', "adventurers","showMissionCompleted"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
@@ -327,8 +283,15 @@ export default {
   },
   methods: {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
+    ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade']),
     async onClick() {
       this.setShowMissionCompleted(true);
+    },
+    async onClickAttack(){
+      await this.attack(false, null);
+    },
+    async onClickBackHome() {
+      this.setCurrPage('main');
     },
     startCountdown() {
       setInterval(() => {
