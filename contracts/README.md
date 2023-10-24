@@ -23,7 +23,7 @@ Not declaring class as it's already declared. Class hash:
 ```bash
 export LORDS_ADDRESS=0;
 export DAO_ADDRESS=0;
-export CLASS_HASH=0x01142a22b2af5bb003fe8acebc0af5318d2ad7a7d4ae4b392d909068e6dbc1a6;
+export CLASS_HASH=0x047248f039a8a4daa6448878b6ea7fa01ff6557467eadb0af409fff150866f36;
 starkli deploy $CLASS_HASH   
 
 ```

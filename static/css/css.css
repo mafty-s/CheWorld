@@ -376,6 +376,9 @@ transform: none;
   align-items: center;
   padding-top: 23px;
   padding-left: 29px;
+  z-index: 4;
+  left: 0;
+  top: 0px;
 }
 
 .game .leftInfor .user {
@@ -394,13 +397,15 @@ transform: none;
   font-weight: bold;
   line-height: 1;
   
-   /* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â² */
-  color: white; /* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ¨Ã¢â‚¬Â°Ã‚Â² */
+
+  color: white; 
+
   text-shadow: 
     -2px -2px 0 black,  
     2px -2px 0 black, 
     -2px 2px 0 black, 
-    2px 2px 0 black; /* ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â¾Ã†â€™ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â¾Ã‚Â¹ */
+    2px 2px 0 black; 
+
 }
 
 .game .leftInfor .infor .Wallet {
@@ -410,19 +415,29 @@ transform: none;
   font-weight: 100;
   line-height: 24px;
   display: inline-block;
-  color: white; /* ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ¨Ã¢â‚¬Â°Ã‚Â² */
+  color: white; 
+
   text-shadow: 
     -2px -2px 0 black,  
     2px -2px 0 black, 
     -2px 2px 0 black, 
-    2px 2px 0 black; /* ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â¾Ã†â€™ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â¾Ã‚Â¹ */
-  padding-left: 44px;
+    2px 2px 0 black; 
+
+ padding-left: 44px;
   background: url(../images/wallet.png) no-repeat left center;
   background-size: auto 100%;
   line-height: 30px;
   margin-top: 15px;
 }
 
+.game .typeItem.type0{
+    width: 100px;
+    height: 100px;
+    right: 88px;
+}
+.game .typeItem.type0 .icon{
+    /* padding-top: 10px; */
+}
 .game .typeItem {
   /* Your styles for the .typeItem elements within .game go here */
   width: 80px;
@@ -441,6 +456,7 @@ transform: none;
   /* overflow: hidden; */
   padding-top: 9px;
   padding: 0px;
+  z-index: 5;
 }
 
 .game .typeItem .ov{
@@ -448,6 +464,14 @@ transform: none;
     height: 100%;
     overflow: hidden;
     border-radius: 300px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 } 
 .game .typeItem.type1 {
   /* Your styles for the .type1 element within .typeItem go here */
@@ -512,11 +536,9 @@ transform: none;
 
 .game .controls {
   /* Your styles for the .controls element within .game go here */
-  width: 930px;
+  
   text-align: center;
-  height: 128px;
-  background: url(../images/bar.png) no-repeat center center;
-  background-size: 100%;
+  
   position: absolute;
   bottom: 3%;
   left: 50%;
@@ -526,12 +548,115 @@ transform: none;
   -ms-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%);
   font-size: 0;
-  padding-top: 27px;
+
+  z-index: 5;
 }
 
 .game .controls ul {
-  /* Your styles for the <ul> element within .controls go here */
+width: 930px;
+height: 128px;
+  background: url(../images/bar.png) no-repeat center center;
+  background-size: 100%;
+  padding-top: 27px;
 }
+.game .controls ul li:hover{
+
+background: url(../images/frm.png) no-repeat center center;
+    
+background-size: 100% 100%;
+}
+.game .controls ul li:hover .slide{
+
+    visibility:visible;
+    opacity:1;
+    z-index:5;
+bottom: 70px;
+}
+.game .controls ul li .slide{
+    
+background: url(../images/common_float_frame_03s.png) no-repeat center center;
+    
+background-size: 100% 100%;
+    
+width: 346px;
+    
+height: 205px;
+    
+position: absolute;
+    
+bottom: 70px;
+    
+left: 100%;
+    
+font-size: 14px;
+    
+text-align: left;
+    
+padding: 14px 21px;
+transition:all 0.4s;
+
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    bottom: 80px;
+}
+.game .controls ul li .slide .if1{
+    
+display: flex;
+    
+padding-bottom: 10px;
+}
+.game .controls ul li .slide .if1 .icn{
+    
+width: 78px;
+    
+height: 78px;
+    
+background: url(../images/common_item_bg.png) no-repeat center center;
+    
+background-size: 100%;
+    
+position: relative;
+}
+.game .controls ul li .slide .if1 img{position: absolute;top: 50%;left: 50%;-o-transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);}
+.game .controls ul li .slide .if1 .ri{
+    
+font-size: 16px;
+    
+font-family: Grandstander;
+    
+font-weight: 500;
+    
+color: #F8EED5;
+    
+line-height: 26px;
+    
+padding-left: 7px;
+}
+.game .controls ul li .slide .if1 .ri b{
+    
+}
+.game .controls ul li .slide .if2{
+    
+font-size: 16px;
+    
+font-family: Grandstander;
+    
+font-weight: 300;
+    
+color: #F8EED5;
+    
+line-height: 24px;
+    
+padding-top: 16px;
+    
+border-top: 1px solid #B5A48F;
+    
+margin: 0px 6px;
+}
+
+
+
 .game .controls ul li img{
   width: 62%;
   height: 100%;
@@ -1205,7 +1330,7 @@ padding-right: 56px;
     height: 96px;
     float: left;
     /* display: flex; */
-    padding-top: 24px;
+    /* padding-top: 24px; */
     padding-right: 2px;
     margin-bottom: 40px;
 }
@@ -1217,6 +1342,7 @@ padding-right: 56px;
     width: 80px;
     text-align: center;
     float: left;
+    padding-top: 24px;
 }
   .listItems ul li:nth-child(2n){
     float:right;
@@ -1230,6 +1356,16 @@ padding-right: 56px;
     line-height: 24px;
     float: left;
     width: calc(100% - 80px);
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 3px;
 }
 .step3{
 
@@ -1747,7 +1883,7 @@ background-size: 100%;
     
 font-size: 30px;
     
-font-weight: 400;
+font-weight: bold;
     
 color: #000000;
     
@@ -1803,6 +1939,7 @@ color: #B53B3B;
     font-weight: bold;
     color: #0A0316;
     border: none;
+    text-transform: uppercase;
 }
 .alertmodel .btns .btn1{
     
@@ -1826,3 +1963,592 @@ background-size: 100% 100%;
 transform: scale(.96,.96);
   
 }
+
+.game.map{
+background: none;
+overflow: hidden;
+}
+
+.userInfor2 .bg{
+
+width: 900px;
+
+height: 40px;
+
+background: url(../images/bgs.png) no-repeat center center;
+
+line-height: 40px;
+}
+.userInfor2 {
+
+position: fixed;
+
+/* position: absolute; */
+
+top: 20px;
+
+left: 50%;
+
+-o-transform: translate(-50%, 0%);
+
+-webkit-transform: translate(-50%, 0%);
+
+-moz-transform: translate(-50%, 0%);
+
+-ms-transform: translate(-50%, 0%);
+
+transform: translate(-50%, 0%);
+
+z-index: 5;
+
+}
+
+.userInfor2 .items1 {
+
+float: left;
+
+font-size: 20px;
+
+font-family: Grandstander;
+
+font-weight: 500;
+
+color: #F8EED5;
+
+padding-left: 28px;
+
+padding-top: 4px;
+}
+
+.userInfor2 .items2 {
+
+float: left;
+
+font-size: 20px;
+
+font-family: Grandstander;
+
+font-weight: 500;
+
+color: #F8EED5;
+
+padding-left: 40px;
+}
+
+.userInfor2 .item {
+
+float: left;
+}
+
+.userInfor2 .items1 .item{
+    
+/* width: 124px; */
+    
+height: 32px;
+    
+background: #251A14;
+    
+border: 2px solid #000000;
+    
+position: relative;
+    
+margin-right: 26px;
+}
+.userInfor2 .items1 .item span{
+
+display: inline-block;
+
+position: relative;
+
+top: -4px;
+}
+.userInfor2 .items2 .item span{display: inline-block;position: relative;top: 2px;}
+.userInfor2 .items2 .item{
+    
+margin-right: 80px;
+}
+.userInfor2 .items1 .item img{
+
+margin-left: -10px;
+
+margin-top: -10px;
+}
+.userInfor2 .items2 .item img{
+
+}
+.userInfor2 .item img {
+
+}
+
+.userInfor2 .item span {
+
+}
+
+.userInfor2 .item a.add {
+
+width: 23px;
+
+height: 23px;
+
+display: inline-block;
+
+background: url(../images/adds.png) no-repeat center center;
+}
+
+.mapContent{
+    background: url(../images/map.jpg) no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+.mapContent .blocks{
+    
+/* position: absolute; */
+}
+.mapContent .blocks .block:hover:after{
+    opacity: 1;
+}
+  .mapContent .blocks .block:after{
+    content:"";
+    position:absolute;
+    background: url(../images/xt.png) no-repeat center center;
+    background-size: 100%;
+    left: 3px;
+    right: 3px;
+    top: 4px;
+    bottom: 4px;
+    opacity: 0;
+
+-webkit-transition:all 0.4s;
+-o-transition:all 0.4s;
+-moz-transition:all 0.4s;
+-ms-transition:all 0.4s;
+transition:all 0.4s;
+
+  }
+.mapContent .blocks .block.current{
+transform: scale(.92) !important
+}
+.mapContent .blocks .block{
+transition:all 0.4s !important;
+width: 80px;
+    
+height: 114px;
+    
+position: absolute;
+    
+text-align: center;
+    
+cursor: pointer;
+transform: scale(0);
+
+}
+
+.mapContent .blocks .block.ani{
+
+animation: scalc2 1s forwards;
+animation-timing-function: cubic-bezier(0, 0, 0, 1.31)
+}
+
+
+
+@keyframes scalc2{
+    0%{
+transform: scale(0);
+    }
+    100%{
+transform: none; 
+    }
+}
+
+
+
+
+
+
+
+
+.mapContent .blocks .block .text{
+    font-size: 16px;
+    font-family: Grandstander;
+    font-weight: bold;
+    line-height: 1;
+    color: white;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: -14px;
+    z-index: 4;
+}
+.mapContent .blocks .block .icon{
+    
+width: 100%;
+    
+height: 80px;
+    
+position: relative;
+    
+z-index: 4;
+}
+.mapContent .blocks .block .icon img{position: absolute;top: 50%;left: 50%;-o-transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);max-width: 100%;max-height: 100%;object-fit: contain;}
+.mapContent .blocks .block .dot{
+    
+background: #000000;
+    
+opacity: 0.6;
+    
+border-radius: 50%;
+    
+position: absolute;
+    
+width: 60%;
+    
+height: 11px;
+    
+position: absolute;
+    
+bottom: -5px;
+    
+left: 50%;
+    
+-o-transform: translate(-50%, 0%);
+    
+-webkit-transform: translate(-50%, 0%);
+    
+-moz-transform: translate(-50%, 0%);
+    
+-ms-transform: translate(-50%, 0%);
+    
+transform: translate(-50%, 0%);
+    
+z-index: 3;
+}
+.mapContent .blocks .block.ui1 {
+    background: url(../images/y1.png) no-repeat center center;
+    background-size: 100%;
+}
+.mapContent .blocks .block.ui2 {
+    background: url(../images/y2.png) no-repeat center center;
+    background-size: 100%;
+    
+}
+.mapContent .blocks .block.ui3 {
+    background: url(../images/y3.png) no-repeat center center;
+    background-size: 100%;
+    
+}
+.mapContent .blocks .block.ui4 {
+    background: url(../images/y4.png) no-repeat center center;
+    background-size: 100%;
+    
+}
+.mapContent .blocks .block.block1{
+    
+left: 44%;
+    
+top: 40%;
+}
+.mapContent .blocks .block.block2{
+    
+left: 47%;
+    
+top: 31%;
+}
+.mapContent .blocks .block.block3{
+    
+left: 53%;
+    
+top: 37%;
+}
+.mapContent .blocks .block.block4{
+    
+left: 57%;
+    
+top: 47%;
+}
+.mapContent .blocks .block.block5{
+  left: 55%;
+  top: 58%;
+}
+.mapContent .blocks .block.block6{
+  left: 50%;
+  top: 63%;
+}
+.mapContent .blocks .block.block7{
+  left: 45%;
+  top: 59%;
+}
+.mapContent .blocks .block.block8{
+  left: 40%;
+  top: 51%;
+}
+.mapContent .blocks .centerPeople{
+    
+position: absolute;
+    
+left: 49%;
+    
+top: 47%;
+    
+cursor: pointer;
+}
+.mapContent .blocks .centerPeople img{
+    
+width: 112px;
+}
+.mapContent .blocks .home{
+    position: absolute;
+    left: 30%;
+    top: 30%;
+    cursor: pointer;
+}
+.mapContent .blocks .home img{
+    
+
+}
+.mapContent .blocks .homePosition{
+    position: absolute;
+    left: 15%;
+    bottom: 3%;
+    cursor: pointer;
+}
+.mapContent .blocks .homePosition i{
+    
+width: 28px;
+    
+height: 24px;
+    
+background: url(../images/icon_tribe_arrow.png) no-repeat center center;
+    
+position: absolute;
+    
+right: 0;
+    
+bottom: -13px;
+}
+.mapContent .blocks .homePosition img{
+    
+
+}
+
+
+.sideInfor {
+  /* Your styles for .sideInfor go here */
+  width: 499px;
+  height: 726px;
+  position: fixed;
+  z-index: 55;
+  right: 0;
+  top: 0;
+  top: 50%;
+  right: 25px;
+  -o-transform: translate(0%, -50%);
+  -webkit-transform: translate(0%, -50%);
+  -moz-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+  transition:all 0.4s;
+  right: -504px;
+}
+
+.sideInfor.current{
+  right: 25px;
+}
+.sideInfor.current .switch{
+  background: url(../images/data_log_arrow.png) no-repeat center center;
+  background-size: 100%;
+  left: -23px;
+}
+.sideInfor .switch {
+  /* Your styles for .switch go here */
+  position: absolute;
+  width: 35px;
+  height: 69px;
+  background: url(../images/data_log_arrow2.png) no-repeat center center;
+  background-size: 100%;
+  cursor: pointer;
+  left: -46px;
+  top: 50%;
+  margin-top: -35px;
+}
+.sideInfor .infor:after{
+  content:"";
+  z-index:3;
+  position:absolute;
+  width:100%;
+  height: 145px;
+  background-image: linear-gradient(rgba(255,255,255,0), rgb(0 0 0 / 80%));
+  left: 0;
+  bottom: 0px;
+}
+.sideInfor .infor {background: url(../images/pic.png) no-repeat center center;background-size: 100%;height: 100%;position: relative;}
+
+.sideInfor .icon {
+  /* Your styles for .icon go here */
+  padding-top: 36px;
+  text-align: center;
+}
+
+.sideInfor .icon img {
+  /* Your styles for images within .icon go here */
+  width: 306px;
+}
+
+.sideInfor .title1 {
+  /* Your styles for .title1 go here */
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: 400;
+  color: #F8EED5;
+  line-height: 24px;
+  padding-top: 9px;
+  padding-bottom: 13px;
+  text-align: center;
+}
+
+.sideInfor .time {
+  /* Your styles for .time go here */
+  font-size: 30px;
+  font-family: Grandstander;
+  font-weight: bold;
+  color: #F8EED5;
+  text-align: center;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #F8EED5;
+  margin: 0px 41px;
+}
+
+.sideInfor .decs {
+  /* Your styles for .decs go here */
+  overflow: auto;
+  position: relative;
+  margin: 0px 50px;
+  margin-top: 28px;
+  height: 339px;
+}
+.sideInfor .decs p:hover{
+  color:#FF6F6F
+}
+.sideInfor .decs p {
+  /* Your styles for p elements within .decs go here */
+  font-size: 20px;
+  font-family: Grandstander;
+  font-weight: 300;
+  color: #F8EED5;
+  margin-bottom: 17px;
+  zoom: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sideInfor .decs .s1 {
+  /* Your styles for .s1 within .decs go here */
+  float: left;
+  width: 100px;
+}
+
+.sideInfor .decs .s2 {
+  /* Your styles for .s2 within .decs go here */
+  float: left;
+  width: calc(100% - 100px);
+}
+
+.alertmodel .center.center2{
+    
+height: 488px;
+}
+.alertmodel .center.center2 .icon{
+    
+margin-top: -23px;
+    
+margin-bottom: 49px;
+}
+.alertmodel .center.center2 .icon img{
+    
+}
+.alertmodel .center.center2 .title2{
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: bold;
+    
+color: #000000;
+    
+padding-bottom: 15px;
+}
+.alertmodel .center.center2 .dec2{
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: 500;
+    
+color: #000000;
+    
+padding-bottom: 28px;
+}
+.alertmodel .center.center2 .dec2 img{
+    
+}
+.alertmodel .center.center2 .dec2 span{
+    
+font-weight: bold;
+    
+margin: 0px 12px;
+}
+.alertmodel .center.center2 .dec2 b{
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: bold;
+    
+color: #C14040;
+}
+
+.alertmodel .center.center3{
+    background: url(../images/common_popup_frame044.png) no-repeat center center;
+    background-size: 100%;
+    width: 1026px;
+    height: 515px;
+}
+.alertmodel .center.center3 .icon{
+    
+margin-top: -32px;
+}
+.alertmodel .center.center3 .dec2{
+    
+padding-top: 145px;
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: 500;
+    
+color: #000000;
+}
+.alertmodel .center.center3 .dec2 b{
+    
+color: #C14040;
+}
+.alertmodel .center.center3 .dec3{
+    
+font-size: 24px;
+    
+font-family: Grandstander;
+    
+font-weight: bold;
+    
+color: #000000;
+    
+padding-top: 34px;
+    
+padding-bottom: 105px;
+}
+
+

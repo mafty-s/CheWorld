@@ -147,9 +147,16 @@ mod Game {
 
         fn add_resources(ref self: ContractState,adventurer_id: u256){
             let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
-            let tick: u64  = timestamp / 60;
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-            res.fish = res.fish + 1;
+            let count = (timestamp - res.last_timestamp)/600
+
+            res.egg  = res.egg  + count;
+            res.meat = res.meat + count;
+            res.fish = res.fish + count;
+            res.soft_skin = res.soft_skin + count;
+            res.coal = res.coal + count;
+            res.last_timestamp = timestamp;
+
             _pack_adventurer_res(ref self,adventurer_id,res);
         }
 
