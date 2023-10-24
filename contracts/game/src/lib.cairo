@@ -124,12 +124,12 @@ mod Game {
         ref self: ContractState,
         // lords: ContractAddress,
         // dao: ContractAddress,
-        // collectible_beasts: ContractAddress
+        collectible_beasts: ContractAddress
     ) {
         // set the contract addresses
         // self._lords.write(lords);
         // self._dao.write(dao);
-        // self._collectible_beasts.write(collectible_beasts);
+        self._collectible_beasts.write(collectible_beasts);
 
         // set the genesis block
         self._genesis_block.write(starknet::get_block_info().unbox().block_number.into());
@@ -145,7 +145,7 @@ mod Game {
     #[external(v0)]
     impl Game of IGame<ContractState> {
 
-        fn add_resources(ref self: ContractState,adventurer_id: u256){
+        fn harvesting(ref self: ContractState,adventurer_id: u256){
             let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
             let count = (timestamp - res.last_timestamp)/600
@@ -158,6 +158,8 @@ mod Game {
             res.last_timestamp = timestamp;
 
             _pack_adventurer_res(ref self,adventurer_id,res);
+
+
         }
 
         //@notice Initiates the adventure for an adventurer with specific starting configurations.

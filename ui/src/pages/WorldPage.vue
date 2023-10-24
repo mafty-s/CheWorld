@@ -204,9 +204,7 @@ export default {
 
   },
   data() {
-    return {
-
-    };
+    return {};
   },
   methods: {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
