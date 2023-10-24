@@ -3,7 +3,7 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {formatAdventurerState, getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
-import {Contract, getChecksumAddress, hash, uint256} from 'starknet';
+import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
 
 export const contract_address = "0x0524d66e57fee8ce3ac9e41c8b62eff50cfa78abb89844bdff17c9cedd4aa56b";
@@ -349,6 +349,7 @@ export const store = createStore({
                     console.log("trying to execute the transaction:", txhash, retryCount);
                     receipt = await context.state.account?.waitForTransaction(txhash, {
                         retryInterval: 3000,
+                        successStates: [TransactionStatus.ACCEPTED_ON_L2],
                     });
                     return receipt; // 返回收据
                 } catch (error) {
@@ -419,9 +420,7 @@ export const store = createStore({
 
             console.log("tx", tx);
 
-            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
-                retryInterval: 2000,
-            });
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
 
             console.log('receipt', receipt);
 

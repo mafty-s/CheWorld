@@ -440,7 +440,7 @@ export async function parseEvents(receipt) {
                 });
                 break;
             default:
-                console.error("unknown event: " + eventName);
+                console.error("unknown event: " + eventName, raw.data);
                 break;
         }
 
