@@ -55,14 +55,7 @@
     <!--    <div class="people" style="cursor: pointer" ></div>-->
     <!--    <div class="people" style="cursor: pointer;left: 20%;"></div>-->
 
-    <div class="leftInfor">
-      <div class="user" style="cursor: pointer" @click="openInformation"><img src="@/assets/images/user.png" alt="">
-      </div>
-      <div class="infor">
-        <div class="name">{{ adventurer.name }}</div>
-        <div class="Wallet" @click="onClickWallet">Wallet</div>
-      </div>
-    </div>
+   <AvatarComponent/>
     <div class="typeItem type1">
       <div class="add"></div>
       <div class="ov">
@@ -98,10 +91,12 @@ import {mapActions, mapState, mapMutations} from "vuex";
 import Crafting from "../components/Crafting.vue";
 import RoleInformation from "../components/RoleInformation.vue";
 import ShortcutBar from "../components/ShortcutBar.vue";
+import AvatarComponent from "../components/AvatarComponent.vue";
 
 export default {
   name: 'MainPage',
   components: {
+    AvatarComponent,
     Crafting, RoleInformation, ShortcutBar
   },
   mounted() {
@@ -157,12 +152,6 @@ export default {
     },
     openCrafting() {
       this.setShowCrafting(true);
-    },
-    openInformation() {
-      this.setShowInformation(true)
-    },
-    onClickWallet() {
-      this.setCurrPage('login');
     },
     onClickEnterWorld() {
       this.setCurrPage('world');

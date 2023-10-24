@@ -109,25 +109,15 @@ $('.game.map .controls ul').addClass('wow fadeInUp2')
 
 
 $(".mapContent .blocks .block").on("mouseover", function() {
-
-$(".mapContent .blocks .block").on("mousedown", function() {
-  $(this).addClass('current')
+  $(".mapContent .blocks .block").on("mousedown", function() {
+    $(this).addClass('current')
+  });
+  $(".mapContent .blocks .block").on("mouseup", function() {
+    $(this).removeClass('current')
+  });
 });
-$(".mapContent .blocks .block").on("mouseup", function() {
-  $(this).removeClass('current')
-});
-
-
-});
-
-
 $(".mapContent .blocks .block").on("mouseout", function() {
-
-
   $(this).removeClass('current')
-
-
-
 });
 
 
@@ -139,6 +129,18 @@ $('.sideInfor .switch').click(function(){
 
 
 
+
+$(".alertmodel .center4 .peopleDetail .list .s3").on("mouseover", function() {
+  $(".alertmodel .center4 .peopleDetail .list .s3").on("mousedown", function() {
+    $(this).addClass('current')
+  });
+  $(".alertmodel .center4 .peopleDetail .list .s3").on("mouseup", function() {
+    $(this).removeClass('current')
+  });
+});
+$(".alertmodel .center4 .peopleDetail .list .s3").on("mouseout", function() {
+  $(this).removeClass('current')
+});
 
 
 

@@ -194,13 +194,7 @@
     </div>
 
 
-    <div class="leftInfor">
-      <div class="user"><img src="@/assets/images/user.png" alt=""></div>
-      <div class="infor">
-        <div class="name">Some text about name</div>
-        <div class="Wallet">Wallet</div>
-      </div>
-    </div>
+    <AvatarComponent/>
 
 
     <div class="typeItem type0">
@@ -224,6 +218,7 @@
 
     <ShortcutBar/>
     <MissionCompleteModal v-if="showMissionCompleted"/>
+    <RoleInformation v-show="showInformation"/>
   </div>
 </template>
 
@@ -233,11 +228,13 @@ import $ from 'jquery';
 import {mapActions, mapMutations, mapState} from "vuex";
 import MissionCompleteModal from "../components/MissionCompleteModal.vue";
 import ShortcutBar from "../components/ShortcutBar.vue";
+import AvatarComponent from "../components/AvatarComponent.vue";
+import RoleInformation from "../components/RoleInformation.vue";
 
 export default {
   name: 'WorldPage',
-  components: {MissionCompleteModal,ShortcutBar},
-  computed: mapState(['wallet_address', "adventurers","showMissionCompleted"]),
+  components: {RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
+  computed: mapState(['wallet_address', "adventurers", "showMissionCompleted", "showInformation"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例
@@ -287,7 +284,7 @@ export default {
     async onClick() {
       this.setShowMissionCompleted(true);
     },
-    async onClickAttack(){
+    async onClickAttack() {
       await this.attack(false, null);
     },
     async onClickBackHome() {
