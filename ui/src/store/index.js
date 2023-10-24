@@ -3,10 +3,10 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
-import {Contract, getChecksumAddress} from 'starknet';
+import {Contract, getChecksumAddress,uint256} from 'starknet';
 
 
-export const contract_address = "0x00d495aac3215853cebdf6f95a4b90fd790b760b112202df338c70ad641baf12";
+export const contract_address = "0x00450ca5f9aa801632c5bd9c8cb379b9625618e885e8b79b7afdd96529960acb";
 import contract_abi from "./abi.json";
 // export const lordsContractAddress :string
 export const store = createStore({
@@ -153,8 +153,11 @@ export const store = createStore({
             const name = payload.name;
             const events = payload.events;
 
+            const id = events[0].data.data.adventurerState.adventurerId;
+            const id_num = uint256.uint256ToBN(id)
+
             const ad = {
-                id: events[0].data.data.adventurerState.adventurerId,
+                id: id_num,
                 name: name,
                 charisma: events[0].data.data.adventurerState.adventurer.stats.charisma,
                 dexterity: events[0].data.data.adventurerState.adventurer.stats.dexterity,
