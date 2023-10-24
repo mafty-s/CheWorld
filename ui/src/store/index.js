@@ -228,6 +228,7 @@ export const store = createStore({
                         break;
                     case "DiscoveredBeast":
                         ElMessage('DiscoveredBeast')
+                        state.adventurer.beastSpecs = event.data.data.beastSpecs;
                         break;
                     case "AmbushedByBeast":
                         ElMessage('AmbushedByBeast')
@@ -243,6 +244,10 @@ export const store = createStore({
                     case "SlayedBeast":
                         ElMessage('SlayedBeast')
                         state.adventurer.beastSpecs = null;
+                        // state.adventurer.logs.push({
+                        //     txid:event.data.data.transaction_hash,
+                        //     time:event.data.data.t
+                        // })
                         break;
                     case "FleeFailed":
                         ElMessage('FleeFailed')
