@@ -13,8 +13,10 @@
     </div>
     <div class="content2 itemNase" v-if="step===2">
       <input type="text" placeholder="Some text about user name" class="words" v-model="name">
-      <div class="warning">*Some text about error tips</div>
-      <button class="btnBase" @click="nextStep">CONFIRM</button>
+      <div class="warning">*The string can only contain uppercase or lowercase letters or numbers, with a maximum length
+        of 6 digits
+      </div>
+      <button class="btnBase" @click="checkName()">CONFIRM</button>
     </div>
     <div class="contBase itemNase" v-if="step===3" @click="nextStep">
       <div class="title">A mysterious voice:</div>
@@ -153,7 +155,7 @@
           <div class="right">
             <div class="title">{{ content?.name }}</div>
             <img src="@/assets/images/people.png" class="people" alt="">
-            <button class="btn" @click="enter"  v-loading="loading">Start Adventure</button>
+            <button class="btn" @click="enter" v-loading="loading">Start Adventure</button>
           </div>
         </div>
         <div v-show="content===null" class="none">
@@ -229,6 +231,12 @@ export default {
       await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');
       this.setCurrPage('main')
     },
+
+    validateString(input) {
+      const regex = /^[A-Za-z0-9]{1,6}$/;
+      return regex.test(input);
+    },
+
     async enter() {
       if (this.loading) {
         return;
@@ -251,7 +259,14 @@ export default {
     getCurrQuesting() {
       return this.questings[this.questingIndex];
     },
+    checkName() {
+      let res = this.validateString(this.name);
+      if (res) {
+        this.step++;
+      }
+    },
     nextStep() {
+
       this.step++;
       if (this.step === 5) {
         $('.s1 ').hover(function () {
