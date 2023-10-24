@@ -67,7 +67,9 @@
               <img src="@/assets/images/user.png" alt="">
               <span class="name">{{ adventurers[index].name }}</span>
             </a>
-            <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]" v-else @click="onClickHead(index)"></a>
+            <a href="javascript:;" :class="[index===tabIndex ? 'current' : '',]"
+               :style="[index===tabIndex ? 'background:url(../images/role_button_add.png) no-repeat right center' : '']"
+               v-else @click="onClickHead(index)"></a>
           </div>
 
 
@@ -151,7 +153,7 @@
           <div class="right">
             <div class="title">{{ content?.name }}</div>
             <img src="@/assets/images/people.png" class="people" alt="">
-            <button class="btn" @click="enter">Start Adventure</button>
+            <button class="btn" @click="enter"  v-loading="loading">Start Adventure</button>
           </div>
         </div>
         <div v-show="content===null" class="none">
@@ -217,6 +219,7 @@ export default {
       Wisdom: 0,
       Charisma: 0,
       Luck: 0,
+      loading: false,
     }
   },
   methods: {
@@ -227,12 +230,20 @@ export default {
       this.setCurrPage('main')
     },
     async enter() {
-      if (this.content.id === 0) {
-        await this.spawn();
-      } else {
-        this.setAdventure(this.adventurers[this.tabIndex])
+      if (this.loading) {
+        return;
       }
-      this.setCurrPage('main')
+      this.loading = true
+      try {
+        if (this.content.id === 0) {
+          await this.spawn();
+        } else {
+          this.setAdventure(this.adventurers[this.tabIndex])
+        }
+        this.setCurrPage('main')
+      } finally {
+        this.loading = false
+      }
     },
     async onClickCreateCharacter() {
       this.step = 1;
@@ -252,7 +263,6 @@ export default {
       }
     },
     awser(value) {
-
       let a = this.getCurrQuesting().awnser[value];
       switch (a.target) {
         case 'strength':

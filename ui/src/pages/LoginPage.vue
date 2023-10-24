@@ -6,7 +6,7 @@
       <div class="center">
         <div class="logo"><img src="@/assets/images/logo.png" alt=""></div>
         <div class="btns">
-          <div class="btn1"><a href="javascript:;" @click="login_and_enter">WALLET LOGIN</a></div>
+          <div class="btn1"><a href="javascript:;" @click="login_and_enter" v-loading="loading">WALLET LOGIN</a></div>
           <div class="btn2">
             <a href="#">social account</a>
             <a href="#">white papper</a>
@@ -30,18 +30,28 @@ export default {
   },
   computed: mapState(['wallet_address']),
   data() {
-    return {}
+    return {
+      loading: false,
+    }
   },
   methods: {
-    ...mapMutations(['setAdventures','setAdventure',"setCurrPage"]),
+    ...mapMutations(['setAdventures', 'setAdventure', "setCurrPage"]),
     ...mapActions(['connect_wallet']),
-    async login_and_enter(){
-      await this.connect_wallet();
-      let resp =  await getAdventure(this.wallet_address);
-      console.log(resp)
-      this.setAdventures(resp.data.adventurers);
-      this.setAdventure(resp.data.adventurers[0])
-      this.setCurrPage('adventure_list')
+    async login_and_enter() {
+      if (this.loading) {
+        return;
+      }
+      this.loading = true;
+      try {
+        await this.connect_wallet();
+        let resp = await getAdventure(this.wallet_address);
+        console.log(resp)
+        this.setAdventures(resp.data.adventurers);
+        this.setAdventure(resp.data.adventurers[0])
+        this.setCurrPage('adventure_list')
+      } finally {
+        this.loading = false
+      }
     }
   }
 }
