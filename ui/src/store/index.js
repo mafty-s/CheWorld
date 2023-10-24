@@ -342,6 +342,9 @@ export const store = createStore({
 
             console.log('receipt', receipt);
 
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
         },
         async attack(context, tillDeath, beastData) {
 
@@ -355,11 +358,13 @@ export const store = createStore({
 
             console.log("tx", tx);
 
-            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
-                retryInterval: 2000,
-            });
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
 
             console.log('receipt', receipt);
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
         },
         async flee(context, tillDeath, beastData) {
 
@@ -373,11 +378,14 @@ export const store = createStore({
 
             console.log("tx", tx);
 
-            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
-                retryInterval: 2000,
-            });
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
+
 
             console.log('receipt', receipt);
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
         },
         async upgrade(context, payload) {
 
@@ -426,12 +434,14 @@ export const store = createStore({
 
             console.log("tx", tx);
 
-            let receipt = await context.state.account?.waitForTransaction(tx.transaction_hash, {
-                retryInterval: 2000,
-            });
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
 
             console.log('receipt', receipt);
-        },
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
+            },
         async harvesting(context) {
             const mintAdventurerTx = {
                 contractAddress: contract_address,
@@ -440,6 +450,14 @@ export const store = createStore({
             };
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
+
+            console.log('receipt', receipt);
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
 
         },
         async loadResources(context) {

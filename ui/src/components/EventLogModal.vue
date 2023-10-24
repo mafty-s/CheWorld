@@ -1,4 +1,4 @@
-<script >
+<script>
 export default {
   name: 'EventLogModal',
   components: {},
@@ -8,7 +8,13 @@ export default {
   data() {
     return {
       targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
-      countdown: '00:00' // 初始倒计时显示为"00:00"
+      countdown: '00:00',
+      logs: [
+        {
+          time: '2023-09-22T14:57:31.870Z',
+          content: 'Beast',
+        }
+      ]
     }
   },
   methods: {
@@ -39,58 +45,6 @@ export default {
         <p>
           <span class="s1">10:20</span>
           <span class="s2">some text more and more ,maybe some fighting</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
-        </p>
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">high-quality wood x99</span>
         </p>
       </div>
     </div>
