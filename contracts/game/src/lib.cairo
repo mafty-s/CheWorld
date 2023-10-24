@@ -159,7 +159,10 @@ mod Game {
 
             _pack_adventurer_res(ref self,adventurer_id,res);
 
-
+            self.emit(ResUpdate {
+                adventurer_res:res,
+                changes:adventurer_res
+            })
         }
 
         //@notice Initiates the adventure for an adventurer with specific starting configurations.

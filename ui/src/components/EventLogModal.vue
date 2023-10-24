@@ -1,10 +1,18 @@
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: 'EventLogModal',
   components: {},
   mounted() {
+
+    const timestamp = this.adventurer.resources.last_timestamp + 600;
+    this.targetTime = new Date(timestamp * 1000);
+
+
     this.startCountdown();
   },
+  computed: mapState(['wallet_address', "adventurer",]),
   data() {
     return {
       targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后

@@ -394,7 +394,7 @@ export const store = createStore({
             let events = await parseEvents(receipt);
             console.log('events', events);
             context.commit("doEvents", events)
-            context.commit("setAdventurerName",formData.name);
+            context.commit("setAdventurerName", formData.name);
         },
         async explore(context, till_beast) {
 
