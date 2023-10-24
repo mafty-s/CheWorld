@@ -21,6 +21,8 @@
 
 import {mapState, mapActions, mapMutations} from 'vuex'
 import {getAdventure} from "../system/graphql.js";
+import {ElMessage} from "element-plus";
+import {h} from "vue";
 
 export default {
   name: 'LoginPage',
@@ -38,6 +40,14 @@ export default {
     ...mapMutations(['setAdventures', 'setAdventure', "setCurrPage"]),
     ...mapActions(['connect_wallet']),
     async login_and_enter() {
+
+      // ElMessage({
+      //   message: h('p', null, [
+      //     h('span', null, 'Message can be '),
+      //     h('i', { style: 'color: teal' }, 'VNode'),
+      //   ]),
+      // })
+
       if (this.loading) {
         return;
       }

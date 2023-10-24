@@ -3,11 +3,12 @@ import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
 import {getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
-import {Contract, getChecksumAddress,uint256} from 'starknet';
+import {Contract, getChecksumAddress, hash, uint256} from 'starknet';
 
 
 export const contract_address = "0x00450ca5f9aa801632c5bd9c8cb379b9625618e885e8b79b7afdd96529960acb";
 import contract_abi from "./abi.json";
+import {ElMessage} from "element-plus";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
@@ -204,9 +205,88 @@ export const store = createStore({
             for (let i = 0; i < events.length; i++) {
                 const event = events[i];
                 switch (event.name) {
-                    case "AdventurerDied":
+                    case "AdventurerUpgraded":
+                        ElMessage('AdventurerUpgraded')
                         break;
-
+                    case "DiscoveredHealth":
+                        ElMessage('DiscoveredHealth')
+                        break;
+                    case "DiscoveredGold":
+                        ElMessage('DiscoveredGold')
+                        break;
+                    case "DiscoveredXP":
+                        ElMessage('DiscoveredXP')
+                        break;
+                    case "DodgedObstacle":
+                        ElMessage('DodgedObstacle')
+                        break;
+                    case "HitByObstacle":
+                        ElMessage('HitByObstacle')
+                        break;
+                    case "DiscoveredBeast":
+                        ElMessage('DiscoveredBeast')
+                        break;
+                    case "AmbushedByBeast":
+                        ElMessage('AmbushedByBeast')
+                        break;
+                    case "AttackedBeast":
+                        ElMessage('AttackedBeast')
+                        break;
+                    case "AttackedByBeast":
+                        ElMessage('AttackedByBeast')
+                        break;
+                    case "SlayedBeast":
+                        ElMessage('SlayedBeast')
+                        break;
+                    case "FleeFailed":
+                        ElMessage('FleeFailed')
+                        break;
+                    case "FleeSucceeded":
+                        ElMessage('FleeSucceeded')
+                        break;
+                    case "PurchasedItems":
+                        ElMessage('PurchasedItems')
+                        break;
+                    case "PurchasedPotions":
+                        ElMessage('PurchasedPotions')
+                        break
+                    case "EquippedItems":
+                        ElMessage('EquippedItems')
+                        break;
+                    case "DroppedItems":
+                        ElMessage('DroppedItems')
+                        break;
+                    case "GreatnessIncreased":
+                        ElMessage('GreatnessIncreased')
+                        break;
+                    case "ItemsLeveledUp":
+                        ElMessage('ItemsLeveledUp')
+                        break;
+                    case "NewHighScore":
+                        ElMessage('NewHighScore')
+                        break;
+                    case "AdventurerDied":
+                        ElMessage('AdventurerDied')
+                        break;
+                    case "AdventurerLeveledUp":
+                        ElMessage('AdventurerLeveledUp')
+                        state.adventurer.xp = event.adventurerState.adventurer.xp;
+                        state.adventurer.gold = event.adventurerState.adventurer.gold;
+                        state.adventurer.statPointsAvailable = event.adventurerState.adventurer.statPointsAvailable;
+                        state.showInformation=true;
+                        break;
+                    case "NewItemsAvailable":
+                        ElMessage('NewItemsAvailable')
+                        break;
+                    case "IdleDeathPenalty":
+                        ElMessage('IdleDeathPenalty')
+                        break;
+                    case "RewardDistribution":
+                        ElMessage('RewardDistribution')
+                        break;
+                    default:
+                        ElMessage('unknown event: ' + event.name)
+                        break;
                 }
             }
         }
@@ -348,6 +428,9 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doEvents", events)
+
         },
         async attack(context, tillDeath, beastData) {
 
@@ -370,6 +453,8 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doEvents", events)
         },
         async flee(context, tillDeath, beastData) {
 
@@ -391,6 +476,8 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doEvents", events)
         },
         async upgrade(context, payload) {
 
@@ -446,6 +533,9 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doEvents", events)
+
         },
         async harvesting(context) {
             const mintAdventurerTx = {
@@ -463,6 +553,8 @@ export const store = createStore({
             let events = await parseEvents(receipt);
 
             console.log('events', events);
+
+            context.commit("doEvents", events)
 
         },
         async loadResources(context) {
