@@ -17,7 +17,7 @@ export const store = createStore({
         showInformation: false,
         craftingIndex: 1,
         craftingNumber: 1,
-        currPage: 'login',
+        currPage: 'world',
         currRole: {
             ingredientRecipe: [],
             bag: {

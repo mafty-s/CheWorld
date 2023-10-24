@@ -7,6 +7,7 @@
     <LoginPage v-if="currPage==='login'"/>
     <MainPage  v-if="currPage==='main'"/>
     <AdventureListPage  v-if="currPage==='adventure_list'"/>
+    <WorldPage  v-if="currPage==='world'"/>
   </div>
 </template>
 
@@ -15,11 +16,12 @@
 import LoginPage from "./pages/LoginPage.vue";
 import MainPage from './pages/MainPage.vue'
 import AdventureListPage from './pages/AdventureListPage.vue'
+import WorldPage from './pages/WorldPage.vue'
 import {mapState} from "vuex";
 
 export default {
   name: 'App',
-  components: {LoginPage, MainPage, AdventureListPage},
+  components: {LoginPage, MainPage, AdventureListPage,WorldPage},
   mounted() {
 
   },
