@@ -30,7 +30,7 @@
       <img src="@/assets/images/people.png" alt="">
     </div>
 
-    <div class="people people2">
+    <div class="people people2" @click="onClickEnterWorld">
       <div class="infor">
         <div class="name">Jacob</div>
         <div class="pos">Exchange Administrator</div>
@@ -188,6 +188,9 @@ export default {
     },
     onClickWallet() {
       this.setCurrPage('login');
+    },
+    onClickEnterWorld() {
+      this.setCurrPage('world');
     }
   }
 }
