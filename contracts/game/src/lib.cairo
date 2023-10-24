@@ -150,6 +150,8 @@ mod Game {
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
             let count:u16 = ((timestamp - res.last_timestamp)/600).try_into().expect('tick');
 
+            assert(count>0,'time');
+
             res.egg  = res.egg  + count;
             res.meat = res.meat + count;
             res.fish = res.fish + count;
@@ -159,9 +161,33 @@ mod Game {
 
             _pack_adventurer_res(ref self,adventurer_id,res);
 
+            let changes = AdventurerRes {
+                egg:count,
+                meat:count,
+                fish:count,
+                soft_skin:4,
+                crusty:0,
+                berry:0,
+                bamboo:0,
+                balsa_wood:0,
+                fir_wood:0,
+                teak:0,
+                hemlock:0,
+                mahogany:0,
+                pine:0,
+                coal:count,
+                copper:0,
+                iron:0,
+                silver:0,
+                sterling_silver:0,
+                graphite:0,
+                platinum:0,
+                last_timestamp:timestamp
+            };
+
             self.emit(ResUpdate {
                 adventurer_res:res,
-                changes:adventurer_res
+                changes:changes
             })
         }
 
