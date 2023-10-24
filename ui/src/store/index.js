@@ -6,7 +6,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, uint256} from 'starknet';
 
 
-export const contract_address = "0x00450ca5f9aa801632c5bd9c8cb379b9625618e885e8b79b7afdd96529960acb";
+export const contract_address = "0x02064a5f18873081cef4bae8aef22cba1b5fe23d38d2152a80fdafd070fe9dc2";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 // export const lordsContractAddress :string

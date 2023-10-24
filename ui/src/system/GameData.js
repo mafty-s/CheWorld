@@ -26,4 +26,5 @@ export const SELECTOR_KEYS ={
     AdventurerLeveledUp: hash.getSelectorFromName("AdventurerLeveledUp"),
     NewItemsAvailable: hash.getSelectorFromName("NewItemsAvailable"),
     IdleDeathPenalty: hash.getSelectorFromName("IdleDeathPenalty"),
+    ResUpdate: hash.getSelectorFromName("ResUpdate"),
 }

@@ -1109,10 +1109,10 @@ mod Game {
         let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
 
         let adventure_res = AdventurerRes {
-            egg:0,
-            meat:0,
-            fish:0,
-            soft_skin:0,
+            egg:1,
+            meat:2,
+            fish:3,
+            soft_skin:4,
             crusty:0,
             berry:0,
             bamboo:0,

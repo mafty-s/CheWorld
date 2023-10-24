@@ -356,7 +356,24 @@ export async function parseEvents(receipt) {
                     }
                 });
                 break;
-
+            case "ResUpdate":
+                console.log("ResUpdate", raw.data);
+                const ResUpdateData = {
+                    last_timestamp: parseInt(raw.data.slice(0, 4)),
+                    egg: parseInt(raw.data[5]),
+                    meat: parseInt(raw.data[6]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: ResUpdateData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
+                break;
+            default:
+                console.error("unknown event: " + eventName);
+                break;
         }
 
     }
