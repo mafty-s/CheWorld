@@ -358,10 +358,78 @@ export async function parseEvents(receipt) {
                 break;
             case "ResUpdate":
                 console.log("ResUpdate", raw.data);
+
+                //     struct AdventurerRes {
+                //     egg:u16,//9 bits
+                //         meat:u16,
+                //         fish:u16,
+                //         soft_skin:u16,
+                //         crusty:u16,
+                //         berry:u16,
+                //         bamboo:u16,
+                //         balsa_wood:u16,
+                //         fir_wood:u16,
+                //         teak:u16,
+                //         hemlock:u16,
+                //         mahogany:u16,
+                //         pine:u16,
+                //         coal:u16,
+                //         copper:u16,
+                //         iron:u16,
+                //         silver:u16,
+                //         sterling_silver:u16,
+                //         graphite:u16,
+                //         platinum:u16,
+                //         last_timestamp:u64,
+                // }
                 const ResUpdateData = {
-                    last_timestamp: parseInt(raw.data.slice(0, 4)),
-                    egg: parseInt(raw.data[5]),
-                    meat: parseInt(raw.data[6]),
+
+                    adventurer_res: {
+                        egg: parseInt(raw.data[0]),
+                        meat: parseInt(raw.data[1]),
+                        fish: parseInt(raw.data[2]),
+                        soft_skin: parseInt(raw.data[3]),
+                        preventsy: parseInt(raw.data[4]),
+                        berry: parseInt(raw.data[5]),
+                        bamboo: parseInt(raw.data[6]),
+                        balsa_wood: parseInt(raw.data[7]),
+                        fir_wood: parseInt(raw.data[8]),
+                        teak: parseInt(raw.data[9]),
+                        hemlock: parseInt(raw.data[10]),
+                        mahogany: parseInt(raw.data[11]),
+                        pine: parseInt(raw.data[12]),
+                        coal: parseInt(raw.data[13]),
+                        copper: parseInt(raw.data[14]),
+                        iron: parseInt(raw.data[15]),
+                        silver: parseInt(raw.data[16]),
+                        sterling_silver: parseInt(raw.data[17]),
+                        graphite: parseInt(raw.data[18]),
+                        platinum: parseInt(raw.data[19]),
+                        last_timestamp: parseInt(raw.data[20]),
+                    },
+                    changed: {
+                        egg: parseInt(raw.data[21]),
+                        meat: parseInt(raw.data[22]),
+                        fish: parseInt(raw.data[23]),
+                        soft_skin: parseInt(raw.data[24]),
+                        preventsy: parseInt(raw.data[25]),
+                        berry: parseInt(raw.data[26]),
+                        bamboo: parseInt(raw.data[27]),
+                        balsa_wood: parseInt(raw.data[28]),
+                        fir_wood: parseInt(raw.data[29]),
+                        teak: parseInt(raw.data[30]),
+                        hemlock: parseInt(raw.data[31]),
+                        mahogany: parseInt(raw.data[32]),
+                        pine: parseInt(raw.data[33]),
+                        coal: parseInt(raw.data[34]),
+                        copper: parseInt(raw.data[35]),
+                        iron: parseInt(raw.data[36]),
+                        silver: parseInt(raw.data[37]),
+                        sterling_silver: parseInt(raw.data[38]),
+                        graphite: parseInt(raw.data[39]),
+                        platinum: parseInt(raw.data[40]),
+                        last_timestamp: parseInt(raw.data[41]),
+                    }
                 };
                 events.push({
                     name: eventName, data: {

@@ -6,7 +6,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, uint256} from 'starknet';
 
 
-export const contract_address = "0x02064a5f18873081cef4bae8aef22cba1b5fe23d38d2152a80fdafd070fe9dc2";
+export const contract_address = "0x074bdd2c07ca25967ceaa46653fca27d59658f0a65c3b84c2e1086c13399acdc";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 // export const lordsContractAddress :string
@@ -283,6 +283,9 @@ export const store = createStore({
                         break;
                     case "RewardDistribution":
                         ElMessage('RewardDistribution')
+                        break;
+                    case "ResUpdateData":
+                        state.adventurer.resources = event.data.data.adventurer_res;
                         break;
                     default:
                         ElMessage('unknown event: ' + event.name)
