@@ -37,80 +37,26 @@
       <div class="blocks">
 
 
-        <div class="block block1 ui1">
-          <div class="text">
-            Iron ore <br>99/100
-          </div>
-          <div class="icon">
-            <img src="@/assets/images/ui1.png" alt="">
-          </div>
-          <div class="dot"></div>
-        </div>
-
         <div class="block block2 ui2" @click="onClickAttack">
           <div class="text">
-            Wild boar <br>99/100
+            MonsterName <br> 5
           </div>
           <div class="icon">
             <img src="@/assets/images/ui2.png" alt="">
-          </div>
-          <div class="dot"></div>
-        </div>
-        <div class="block block3 ui2">
-          <div class="text">
-            Wild boar <br>99/100
-          </div>
-          <div class="icon">
-            <img src="@/assets/images/ui2.png" alt="">
-          </div>
-          <div class="dot"></div>
-        </div>
-        <div class="block block4 ui3">
-          <div class="text">
-            Elm wood<br>99/100
-          </div>
-          <div class="icon">
-            <img src="@/assets/images/ui3.png" alt="">
-          </div>
-          <div class="dot"></div>
-        </div>
-        <div class="block block5 ui1">
-          <div class="text">
-            Iron ore<br>99/100
-          </div>
-          <div class="icon">
-            <img src="@/assets/images/ui1.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
 
-        <div class="block block6 ui2">
-          <div class="text">
-            Wild boar<br>99/100
+        <div v-for="(res, index) in ResConfig" :key="index">
+          <div :class="'block block1 ui'+res.type" @click="onClickHarvesting" :style="{'left':res.x+'%','top':res.y+'%'}">
+            <div class="text">
+              {{res.name}} <br>{{ getCanHarvestNum() }}/ {{res.maxnum}}
+            </div>
+            <div class="icon">
+              <img src="@/assets/images/ui1.png" alt="">
+            </div>
+            <div class="dot"></div>
           </div>
-          <div class="icon">
-            <img src="@/assets/images/ui2.png" alt="">
-          </div>
-          <div class="dot"></div>
-        </div>
-        <div class="block block7 ui4">
-          <div class="text">
-            Apple<br>99/100
-          </div>
-          <div class="icon">
-            <img src="@/assets/images/ui4.png" alt="">
-          </div>
-          <div class="dot"></div>
-        </div>
-
-        <div class="block block8 ui3" @click="onClickHarvesting">
-          <div class="text">
-            Elm wood<br>99/100
-          </div>
-          <div class="icon">
-            <img src="@/assets/images/ui3.png" alt="">
-          </div>
-          <div class="dot"></div>
         </div>
 
         <div class="centerPeople">
@@ -147,7 +93,8 @@ import EventLogModal from "../components/EventLogModal.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import {ElMessage} from "element-plus";
 import DiedModal from "../components/DiedModal.vue";
-import {getResConfigByType} from "@/config/res_conf.js";
+import {getResConfig, getResConfigByType} from "@/config/res_conf.js";
+
 
 export default {
   name: 'WorldPage',
@@ -188,7 +135,9 @@ export default {
 
   },
   data() {
-    return {};
+    return {
+      ResConfig:getResConfig()
+    };
   },
   methods: {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation']),

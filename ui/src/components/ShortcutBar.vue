@@ -1,5 +1,6 @@
 <script>
 import {mapState} from "vuex";
+import {getResConfigByKey, ResType} from "@/config/res_conf.js";
 
 export default {
   name: 'ShortcutBar',
@@ -31,6 +32,8 @@ export default {
         if (num > 0  && key!=="last_timestamp") {
           item.name = key;
           item.num = num;
+          item.desc = getResConfigByKey(key).inform;
+          item.type = ResType[getResConfigByKey(key).type];
           res.push(item);
         }
       });
