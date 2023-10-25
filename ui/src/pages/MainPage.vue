@@ -60,6 +60,7 @@
     <ShortcutBar/>
     <Crafting v-show="showCrafting"/>
     <RoleInformation v-if="showInformation"/>
+    <DiedModal v-if="showDeadModal"/>
   </div>
 </template>
 
@@ -70,10 +71,12 @@ import RoleInformation from "../components/RoleInformation.vue";
 import ShortcutBar from "../components/ShortcutBar.vue";
 import AvatarComponent from "../components/AvatarComponent.vue";
 import FloatingBall from "../components/FloatingBall.vue";
+import DiedModal from "../components/DiedModal.vue";
 
 export default {
   name: 'MainPage',
   components: {
+    DiedModal,
     FloatingBall,
     AvatarComponent,
     Crafting, RoleInformation, ShortcutBar
@@ -81,7 +84,7 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "showCrafting", "showInformation", 'adventurer']),
+  computed: mapState(['wallet_address', "showCrafting", "showInformation", "showDeadModal",'adventurer']),
   data() {
     return {
       dialogVisible: false,

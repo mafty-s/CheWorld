@@ -18,6 +18,7 @@ export const store = createStore({
         showCrafting: false,
         showInformation: false,
         showMissionCompleted: false,
+        showDeadModal:false,
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'login',
@@ -278,6 +279,7 @@ export const store = createStore({
                         break;
                     case "AdventurerDied":
                         ElMessage('AdventurerDied')
+                        state.showDeadModal = true;
                         break;
                     case "AdventurerLeveledUp":
                         ElMessage('AdventurerLeveledUp')

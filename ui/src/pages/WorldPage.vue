@@ -131,6 +131,7 @@
     <ShortcutBar/>
     <MissionCompleteModal v-if="showMissionCompleted"/>
     <RoleInformation v-if="showInformation"/>
+    <DiedModal v-if="showDeadModal"/>
   </div>
 </template>
 
@@ -145,11 +146,15 @@ import RoleInformation from "../components/RoleInformation.vue";
 import EventLogModal from "../components/EventLogModal.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import {ElMessage} from "element-plus";
+import DiedModal from "../components/DiedModal.vue";
 
 export default {
   name: 'WorldPage',
-  components: {FloatingBall, EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar},
-  computed: mapState(['wallet_address', "adventurer", "showMissionCompleted", "showInformation"]),
+  components: {
+    DiedModal,
+    FloatingBall, EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar
+  },
+  computed: mapState(['wallet_address', "adventurer", "showMissionCompleted", "showDeadModal", "showInformation"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例
@@ -190,7 +195,7 @@ export default {
     return {};
   },
   methods: {
-    ...mapMutations(['setShowMissionCompleted', 'setCurrPage','setShowInformation']),
+    ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
       await this.harvesting();
@@ -198,13 +203,13 @@ export default {
     },
     async onClickAttack() {
       let monster = this.adventurer.beastSpecs;
-      if(monster){
+      if (monster) {
         await this.attack(false, null);
-      }else{
-        if(this.adventurer.statUpgrades>0){
+      } else {
+        if (this.adventurer.statUpgrades > 0) {
           ElMessage.error('Please upgrade your character first')
           this.setShowInformation(true);
-        }else {
+        } else {
           await this.explore(true);
         }
       }
@@ -219,7 +224,7 @@ export default {
       const count = (current_timestamp - last_timestamp / 600);
       return count;
     },
-    getTypeOneCount(){
+    getTypeOneCount() {
 
     }
 

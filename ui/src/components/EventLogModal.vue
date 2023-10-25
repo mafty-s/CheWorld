@@ -9,7 +9,7 @@ export default {
     const timestamp = this.adventurer.resources.last_timestamp + 600;
     this.targetTime = new Date(timestamp * 1000);
 
-
+    this.formatLogs();
     this.startCountdown();
   },
   computed: mapState(['wallet_address', "adventurer",]),
@@ -26,6 +26,13 @@ export default {
     }
   },
   methods: {
+    formatLogs(){
+      let battle_logs = this.adventurer.battles;
+      for(let i=0;i<battle_logs.length;i++){
+        let battle_log = battle_logs[i];
+        //let content =
+      }
+    },
     startCountdown() {
       setInterval(() => {
         const currentTime = new Date().getTime();
@@ -50,9 +57,9 @@ export default {
       <div class="title1">In the process of logging...</div>
       <div class="time">{{ countdown }}</div>
       <div class="decs">
-        <p>
-          <span class="s1">10:20</span>
-          <span class="s2">some text more and more ,maybe some fighting</span>
+        <p v-for="(log, index) in logs" :key="index">
+          <span class="s1">{{ log.time }}}</span>
+          <span class="s2">{{ log.content }}</span>
         </p>
       </div>
     </div>
