@@ -48,12 +48,12 @@
         </div>
 
         <div v-for="(res, index) in ResConfig" :key="index">
-          <div :class="'block block1 ui'+res.type" @click="onClickHarvesting" :style="{'left':res.x+'%','top':res.y+'%'}">
+          <div :class="'block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting" :style="{'left':res.x+'%','top':res.y+'%'}">
             <div class="text">
               {{res.name}} <br>{{ getCanHarvestNum() }}/ {{res.maxnum}}
             </div>
             <div class="icon">
-              <img src="@/assets/images/ui1.png" alt="">
+              <img :src="'images/ui'+getColorByType(res.type)+'.png'" alt="">
             </div>
             <div class="dot"></div>
           </div>
@@ -93,7 +93,7 @@ import EventLogModal from "../components/EventLogModal.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import {ElMessage} from "element-plus";
 import DiedModal from "../components/DiedModal.vue";
-import {getResConfig, getResConfigByType} from "@/config/res_conf.js";
+import {getColorByType, getResConfig, getResConfigByType} from "@/config/res_conf.js";
 
 
 export default {
@@ -140,6 +140,7 @@ export default {
     };
   },
   methods: {
+    getColorByType,
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
