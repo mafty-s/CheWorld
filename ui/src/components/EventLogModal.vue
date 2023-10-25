@@ -57,9 +57,9 @@ export default {
       <div class="title1">In the process of logging...</div>
       <div class="time">{{ countdown }}</div>
       <div class="decs">
-        <p v-for="(log, index) in logs" :key="index">
+        <p v-for="(log, index) in adventurer.logs" :key="index">
           <span class="s1">{{ log.time }}</span>
-          <span class="s2">{{ log.content }}</span>
+          <span class="s2">{{ log.context }}</span>
         </p>
       </div>
     </div>
