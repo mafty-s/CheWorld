@@ -30,7 +30,7 @@ export default {
         const num = resources[key];
         let item = JSON.parse(JSON.stringify(temp));
         if (num > 0  && key!=="last_timestamp") {
-          item.name = key;
+          item.name = getResConfigByKey(key).name;
           item.num = num;
           item.desc = getResConfigByKey(key).inform;
           item.type = ResType[getResConfigByKey(key).type];
@@ -66,7 +66,7 @@ export default {
                 <b>Item: </b>{{ item.name }}
               </p>
               <p>
-                <b>Type:</b>{{ item.type }}
+                <b>Type: </b>{{ item.type }}
               </p>
               <p>
                 <b>Quantity: </b>{{ item.num }}
