@@ -89,11 +89,15 @@ export function formatAdventurerState(adventurer,adventurerState){
     adventurer.xp = adventurerState.adventurer.xp;
     adventurer.gold = adventurerState.adventurer.gold;
 
-    adventurer.chest = adventurerState.adventurer.chest;
     adventurer.head = adventurerState.adventurer.head;
+    adventurer.chest = adventurerState.adventurer.chest;
+    adventurer.waist = adventurerState.adventurer.waist;
+    adventurer.foot = adventurerState.adventurer.foot;
     adventurer.neck = adventurerState.adventurer.neck;
     adventurer.ring = adventurerState.adventurer.ring;
     adventurer.weapon = adventurerState.adventurer.weapon;
+    adventurer.hand = adventurerState.adventurer.hand;
+
 
     adventurer.charisma = adventurerState.adventurer.stats.charisma;
     adventurer.dexterity = adventurerState.adventurer.stats.dexterity;

@@ -15,19 +15,17 @@
               <li>
                 <div class="s1">
                   <div class="icon"><img src="@/assets/images/fd1.png" alt=""></div>
-                  <div class="tit">Feathered Crest</div>
+                  <div class="tit">{{ getItem(this.adventurer.head).name }}</div>
                 </div>
-                <div class="s2">
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
+                <div class="s2" v-if="this.adventurer.head.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.head).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.head).xp }}</p>
                 </div>
               </li>
               <li>
                 <div class="s1">
                   <div class="icon"><img src="@/assets/images/fd2.png" alt=""></div>
-                  <div class="tit">Feathered Crest</div>
+                  <div class="tit">{{ getItem(this.adventurer.chest).name }}</div>
                 </div>
                 <div class="s2">
                   <p>Healthy:+20</p>
@@ -39,25 +37,21 @@
               <li>
                 <div class="s1">
                   <div class="icon"><img src="@/assets/images/fd3.png" alt=""></div>
-                  <div class="tit">Feathered Crest</div>
+                  <div class="tit">{{ getItem(this.adventurer.waist).name }}</div>
                 </div>
-                <div class="s2">
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
+                <div class="s2" v-if="this.adventurer.waist.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.waist).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.waist).xp }}</p>
                 </div>
               </li>
               <li>
                 <div class="s1">
                   <div class="icon"><img src="@/assets/images/fd4.png" alt=""></div>
-                  <div class="tit">Feathered Crest</div>
+                  <div class="tit">{{ getItem(this.adventurer.foot).name }}</div>
                 </div>
-                <div class="s2">
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
+                <div class="s2" v-if="this.adventurer.foot.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.foot).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.foot).xp }}</p>
                 </div>
               </li>
               <li>
@@ -65,23 +59,19 @@
                   <div class="icon"><img src="@/assets/images/fd5.png" alt=""></div>
                   <div class="tit">{{ getItem(this.adventurer.weapon).name }}</div>
                 </div>
-                <div class="s2">
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
+                <div class="s2" v-if="this.adventurer.weapon.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.weapon).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.weapon).xp }}</p>
                 </div>
               </li>
               <li>
                 <div class="s1">
                   <div class="icon"><img src="@/assets/images/fd6.png" alt=""></div>
-                  <div class="tit">Feathered Crest</div>
+                  <div class="tit">{{ getItem(this.adventurer.hand).name }}</div>
                 </div>
-                <div class="s2">
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
+                <div class="s2" v-if="this.adventurer.hand.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.hand).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.hand).xp }}</p>
                 </div>
               </li>
             </ul>
@@ -126,7 +116,7 @@
 <script>
 import {mapActions, mapMutations, mapState} from "vuex";
 import {stat_desc} from "../config/stat.js";
-import {ITEMS} from "../system/GameData.js";
+import {ITEM_TIERS, ITEMS} from "../system/GameData.js";
 
 export default {
   name: 'RoleInformation',
@@ -199,11 +189,21 @@ export default {
       });
     },
     getItem(i) {
+      if (i === undefined || i.id === 0) {
+        return {
+          name: 'NONE EQUIPPED',
+          xp:0,
+          id: 0,
+          tiers: 0,
+        }
+      }
       const name = ITEMS[i.id];
+      const tiers = ITEM_TIERS[name];
       return {
         name: name,
         xp: i.xp,
-        id: i.id
+        id: i.id,
+        tiers: tiers
       }
     }
   }
