@@ -30,7 +30,7 @@
       <img src="@/assets/images/people.png" alt="">
     </div>
 
-    <div class="people people2" >
+    <div class="people people2" @click="showDialog">
       <div class="infor">
         <div class="name">Korsk</div>
         <div class="pos">Alchemist</div>
@@ -72,6 +72,8 @@ import ShortcutBar from "../components/ShortcutBar.vue";
 import AvatarComponent from "../components/AvatarComponent.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import DiedModal from "../components/DiedModal.vue";
+import {ElNotification} from "element-plus";
+import {Dialog_Korsk, DialogKorsk} from "../config/dialog.js";
 
 export default {
   name: 'MainPage',
@@ -138,6 +140,15 @@ export default {
     async onClickEnterWorld() {
       await this.loadResources();
       this.setCurrPage('world');
+    },
+    async showDialog(){
+      const randomIndex = Math.floor(Math.random() * DialogKorsk.length);
+      const msg= DialogKorsk[randomIndex].sentence;
+
+      ElNotification({
+        title: 'Korsk',
+        message: msg
+      })
     }
   }
 }
