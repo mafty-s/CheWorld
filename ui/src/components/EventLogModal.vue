@@ -26,9 +26,9 @@ export default {
     }
   },
   methods: {
-    formatLogs(){
+    formatLogs() {
       let battle_logs = this.adventurer.battles;
-      for(let i=0;i<battle_logs.length;i++){
+      for (let i = 0; i < battle_logs.length; i++) {
         let battle_log = battle_logs[i];
         //let content =
       }
@@ -58,8 +58,10 @@ export default {
       <div class="time">{{ countdown }}</div>
       <div class="decs">
         <p v-for="(log, index) in adventurer.logs" :key="index">
-          <span class="s1">{{ log.time }}</span>
-          <span class="s2">{{ log.context }}</span>
+          <a :href="'https://testnet.starkscan.co/tx/'+log.tx_hash " target="_blank">
+            <span class="s1">{{ log.time }}</span>
+            <span class="s2">{{ log.context }}</span>
+          </a>
         </p>
       </div>
     </div>
@@ -67,5 +69,7 @@ export default {
 </template>
 
 <style scoped>
-
+a {
+  color: white;
+}
 </style>

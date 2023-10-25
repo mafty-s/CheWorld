@@ -212,7 +212,8 @@ export const store = createStore({
 
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "GREAT! Adventurer Upgraded!"
+                            context: "GREAT! Adventurer Upgraded!",
+                            tx_hash:event.data.transaction_hash
                         })
 
                         break;
@@ -225,7 +226,9 @@ export const store = createStore({
 
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "GREAT! Discovered " + healthAmount + " health!"
+                            context: "GREAT! Discovered " + healthAmount + " health!",
+                            tx_hash:event.data.transaction_hash
+
                         })
 
                         break;
@@ -236,7 +239,8 @@ export const store = createStore({
                         const gold = event.data.data.goldAmount;
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "GREAT! Discovered " + gold + " gold!"
+                            context: "GREAT! Discovered " + gold + " gold!",
+                            tx_hash:event.data.transaction_hash
                         })
 
                         break;
@@ -248,18 +252,25 @@ export const store = createStore({
 
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "GREAT! Discovered " + xp + " xp!"
+                            context: "GREAT! Discovered " + xp + " xp!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "DodgedObstacle":
                         ElMessage('DodgedObstacle')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+                        state.adventurer.logs.push({
+                            time: getCurrentTime(),
+                            context: "Dodged Obstacle!",
+                            tx_hash:event.data.transaction_hash
+                        })
                         break;
                     case "HitByObstacle":
                         ElMessage('HitByObstacle')
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "OH NO! Hit By Obstacle!"
+                            context: "OH NO! Hit By Obstacle!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "DiscoveredBeast":
@@ -268,7 +279,8 @@ export const store = createStore({
                         let findBeatsId = event.data.data.id;
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "OH NO! Discovered a " + BEASTS[findBeatsId] + "!"
+                            context: "OH NO! Discovered a " + BEASTS[findBeatsId] + "!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "AmbushedByBeast":
@@ -279,7 +291,8 @@ export const store = createStore({
                         const beastName = BEASTS[beatsId];
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "YIKES! Ambushed by a " + beastName + "!"
+                            context: "YIKES! Ambushed by a " + beastName + "!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "AttackedBeast":
@@ -301,14 +314,16 @@ export const store = createStore({
                         ElMessage('FleeFailed')
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "Flee Failed!"
+                            context: "Flee Failed!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "FleeSucceeded":
                         ElMessage('FleeSucceeded')
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "Flee Succeeded!"
+                            context: "Flee Succeeded!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "PurchasedItems":
@@ -344,7 +359,8 @@ export const store = createStore({
 
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "Adventurer Level Up!"
+                            context: "Adventurer Level Up!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "NewItemsAvailable":
@@ -354,7 +370,8 @@ export const store = createStore({
                         ElMessage('IdleDeathPenalty')
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "OOPS! Killed by idle death penalty!"
+                            context: "OOPS! Killed by idle death penalty!",
+                            tx_hash:event.data.transaction_hash
                         })
                         break;
                     case "RewardDistribution":

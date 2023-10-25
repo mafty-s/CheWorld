@@ -26,28 +26,28 @@
     </el-dialog>
 
 
-    <div class="people people1" @click="openCrafting">
+    <div class="people people1" @click="setShowInformation(true)">
       <img src="@/assets/images/people.png" alt="">
     </div>
 
-    <div class="people people2" @click="onClickEnterWorld">
+    <div class="people people2" >
       <div class="infor">
-        <div class="name">Jacob</div>
-        <div class="pos">Exchange Administrator</div>
+        <div class="name">Korsk</div>
+        <div class="pos">Alchemist</div>
       </div>
       <img src="@/assets/images/people2.png" alt="">
     </div>
-    <div class="people people3">
+    <div class="people people3" @click="openCrafting">
       <div class="infor">
-        <div class="name">Jacob</div>
-        <div class="pos">Exchange Administrator</div>
+        <div class="name">Brando</div>
+        <div class="pos">Blacksmith</div>
       </div>
       <img src="@/assets/images/people3.png" alt="">
     </div>
-    <div class="people people4">
+    <div class="people people4" @click="onClickEnterWorld">
       <div class="infor">
-        <div class="name">Jacob</div>
-        <div class="pos">Exchange Administrator</div>
+        <div class="name">Elwyn</div>
+        <div class="pos">Hunter</div>
       </div>
       <img src="@/assets/images/people4.png" alt="">
     </div>
