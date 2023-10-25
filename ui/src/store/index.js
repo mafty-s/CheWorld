@@ -402,6 +402,25 @@ export const store = createStore({
                         break;
                     case "ResUpdate":
                         state.adventurer.resources = event.data.data.adventurer_res;
+
+                        this.commit('addLog', {
+                            time: getCurrentTime(),
+                            context: "Hunt successfully to obtain food!",
+                            tx_hash: event.data.transaction_hash
+                        })
+
+                        this.commit('addLog', {
+                            time: getCurrentTime(),
+                            context: "Successfully obtain wood from logging!",
+                            tx_hash: event.data.transaction_hash
+                        })
+
+                        this.commit('addLog', {
+                            time: getCurrentTime(),
+                            context: "Mining successfully obtained ore!",
+                            tx_hash: event.data.transaction_hash
+                        })
+
                         break;
                     default:
                         ElMessage('unknown event: ' + event.name)
@@ -690,6 +709,9 @@ export const store = createStore({
             const contract = new Contract(contract_abi, contract_address, context.state.account);
             const resouces = await contract.get_adventurer_res(1);
             console.log("resouces", resouces);
+
+
+
             // context.state.adventurer?.resource = resouces;
         }
     }
