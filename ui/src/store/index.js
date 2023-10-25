@@ -9,6 +9,7 @@ import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'st
 export const contract_address = "0x0524d66e57fee8ce3ac9e41c8b62eff50cfa78abb89844bdff17c9cedd4aa56b";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
+import {BEASTS} from "../system/GameData.js";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
@@ -218,9 +219,13 @@ export const store = createStore({
                     case "DiscoveredHealth":
                         ElMessage('DiscoveredHealth')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+
+                        const healthAmount = event.data.data.healthAmount;
+
+
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "GREAT! Discovered {discoveryData?.outputAmount} health!"
+                            context: "GREAT! Discovered " + healthAmount + " health!"
                         })
 
                         break;
@@ -228,7 +233,7 @@ export const store = createStore({
                         ElMessage('DiscoveredGold')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
 
-                        const gold = event.data.data.adventurerState.goldAmount;
+                        const gold = event.data.data.goldAmount;
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
                             context: "GREAT! Discovered " + gold + " gold!"
@@ -238,9 +243,12 @@ export const store = createStore({
                     case "DiscoveredXP":
                         ElMessage('DiscoveredXP')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+
+                        const xp = event.data.data.xpAmount;
+
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "GREAT! Discovered {discoveryData?.outputAmount} xp!"
+                            context: "GREAT! Discovered " + xp + " xp!"
                         })
                         break;
                     case "DodgedObstacle":
@@ -266,9 +274,11 @@ export const store = createStore({
                         ElMessage('AmbushedByBeast')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         state.adventurer.beastSpecs = event.data.data.beastSpecs;
+                        const beatsId = event.data.data.id;
+                        const beastName = BEASTS[id];
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "YIKES! Ambushed by a {beastName}!"
+                            context: "YIKES! Ambushed by a " + beastName + "!"
                         })
                         break;
                     case "AttackedBeast":
