@@ -13,7 +13,7 @@
     </div>
     <div class="content2 itemNase" v-if="step===2">
       <input type="text" placeholder="Some text about user name" class="words" v-model="name">
-      <div class="warning">* {{ error_msg }}
+      <div class="warning">* {{ err_msg }}
       </div>
       <button class="btnBase" @click="checkName()">CONFIRM</button>
     </div>

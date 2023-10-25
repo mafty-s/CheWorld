@@ -96,13 +96,13 @@
                 <li v-for="(value, key) in stat_desc" :key="key">
                   <div class="s1">{{ key }}</div>
                   <div class="s2">{{ stat(key) }}</div>
-                  <div class="s3" @click="onClickAddState(key)"></div>
+                  <div :class="[point>0 ? 's3' : 's3 grey']"  @click="onClickAddState(key)"></div>
                 </li>
               </ul>
             </div>
           </div>
           <div class="btns">
-            <button class="btn2" @click="onClickUpgrade">confirm</button>
+            <button class="btn2" v-show="showConfirm" @click="onClickUpgrade">confirm</button>
           </div>
         </div>
       </div>
@@ -159,6 +159,9 @@ export default {
         Luck: 0
       };
       this.point = (Number)(this.adventurer.statUpgrades);
+    },
+    showConfirm(){
+      return this.currenUpgrades.Strength+this.currenUpgrades.Dexterity+this.currenUpgrades.Vitality+this.currenUpgrades.Intelligence+this.currenUpgrades.Wisdom+this.currenUpgrades.Charisma+this.currenUpgrades.Luck> 0;
     },
     calculateLevel(xp) {
       return Math.max(Math.floor(Math.sqrt(xp)), 1);
