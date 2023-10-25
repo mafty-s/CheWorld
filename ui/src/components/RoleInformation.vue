@@ -101,7 +101,7 @@
               </ul>
             </div>
           </div>
-          <div class="btns">
+          <div class="btns" style="display: flex">
             <button class="btn2" v-show="showConfirm()" @click="init">reset</button>
             <button class="btn2" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
           </div>
