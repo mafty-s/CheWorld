@@ -154,7 +154,7 @@
           <div class="right">
             <div class="title">{{ content?.name }}</div>
             <img src="@/assets/images/people.png" class="people" alt="">
-            <button class="btn" @click="enter" v-loading="loading">Start Adventure</button>
+            <button class="btn" @click="enter" v-loading="loading" style="margin-top: 20px">Start Adventure</button>
           </div>
         </div>
         <div v-show="content===null" class="none">

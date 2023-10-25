@@ -87,7 +87,7 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['connect_wallet']),
+    ...mapActions(['connect_wallet','addItem']),
     ...mapMutations(['setShowCrafting', "setCraftingIndex", "setCraftingNumber","setEquipmentShowDetail","setFoodShowDetail"]),
     closeCrafting() {
       this.setShowCrafting(false);
@@ -99,19 +99,23 @@ export default {
       this.setCraftingNumber(this.craftingNumber - 1);
     },
     async doCrafting() {
+      // console.log(id, name, pairs)
+      await this.addItem();
+
       ElMessage({
-        message: 'Congrats, this is a success message.',
+        message: 'Congrats, this is a success message',
         type: 'success',
       })
     },
     showDetail(subid){
+
       this.setEquipmentShowDetail(subid)
     },
     showFoodDetail(subid){
       this.setFoodShowDetail(subid)
     },
-    doSelect(id, name, pairs) {
-      console.log(id, name, pairs)
+    async doSelect(id, name, pairs) {
+      await this.addItem();
       ElMessage({
         message: 'Congrats, this is a success message.',
         type: 'success',

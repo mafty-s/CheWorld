@@ -6,12 +6,12 @@
         <div class="items1">
           <div class="item">
             <img src="@/assets/images/gold1.png" alt="">
-            <span>{{ adventurer.gold }}</span>
+            <span style="width: 80px;text-align: right">{{ adventurer.gold }}</span>
             <a href="javascript:;" class="add"></a>
           </div>
           <div class="item">
             <img src="@/assets/images/gold2.png" alt="">
-            <span>0</span>
+            <span style="width: 80px;text-align: right">0</span>
             <a href="javascript:;" class="add"></a>
           </div>
         </div>

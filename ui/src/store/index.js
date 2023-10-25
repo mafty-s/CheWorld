@@ -126,9 +126,9 @@ export const store = createStore({
             }
             state.craftingNumber = value;
         },
-        addItem(state, value) {
-
-        },
+        // addItem(state, value) {
+        //
+        // },
         setEquipmentShowDetail(state, index) {
             state.currRole.bag.equipments[index].showDetails = !state.currRole.bag.equipments[index].showDetails
         },
@@ -562,6 +562,25 @@ export const store = createStore({
 
             context.commit("doEvents", events)
 
+        },
+        async addItem(context){
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "addItem",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "1"],
+            };
+
+            const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
+
+            console.log('receipt', receipt);
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
+
+            context.commit("doEvents", events)
         },
         async loadResources(context) {
             const contract = new Contract(contract_abi, contract_address, context.state.account);
