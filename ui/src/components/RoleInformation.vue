@@ -198,11 +198,12 @@ export default {
         items: items
       });
     },
-    async getItem(i) {
+    getItem(i) {
       const name = ITEMS[i.id];
       return {
         name: name,
-        xp: i.xp
+        xp: i.xp,
+        id: i.id
       }
     }
   }
