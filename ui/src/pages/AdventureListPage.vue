@@ -206,7 +206,7 @@ export default {
   computed: mapState(['wallet_address', "adventurers",]),
   data() {
     return {
-      err_msg: "The name can only contain uppercase or lowercase letters or numbers, with a maximum length of 6 digits",
+      err_msg: "The name can only contain uppercase or lowercase letters or numbers, with a maximum length of 12 digits",
       stat_desc: stat_desc,
       tabIndex: 0,
       range: [0, 1, 2, 3, 4],
@@ -234,7 +234,7 @@ export default {
     },
 
     validateString(input) {
-      const regex = /^[A-Za-z0-9]{1,6}$/;
+      const regex = /^[A-Za-z0-9]{1,12}$/;
       return regex.test(input);
     },
 
