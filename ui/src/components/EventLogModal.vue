@@ -1,5 +1,6 @@
 <script>
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
+import $ from "jquery";
 
 export default {
   name: 'EventLogModal',
@@ -11,8 +12,13 @@ export default {
 
     this.formatLogs();
     this.startCountdown();
+
+    // $('.sideInfor .switch').click(function () {
+    //   $('.sideInfor').toggleClass('current')
+    // })
+
   },
-  computed: mapState(['wallet_address', "adventurer",]),
+  computed: mapState(['wallet_address', "adventurer","showLogModal"]),
   data() {
     return {
       targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
@@ -26,6 +32,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setShowLogModal']),
     formatLogs() {
       let battle_logs = this.adventurer.battles;
       for (let i = 0; i < battle_logs.length; i++) {
@@ -44,14 +51,17 @@ export default {
     },
     formatTime(time) {
       return String(time).padStart(2, '0');
+    },
+    onClickSwitch() {
+      this.setShowLogModal(!this.showLogModal);
     }
   }
 }
 </script>
 
 <template>
-  <div class="sideInfor">
-    <div class="switch"></div>
+  <div :class="[showLogModal===true ? 'sideInfor current' : 'sideInfor',]">
+    <div class="switch" @click="onClickSwitch"></div>
     <div class="infor">
       <div class="icon"><img src="@/assets/images/action_icon_logging.png" alt=""></div>
       <div class="title1">In the process of logging...</div>

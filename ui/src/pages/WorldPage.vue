@@ -185,9 +185,6 @@ export default {
     });
 
 
-    $('.sideInfor .switch').click(function () {
-      $('.sideInfor').toggleClass('current')
-    })
 
 
   },

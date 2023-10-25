@@ -20,6 +20,7 @@ export const store = createStore({
         showInformation: false,
         showMissionCompleted: false,
         showDeadModal: false,
+        showLogModal: false,
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'login',
@@ -115,6 +116,9 @@ export const store = createStore({
         setShowCrafting(state, value) {
             state.showCrafting = value
         },
+        setShowLogModal(state, value) {
+            state.showLogModal = value
+        },
         setCraftingIndex(state, value) {
             state.craftingIndex = value
         },
@@ -153,6 +157,10 @@ export const store = createStore({
         },
         setAdventurerName(state, value) {
             state.adventurer.name = value;
+        },
+        addLog(state, log) {
+            state.adventurer.logs.push('addLog', log);
+            state.showLogModal = true;
         },
         doEvents(state, events) {
             for (let i = 0; i < events.length; i++) {
@@ -210,10 +218,10 @@ export const store = createStore({
                         ElMessage('AdventurerUpgraded')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
 
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "GREAT! Adventurer Upgraded!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
 
                         break;
@@ -224,10 +232,10 @@ export const store = createStore({
                         const healthAmount = event.data.data.healthAmount;
 
 
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "GREAT! Discovered " + healthAmount + " health!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
 
                         })
 
@@ -237,10 +245,10 @@ export const store = createStore({
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
 
                         const gold = event.data.data.goldAmount;
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "GREAT! Discovered " + gold + " gold!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
 
                         break;
@@ -250,37 +258,37 @@ export const store = createStore({
 
                         const xp = event.data.data.xpAmount;
 
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "GREAT! Discovered " + xp + " xp!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "DodgedObstacle":
                         ElMessage('DodgedObstacle')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Dodged Obstacle!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "HitByObstacle":
                         ElMessage('HitByObstacle')
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "OH NO! Hit By Obstacle!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "DiscoveredBeast":
                         ElMessage('DiscoveredBeast')
                         state.adventurer.beastSpecs = event.data.data.beastSpecs;
                         let findBeatsId = event.data.data.id;
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "OH NO! Discovered a " + BEASTS[findBeatsId] + "!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "AmbushedByBeast":
@@ -289,56 +297,56 @@ export const store = createStore({
                         state.adventurer.beastSpecs = event.data.data.beastSpecs;
                         const beatsId = event.data.data.id;
                         const beastName = BEASTS[beatsId];
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "YIKES! Ambushed by a " + beastName + "!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "AttackedBeast":
                         ElMessage('AttackedBeast')
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Attacked Beast!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "AttackedByBeast":
                         ElMessage('AttackedByBeast')
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Attacked By Beast!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "SlayedBeast":
                         ElMessage('SlayedBeast')
                         state.adventurer.beastSpecs = null;
-                        // state.adventurer.logs.push({
+                        // this.commit('addLog',{
                         //     txid:event.data.data.transaction_hash,
                         //     time:event.data.data.t
                         // })
 
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Slayed Beast!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "FleeFailed":
                         ElMessage('FleeFailed')
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Flee Failed!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "FleeSucceeded":
                         ElMessage('FleeSucceeded')
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Flee Succeeded!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "PurchasedItems":
@@ -372,21 +380,21 @@ export const store = createStore({
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         state.showInformation = true;
 
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Adventurer Level Up!",
-                            tx_hash:event.data.transaction_hash
-                        })
+                            tx_hash: event.data.transaction_hash
+                        });
                         break;
                     case "NewItemsAvailable":
                         ElMessage('NewItemsAvailable')
                         break;
                     case "IdleDeathPenalty":
                         ElMessage('IdleDeathPenalty')
-                        state.adventurer.logs.push({
+                        this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "OOPS! Killed by idle death penalty!",
-                            tx_hash:event.data.transaction_hash
+                            tx_hash: event.data.transaction_hash
                         })
                         break;
                     case "RewardDistribution":

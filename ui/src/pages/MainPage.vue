@@ -1,11 +1,11 @@
 <template>
 
   <div class="game">
-    <ElButton @click="test">test</ElButton>
-    <ElButton @click="onClickAttack">attack</ElButton>
-    <ElButton @click="onClickFlee">flee</ElButton>
-    <ElButton @click="onClickExplore">explore</ElButton>
-    <ElButton @click="onClickUpgrade">upgrade</ElButton>
+<!--    <ElButton @click="test">test</ElButton>-->
+<!--    <ElButton @click="onClickAttack">attack</ElButton>-->
+<!--    <ElButton @click="onClickFlee">flee</ElButton>-->
+<!--    <ElButton @click="onClickExplore">explore</ElButton>-->
+<!--    <ElButton @click="onClickUpgrade">upgrade</ElButton>-->
 
     <el-dialog
         v-model="dialogVisible"
