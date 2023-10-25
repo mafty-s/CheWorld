@@ -1,7 +1,7 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
 import {item_subtypes} from "../config/item.js";
-import {formatAdventurerState, getRandomNumber, stringToFelt} from "../utils/index.js";
+import {formatAdventurerState, getCurrentTime, getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
@@ -211,14 +211,29 @@ export const store = createStore({
                     case "DiscoveredHealth":
                         ElMessage('DiscoveredHealth')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+                        state.adventurer.logs.push({
+                            time:getCurrentTime(),
+                            context:"GREAT! Discovered {discoveryData?.outputAmount} health!"
+                        })
+
                         break;
                     case "DiscoveredGold":
                         ElMessage('DiscoveredGold')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+
+                        state.adventurer.logs.push({
+                            time:getCurrentTime(),
+                            context:"GREAT! Discovered {discoveryData?.outputAmount} gold!"
+                        })
+
                         break;
                     case "DiscoveredXP":
                         ElMessage('DiscoveredXP')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
+                        state.adventurer.logs.push({
+                            time:getCurrentTime(),
+                            context:"GREAT! Discovered {discoveryData?.outputAmount} xp!"
+                        })
                         break;
                     case "DodgedObstacle":
                         ElMessage('DodgedObstacle')
