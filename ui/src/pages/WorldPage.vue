@@ -59,7 +59,7 @@
           </div>
         </div>
 
-        <div class="centerPeople">
+        <div class="centerPeople" @click="setShowInformation(true)">
           <img src="@/assets/images/userimg.png" alt="">
         </div>
 
