@@ -297,10 +297,19 @@ export const store = createStore({
                         break;
                     case "AttackedBeast":
                         ElMessage('AttackedBeast')
-
+                        state.adventurer.logs.push({
+                            time: getCurrentTime(),
+                            context: "Attacked Beast!",
+                            tx_hash:event.data.transaction_hash
+                        })
                         break;
                     case "AttackedByBeast":
                         ElMessage('AttackedByBeast')
+                        state.adventurer.logs.push({
+                            time: getCurrentTime(),
+                            context: "Attacked By Beast!",
+                            tx_hash:event.data.transaction_hash
+                        })
                         break;
                     case "SlayedBeast":
                         ElMessage('SlayedBeast')
@@ -309,6 +318,12 @@ export const store = createStore({
                         //     txid:event.data.data.transaction_hash,
                         //     time:event.data.data.t
                         // })
+
+                        state.adventurer.logs.push({
+                            time: getCurrentTime(),
+                            context: "Slayed Beast!",
+                            tx_hash:event.data.transaction_hash
+                        })
                         break;
                     case "FleeFailed":
                         ElMessage('FleeFailed')
