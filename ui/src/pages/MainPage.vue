@@ -73,7 +73,7 @@ import AvatarComponent from "../components/AvatarComponent.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import DiedModal from "../components/DiedModal.vue";
 import {ElNotification} from "element-plus";
-import {Dialog_Korsk, DialogKorsk} from "../config/dialog.js";
+import {DialogKorsk} from "../config/dialog.js";
 
 export default {
   name: 'MainPage',
