@@ -81,16 +81,19 @@ export function formatAdventurerState(adventurer,adventurerState){
     //     0
 
     adventurer.beastHealth = adventurerState.adventurer.beastHealth;
-    adventurer.chest = adventurerState.adventurer.chest;
-    adventurer.head = adventurerState.adventurer.head;
+
     adventurer.health = adventurerState.adventurer.health;
     adventurer.lastAction = adventurerState.adventurer.lastAction;
     adventurer.mutated = adventurerState.adventurer.mutated;
-    adventurer.neck = adventurerState.adventurer.neck;
-    adventurer.ring = adventurerState.adventurer.ring;
     adventurer.statUpgrades = adventurerState.adventurer.statPointsAvailable;
     adventurer.xp = adventurerState.adventurer.xp;
     adventurer.gold = adventurerState.adventurer.gold;
+
+    adventurer.chest = adventurerState.adventurer.chest;
+    adventurer.head = adventurerState.adventurer.head;
+    adventurer.neck = adventurerState.adventurer.neck;
+    adventurer.ring = adventurerState.adventurer.ring;
+    adventurer.weapon = adventurerState.adventurer.weapon;
 
     adventurer.charisma = adventurerState.adventurer.stats.charisma;
     adventurer.dexterity = adventurerState.adventurer.stats.dexterity;

@@ -63,7 +63,7 @@
               <li>
                 <div class="s1">
                   <div class="icon"><img src="@/assets/images/fd5.png" alt=""></div>
-                  <div class="tit">Feathered Crest</div>
+                  <div class="tit">{{ getItem(this.adventurer.weapon).name }}</div>
                 </div>
                 <div class="s2">
                   <p>Healthy:+20</p>
@@ -126,6 +126,7 @@
 <script>
 import {mapActions, mapMutations, mapState} from "vuex";
 import {stat_desc} from "../config/stat.js";
+import {ITEMS} from "../system/GameData.js";
 
 export default {
   name: 'RoleInformation',
@@ -158,18 +159,18 @@ export default {
   methods: {
     ...mapMutations(['setShowInformation']),
     ...mapActions(['upgrade']),
-    init(){
+    init() {
       console.log(this.adventurer);
-      this.currenUpgrades={
+      this.currenUpgrades = {
         Strength: 0,
-            Dexterity: 0,
-            Vitality: 0,
-            Intelligence: 0,
-            Wisdom: 0,
-            Charisma: 0,
-            Luck: 0
+        Dexterity: 0,
+        Vitality: 0,
+        Intelligence: 0,
+        Wisdom: 0,
+        Charisma: 0,
+        Luck: 0
       };
-      this.point= (Number)(this.adventurer.statUpgrades);
+      this.point = (Number)(this.adventurer.statUpgrades);
     },
     calculateLevel(xp) {
       return Math.max(Math.floor(Math.sqrt(xp)), 1);
@@ -181,7 +182,7 @@ export default {
       this.setShowInformation(false)
     },
     onClickAddState(key) {
-      console.log(key,this.point);
+      console.log(key, this.point);
       if (isNaN(this.point) || this.point <= 0) {
         return;
       }
@@ -197,6 +198,13 @@ export default {
         items: items
       });
     },
+    async getItem(i) {
+      const name = ITEMS[i.id];
+      return {
+        name: name,
+        xp: i.xp
+      }
+    }
   }
 }
 </script>

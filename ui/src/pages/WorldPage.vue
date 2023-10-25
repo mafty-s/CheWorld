@@ -213,6 +213,15 @@ export default {
     async onClickBackHome() {
       this.setCurrPage('main');
     },
+    getCanHarvestNum() {
+      const current_timestamp = Date.now();
+      const last_timestamp = this.adventurer.resources.last_timestamp;
+      const count = (current_timestamp - last_timestamp / 600);
+      return count;
+    },
+    getTypeOneCount(){
+
+    }
 
   }
 }
