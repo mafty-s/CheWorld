@@ -13,7 +13,7 @@
     </div>
     <div class="content2 itemNase" v-if="step===2">
       <input type="text" placeholder="Some text about user name" class="words" v-model="name">
-      <div class="warning">* {{error_msg}}
+      <div class="warning">* {{ error_msg }}
       </div>
       <button class="btnBase" @click="checkName()">CONFIRM</button>
     </div>
@@ -83,7 +83,7 @@
               <span class="icon"><img src="@/assets/images/icon1.png" alt=""></span>
               <span class="ti">HP</span>
             </span>
-                <span class="s2">100/100</span>
+                <span class="s2">{{ getMaxHealth() }}/{{ getMaxHealth() }}</span>
               </p>
               <p>
             <span class="s1">
@@ -206,7 +206,7 @@ export default {
   computed: mapState(['wallet_address', "adventurers",]),
   data() {
     return {
-      err_msg:"The name can only contain uppercase or lowercase letters or numbers, with a maximum length of 6 digits",
+      err_msg: "The name can only contain uppercase or lowercase letters or numbers, with a maximum length of 6 digits",
       stat_desc: stat_desc,
       tabIndex: 0,
       range: [0, 1, 2, 3, 4],
@@ -264,7 +264,7 @@ export default {
       let res = this.validateString(this.name);
       if (res) {
         this.step++;
-      }else{
+      } else {
         ElMessage.error(this.err_msg)
       }
     },
@@ -343,6 +343,11 @@ export default {
         startingWeapon: 16,
         class: 1
       });
+    },
+    getMaxHealth() {
+      const vitality = this.Vitality ?? 0;
+      const maxHealth = Math.min(100 + vitality * 10, 720);
+      return maxHealth;
     },
 
     async onClickHead(index) {

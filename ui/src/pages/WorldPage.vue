@@ -193,7 +193,7 @@ export default {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage','setShowInformation']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
-      // await this.harvesting();
+      await this.harvesting();
       this.setShowMissionCompleted(true);
     },
     async onClickAttack() {
