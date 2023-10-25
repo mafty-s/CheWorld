@@ -113,7 +113,7 @@
 
 <script>
 import {mapActions, mapMutations, mapState} from "vuex";
-import {stat_desc} from "../config/stat.js";
+import {stat_desc, stat_desc2} from "../config/stat.js";
 import {ITEM_TIERS, ITEMS} from "../system/GameData.js";
 
 export default {
@@ -124,7 +124,7 @@ export default {
   },
   computed: {
     stat_desc() {
-      return stat_desc
+      return stat_desc2
     },
     ...mapState(['adventurer']),
 
