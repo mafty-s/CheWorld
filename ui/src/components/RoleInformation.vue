@@ -1,6 +1,6 @@
 <template>
-  <div class="alertmodel">
-    <div class="center center4">
+  <div class="alertmodel" >
+    <div class="center center4"  v-loading="loading" >
       <div class="close" @click="onClockClose"></div>
       <div class="titlero">
         <img src="@/assets/images/title3.png" alt="">
@@ -101,9 +101,9 @@
               </ul>
             </div>
           </div>
-          <div class="btns" style="display: flex">
+          <div class="btns"  style="display: flex">
             <button class="btn2" v-show="showConfirm()" @click="init">reset</button>
-            <button class="btn2" v-loading="loading" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
+            <button class="btn2" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
           </div>
         </div>
       </div>
