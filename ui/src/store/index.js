@@ -265,9 +265,10 @@ export const store = createStore({
                     case "DiscoveredBeast":
                         ElMessage('DiscoveredBeast')
                         state.adventurer.beastSpecs = event.data.data.beastSpecs;
+                        let findBeatsId = event.data.data.id;
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
-                            context: "OH NO! Discovered a {beastName}!"
+                            context: "OH NO! Discovered a " + BEASTS[findBeatsId] + "!"
                         })
                         break;
                     case "AmbushedByBeast":
@@ -275,7 +276,7 @@ export const store = createStore({
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         state.adventurer.beastSpecs = event.data.data.beastSpecs;
                         const beatsId = event.data.data.id;
-                        const beastName = BEASTS[id];
+                        const beastName = BEASTS[beatsId];
                         state.adventurer.logs.push({
                             time: getCurrentTime(),
                             context: "YIKES! Ambushed by a " + beastName + "!"
