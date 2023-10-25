@@ -18,15 +18,15 @@
         <div class="items2">
           <div class="item">
             <img src="@/assets/images/gold3.png" alt="">
-            <span>9999</span>
+            <span>{{ getTypeCount(1) }}</span>
           </div>
           <div class="item">
             <img src="@/assets/images/gold4.png" alt="">
-            <span>9999</span>
+            <span>{{ getTypeCount(2) }}</span>
           </div>
           <div class="item">
             <img src="@/assets/images/gold5.png" alt="">
-            <span>9999</span>
+            <span>{{ getTypeCount(3) }}</span>
           </div>
         </div>
       </div>
@@ -147,6 +147,7 @@ import EventLogModal from "../components/EventLogModal.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import {ElMessage} from "element-plus";
 import DiedModal from "../components/DiedModal.vue";
+import {getResConfigByType} from "@/config/res_conf.js";
 
 export default {
   name: 'WorldPage',
@@ -185,8 +186,6 @@ export default {
     });
 
 
-
-
   },
   data() {
     return {};
@@ -216,13 +215,21 @@ export default {
       this.setCurrPage('main');
     },
     getCanHarvestNum() {
-      const current_timestamp = Date.now();
+      const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
-      const count = (current_timestamp - last_timestamp / 600);
-      return count;
+      const count = (current_timestamp - last_timestamp) / 600;
+      return count.toFixed(0);
     },
-    getTypeOneCount() {
+    getTypeCount(type) {
+      let configs = getResConfigByType(type);
 
+      // this.can
+      // for (let i = 0; i < configs.length; i++) {
+      //
+      // }
+      // console.log("configs", configs);
+
+      return configs.length * this.getCanHarvestNum();
     },
 
   }
@@ -232,5 +239,12 @@ export default {
 
 
 <style scoped>
-
+.some {
+  margin-top: 2px;
+  height: 32px;
+  width: 50px;
+  text-align: right;
+  background: #0a0a0a;
+  border: 2px solid #000000;
+}
 </style>
