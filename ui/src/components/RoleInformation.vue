@@ -27,11 +27,9 @@
                   <div class="icon"><img src="@/assets/images/fd2.png" alt=""></div>
                   <div class="tit">{{ getItem(this.adventurer.chest).name }}</div>
                 </div>
-                <div class="s2">
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
-                  <p>Healthy:+20</p>
-                  <p>power:+20</p>
+                <div class="s2" v-if="this.adventurer.chest.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.chest).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.chest).xp }}</p>
                 </div>
               </li>
               <li>
