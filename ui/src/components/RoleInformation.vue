@@ -103,7 +103,7 @@
           </div>
           <div class="btns" style="display: flex">
             <button class="btn2" v-show="showConfirm()" @click="init">reset</button>
-            <button class="btn2" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
+            <button class="btn2" v-loading="loading" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
           </div>
         </div>
       </div>
@@ -142,6 +142,7 @@ export default {
         Luck: 0
       },
       point: 0,
+      loading: false
     }
   },
 
@@ -184,13 +185,21 @@ export default {
       this.currenUpgrades[key]++;
     },
     async onClickUpgrade() {
+      if (this.loading) {
+        return;
+      }
+      this.loading = true;
       const potions = 0;
       const items = [];
-      await this.upgrade({
-        currenUpgrades: this.currenUpgrades,
-        potions: potions,
-        items: items
-      });
+      try {
+        await this.upgrade({
+          currenUpgrades: this.currenUpgrades,
+          potions: potions,
+          items: items
+        });
+      } finally {
+        this.loading = false
+      }
     },
     getItem(i) {
       if (i === undefined || i.id === 0) {

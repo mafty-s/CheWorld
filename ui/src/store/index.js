@@ -218,6 +218,7 @@ export const store = createStore({
                         ElMessage('AdventurerUpgraded')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
 
+                        state.showInformation = false;
                         this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "GREAT! Adventurer Upgraded!",
@@ -709,7 +710,6 @@ export const store = createStore({
             const contract = new Contract(contract_abi, contract_address, context.state.account);
             const resouces = await contract.get_adventurer_res(1);
             console.log("resouces", resouces);
-
 
 
             // context.state.adventurer?.resource = resouces;
