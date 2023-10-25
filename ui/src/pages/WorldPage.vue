@@ -50,7 +50,7 @@
         <div v-for="(res, index) in ResConfig" :key="index">
           <div :class="'block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting" :style="{'left':res.x+'%','top':res.y+'%'}">
             <div class="text">
-              {{res.name}} <br>{{ getCanHarvestNum() }}/ {{res.maxnum}}
+              {{res.name}} <br>{{ getCanHarvestNum(ResConfig.id) }}/ {{res.maxnum}}
             </div>
             <div class="icon">
               <img :src="'images/ui'+getColorByType(res.type)+'.png'" alt="">
@@ -93,7 +93,7 @@ import EventLogModal from "../components/EventLogModal.vue";
 import FloatingBall from "../components/FloatingBall.vue";
 import {ElMessage} from "element-plus";
 import DiedModal from "../components/DiedModal.vue";
-import {getColorByType, getResConfig, getResConfigByType} from "@/config/res_conf.js";
+import {getColorByType, getResConfig, getResConfigById, getResConfigByType} from "@/config/res_conf.js";
 
 
 export default {
@@ -164,11 +164,16 @@ export default {
     async onClickBackHome() {
       this.setCurrPage('main');
     },
-    getCanHarvestNum() {
+    getCanHarvestNum(id) {
       const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
       const count = (current_timestamp - last_timestamp) / 600;
-      return count.toFixed(0);
+      let  num= count.toFixed(0);
+      const config = getResConfigById(id);
+      if (num >= config.maxnum) {
+        num = config.maxnum;
+      }
+      return num;
     },
     getTypeCount(type) {
       let configs = getResConfigByType(type);
