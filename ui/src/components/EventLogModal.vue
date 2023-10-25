@@ -19,7 +19,7 @@ export default {
       countdown: '00:00',
       logs: [
         {
-          time: '2023-09-22T14:57:31.870Z',
+          time: '08:00',
           content: 'Beast',
         }
       ]
@@ -58,7 +58,7 @@ export default {
       <div class="time">{{ countdown }}</div>
       <div class="decs">
         <p v-for="(log, index) in logs" :key="index">
-          <span class="s1">{{ log.time }}}</span>
+          <span class="s1">{{ log.time }}</span>
           <span class="s2">{{ log.content }}</span>
         </p>
       </div>
