@@ -10,9 +10,9 @@ export default {
       this.setShowBeastInfoModal(false)
     },
     async onClickAttack() {
-      this.setShowBattleMask(true)
+      // this.setShowBattleMask(true)
       await this.attack(false, null);
-      this.setShowBattleMask(false)
+      // this.setShowBattleMask(false)
     },
     async onClickFlee() {
       await this.flee(false, null)

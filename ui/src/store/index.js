@@ -585,16 +585,19 @@ export const store = createStore({
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
 
+            context.commit('setShowBeastInfoModal',false);
+            context.commit('setShowBattleMask',true);
             console.log("tx", tx);
 
             const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
 
             console.log('receipt', receipt);
 
+            context.commit('setShowBattleMask',false);
+
             let events = await parseEvents(receipt);
 
             console.log('events', events);
-
             context.commit("doEvents", events)
         },
         async flee(context, tillDeath, beastData) {
