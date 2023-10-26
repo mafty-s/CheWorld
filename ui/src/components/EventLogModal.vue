@@ -6,7 +6,7 @@ export default {
   name: 'EventLogModal',
   components: {},
   mounted() {
-    this.formatLogs();
+    // this.formatLogs();
     this.startCountdown();
 
     // $('.sideInfor .switch').click(function () {
@@ -19,31 +19,28 @@ export default {
     targetTime() {
       const timestamp = this.adventurer.resources.last_timestamp + 600;
       return new Date(timestamp * 1000)
-    }
+    },
   },
   data() {
     return {
-      // targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
       countdown: '00:00',
-      logs: [
-        {
-          time: '08:00',
-          content: 'Beast',
-        }
-      ]
+      countdownInterval: null
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.countdownInterval);
   },
   methods: {
     ...mapMutations(['setShowLogModal']),
-    formatLogs() {
-      let battle_logs = this.adventurer.battles;
-      for (let i = 0; i < battle_logs.length; i++) {
-        let battle_log = battle_logs[i];
-        //let content =
-      }
-    },
+    // formatLogs() {
+    //   let battle_logs = this.adventurer.battles;
+    //   for (let i = 0; i < battle_logs.length; i++) {
+    //     let battle_log = battle_logs[i];
+    //     //let content =
+    //   }
+    // },
     startCountdown() {
-      setInterval(() => {
+      this.countdownInterval = setInterval(() => {
         const currentTime = new Date().getTime();
         const remainingTime = Math.max(this.targetTime - currentTime, 0);
         const minutes = Math.floor(remainingTime / (1000 * 60));
@@ -51,6 +48,7 @@ export default {
         this.countdown = `${this.formatTime(minutes)}:${this.formatTime(seconds)}`;
       }, 1000);
     },
+
     formatTime(time) {
       return String(time).padStart(2, '0');
     },

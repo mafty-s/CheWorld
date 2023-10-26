@@ -156,6 +156,17 @@ export default {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation', 'setShowBeastInfoModal']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
+
+      const current_timestamp = Math.floor(Date.now() / 1000);
+      const last_timestamp = this.adventurer.resources.last_timestamp;
+      const count = (current_timestamp - last_timestamp) / 600;
+      let num = count.toFixed(0);
+      // console.log(num)
+      if (num === '0') {
+        ElMessage.error('Harvesting not available yet');
+        return;
+      }
+
       await this.harvesting();
       this.setShowMissionCompleted(true);
     },
@@ -181,7 +192,7 @@ export default {
       if (id === undefined) {
         return 0
       }
-      console.log("getCanHarvestNum", id);
+      // console.log("getCanHarvestNum", id);
       const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
       const count = (current_timestamp - last_timestamp) / 600;
