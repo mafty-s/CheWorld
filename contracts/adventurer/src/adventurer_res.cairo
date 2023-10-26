@@ -26,6 +26,7 @@ struct AdventurerRes {
     sterling_silver:u16,
     graphite:u16,
     platinum:u16,
+    roast_meat:u16,
     last_timestamp:u64,
 }
 
@@ -53,6 +54,7 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
             + self.sterling_silver.into() * pow::TWO_POW_185
             + self.graphite.into() * pow::TWO_POW_194
             + self.platinum.into() * pow::TWO_POW_203
+            + self.roast_meat.into() * pow::TWO_POW_212
         )
         .try_into()
         .expect('pack AdventurerRes')
@@ -81,6 +83,7 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
         let (packed, sterling_silver) = rshift_split(packed, pow::TWO_POW_9);
         let (packed, graphite) = rshift_split(packed, pow::TWO_POW_9);
         let (packed, platinum) = rshift_split(packed, pow::TWO_POW_9);
+        let (packed, roast_meat) = rshift_split(packed, pow::TWO_POW_9);
 
         AdventurerRes {
             egg: egg.try_into().expect('unpack AdventurerRes egg'),
@@ -103,6 +106,7 @@ impl PackingAdventurerRes of Packing<AdventurerRes> {
             sterling_silver: sterling_silver.try_into().expect('unpack AdRes sterling_silver'),
             graphite: graphite.try_into().expect('unpack AdventurerRes graphite'),
             platinum: platinum.try_into().expect('unpack AdventurerRes platinum'),
+            roast_meat: roast_meat.try_into().expect('unpack AdventurerRes roast_meat'),
             last_timestamp: last_timestamp.try_into().expect('unpack AdRes last_timestamp'),
         }
     }
@@ -222,6 +226,7 @@ fn test_res() {
         sterling_silver:18,
         graphite:19,
         platinum:20,
+        roast_meat:21,
         last_timestamp:1698053747
     };
 
