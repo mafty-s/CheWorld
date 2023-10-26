@@ -688,6 +688,12 @@ export const store = createStore({
             context.commit("doEvents", events)
 
         },
+        async equip(context, items) {
+
+        },
+        async drop_items(context, items) {
+
+        },
         async harvesting(context) {
             const mintAdventurerTx = {
                 contractAddress: contract_address,
