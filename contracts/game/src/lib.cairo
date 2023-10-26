@@ -145,6 +145,18 @@ mod Game {
     #[external(v0)]
     impl Game of IGame<ContractState> {
 
+        fn composite(ref self: ContractState,adventurer_id: u256){
+
+            let mut cost:AdventurerRes = AdventurerRes::new();
+            cost.meat = 1;
+
+            let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+            res.roast_meat = res.roast_meat + 1;
+
+            _pack_adventurer_res(ref self,adventurer_id,res);
+
+        }
+
         fn harvesting(ref self: ContractState,adventurer_id: u256){
             let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
@@ -182,6 +194,7 @@ mod Game {
                 sterling_silver:0,
                 graphite:0,
                 platinum:0,
+                roast_meat:0,
                 last_timestamp:timestamp
             };
 
@@ -1158,6 +1171,7 @@ mod Game {
             sterling_silver:0,
             graphite:0,
             platinum:0,
+            roast_meat:100,
             last_timestamp:timestamp
         };
 
