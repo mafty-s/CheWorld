@@ -1,4 +1,4 @@
-import {convertToBoolean, getKeyFromValue} from "../utils/index.js";
+import {chunkArray, convertToBoolean, getKeyFromValue} from "../utils/index.js";
 import {SELECTOR_KEYS} from "./GameData.js";
 
 function parseAdventurerState(data) {
@@ -67,6 +67,85 @@ function parseAdventurerState(data) {
         },
     };
 }
+
+function parseBag(data) {
+    return {
+        item1: {
+            id: parseInt(data[0]),
+            xp: parseInt(data[1]),
+            metadata: parseInt(data[2]),
+        },
+        item2: {
+            id: parseInt(data[3]),
+            xp: parseInt(data[4]),
+            metadata: parseInt(data[5]),
+        },
+        item3: {
+            id: parseInt(data[6]),
+            xp: parseInt(data[7]),
+            metadata: parseInt(data[8]),
+        },
+        item4: {
+            id: parseInt(data[9]),
+            xp: parseInt(data[10]),
+            metadata: parseInt(data[11]),
+        },
+        item5: {
+            id: parseInt(data[12]),
+            xp: parseInt(data[13]),
+            metadata: parseInt(data[14]),
+        },
+        item6: {
+            id: parseInt(data[15]),
+            xp: parseInt(data[16]),
+            metadata: parseInt(data[17]),
+        },
+        item7: {
+            id: parseInt(data[18]),
+            xp: parseInt(data[19]),
+            metadata: parseInt(data[20]),
+        },
+        item8: {
+            id: parseInt(data[21]),
+            xp: parseInt(data[22]),
+            metadata: parseInt(data[23]),
+        },
+        item9: {
+            id: parseInt(data[24]),
+            xp: parseInt(data[25]),
+            metadata: parseInt(data[26]),
+        },
+        item10: {
+            id: parseInt(data[27]),
+            xp: parseInt(data[28]),
+            metadata: parseInt(data[29]),
+        },
+        item11: {
+            id: parseInt(data[30]),
+            xp: parseInt(data[31]),
+            metadata: parseInt(data[32]),
+        },
+        mutated: convertToBoolean(parseInt(data[33])),
+    };
+}
+
+function parseItems(data) {
+    const purchases = [];
+    const chunkedArray = chunkArray(data, 5);
+    for (let i = 0; i < chunkedArray.length; i++) {
+        purchases.push({
+            item: {
+                id: parseInt(chunkedArray[i][0]),
+                tier: parseInt(chunkedArray[i][1]),
+                itemType: parseInt(chunkedArray[i][2]),
+                slot: parseInt(chunkedArray[i][3]),
+            },
+            price: parseInt(chunkedArray[i][4]),
+        });
+    }
+    return purchases;
+}
+
 
 export async function parseEvents(receipt) {
     if (!receipt.events) {
@@ -331,13 +410,71 @@ export async function parseEvents(receipt) {
                 break;
             case "FleeFailed":
                 console.log("FleeFailed", raw.data);
-
+                const fleeFailedData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    seed: parseInt(raw.data[40]),
+                    id: parseInt(raw.data[41]),
+                    beastSpecs: {
+                        tier: parseInt(raw.data[42]),
+                        itemType: parseInt(raw.data[43]),
+                        level: parseInt(raw.data[44]),
+                        specials: {
+                            special1: parseInt(raw.data[45]),
+                            special2: parseInt(raw.data[46]),
+                            special3: parseInt(raw.data[47]),
+                        },
+                    },
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: fleeFailedData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "FleeSucceeded":
                 console.log("FleeSucceeded", raw.data);
+                const fleeSucceededData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    seed: parseInt(raw.data[40]),
+                    id: parseInt(raw.data[41]),
+                    beastSpecs: {
+                        tier: parseInt(raw.data[42]),
+                        itemType: parseInt(raw.data[43]),
+                        level: parseInt(raw.data[44]),
+                        specials: {
+                            special1: parseInt(raw.data[45]),
+                            special2: parseInt(raw.data[46]),
+                            special3: parseInt(raw.data[47]),
+                        },
+                    },
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: fleeSucceededData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "PurchasedItems":
                 console.log("PurchasedItems", raw.data);
+                const purchasedItemsData = {
+                    adventurerStateWithBag: {
+                        adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                        bag: parseBag(raw.data.slice(40, 73)),
+                    },
+                    // Skip array length
+                    purchases: parseItems(raw.data.slice(75)),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: purchasedItemsData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "PurchasedPotions":
                 console.log("PurchasedPotions", raw.data);

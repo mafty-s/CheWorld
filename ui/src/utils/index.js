@@ -47,6 +47,16 @@ export function getCurrentTime() {
     return currentTime;
 }
 
+export function chunkArray(array, chunkSize) {
+    const chunks = [];
+    for (let i = 0; i < array?.length; i += chunkSize) {
+        const nextChunk = array?.slice(i, i + chunkSize);
+        chunks.push(nextChunk);
+        if (nextChunk.length < chunkSize) break; // Stop if we've hit the end of the array
+    }
+    return chunks;
+}
+
 // 示例用法
 export function formatAdventurerState(adventurer, adventurerState) {
 
