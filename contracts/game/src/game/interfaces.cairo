@@ -37,6 +37,10 @@ trait IGame<TContractState> {
     // fn addItem2(ref self: TContractState, adventurer_id: u256,item_id:u8);
     fn harvesting( ref self: TContractState,adventurer_id: u256);
 
+    fn composite( ref self: TContractState,adventurer_id: u256);
+    fn composite2( ref self: TContractState,adventurer_id: u256);
+
+
     // --------- view functions ---------
 
     // adventurer details

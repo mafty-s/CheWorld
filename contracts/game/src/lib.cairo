@@ -146,16 +146,46 @@ mod Game {
     impl Game of IGame<ContractState> {
 
         fn composite(ref self: ContractState,adventurer_id: u256){
-
-            let mut cost:AdventurerRes = AdventurerRes::new();
-            cost.meat = 1;
-
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+            res.meat = res.meat - 1;
+            res.bamboo = res.bamboo - 10;
+            res.coal = res.coal - 10;
             res.roast_meat = res.roast_meat + 1;
 
             _pack_adventurer_res(ref self,adventurer_id,res);
 
         }
+
+        fn composite2(ref self: ContractState,adventurer_id: u256){
+            //
+            // res.meat = res.meat - 1;
+            // res.bamboo = res.bamboo - 10;
+            // res.coal = res.coal - 10;
+            //
+            // _pack_adventurer_res(ref self,adventurer_id,res);
+            //
+            //
+
+            let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
+                @self, adventurer_id
+            );
+
+            _assert_ownership(@self, adventurer_id);
+            _assert_not_dead(adventurer);
+
+            let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+            res.meat = res.meat - 1;
+            _pack_adventurer_res(ref self,adventurer_id,res);
+
+            let mut bag = _bag_unpacked(@self, adventurer_id);
+            bag.add_new_item(adventurer, 26);
+
+            // pack and save adventurer
+            _pack_adventurer_remove_stat_boost(
+                ref self, ref adventurer, adventurer_id, stat_boosts
+            );
+        }
+
 
         fn harvesting(ref self: ContractState,adventurer_id: u256){
             let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
