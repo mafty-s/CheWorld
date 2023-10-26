@@ -116,7 +116,8 @@ mod Game {
         AdventurerDied: AdventurerDied,
         NewHighScore: NewHighScore,
         IdleDeathPenalty: IdleDeathPenalty,
-        RewardDistribution: RewardDistribution
+        RewardDistribution: RewardDistribution,
+        Composited: Composited,
     }
 
     #[constructor]
@@ -145,7 +146,7 @@ mod Game {
     #[external(v0)]
     impl Game of IGame<ContractState> {
 
-        fn composite(ref self: ContractState,adventurer_id: u256){
+        fn composite(ref self: ContractState,adventurer_id: u256,config_id:u8){
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
             res.meat = res.meat - 1;
             res.bamboo = res.bamboo - 10;
@@ -155,6 +156,8 @@ mod Game {
             _pack_adventurer_res(ref self,adventurer_id,res);
 
         }
+
+
 
         fn composite2(ref self: ContractState,adventurer_id: u256){
             //
@@ -184,6 +187,14 @@ mod Game {
             _pack_adventurer_remove_stat_boost(
                 ref self, ref adventurer, adventurer_id, stat_boosts
             );
+
+            let adventurer_state = AdventurerState {
+                owner: get_caller_address(), adventurer_id, adventurer
+            };
+
+            let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
+
+            __event_Composited(ref self, adventurer_state_with_bag );
         }
 
 
@@ -260,24 +271,6 @@ mod Game {
 
             //_payout(ref self, caller, block_number, interface_id);
         }
-
-        fn addItem(ref self: ContractState, adventurer_id: u256,item_id:u8){
-            let mut bag = _bag_unpacked(@self, adventurer_id);
-        //
-        //     // get adventurer from storage and apply stat boosts
-        //     let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
-        //         @self, adventurer_id
-        //     );
-        //
-        //     bag.add_new_item(adventurer, item_id);
-        }
-
-        // fn addItem2(ref self: ContractState, adventurer_id: u256,item_id:u8){
-        //     let mut bag = _bag_unpacked(@self, adventurer_id);
-        //
-        //     bag.add_item(ItemPrimitive { id: item_id, xp: 1, metadata: 1 });
-        // }
-
 
         //@notice Sends an adventurer to explore.
         //@param self The current state of the contract.
@@ -2740,6 +2733,11 @@ mod Game {
     }
 
     #[derive(Drop, starknet::Event)]
+    struct Composited {
+        adventurer_state_with_bag: AdventurerStateWithBag,
+    }
+
+    #[derive(Drop, starknet::Event)]
     struct PurchasedItems {
         adventurer_state_with_bag: AdventurerStateWithBag,
         purchases: Array<LootWithPrice>,
@@ -2897,9 +2895,18 @@ mod Game {
         };
         self.emit(StartGame { adventurer_state, adventurer_meta });
         self.emit(ResUpdate {
-            adventurer_res:adventurer_res,
+            adventurer_res,
             changes:adventurer_res
         })
+    }
+
+    fn __event_Composited(
+        ref self: ContractState,
+        adventurer_state_with_bag: AdventurerStateWithBag
+    ){
+        self.emit(Composited {
+            adventurer_state_with_bag
+        });
     }
 
     fn __event_Discovery(
