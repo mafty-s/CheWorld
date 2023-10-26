@@ -245,9 +245,59 @@ export async function parseEvents(receipt) {
                 break;
             case "AttackedBeast":
                 console.log("AttackedBeast", raw.data);
+                const attackedBeastData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    seed: parseInt(raw.data[40]),
+                    id: parseInt(raw.data[41]),
+                    beastSpecs: {
+                        tier: parseInt(raw.data[42]),
+                        itemType: parseInt(raw.data[43]),
+                        level: parseInt(raw.data[44]),
+                        specials: {
+                            special1: parseInt(raw.data[45]),
+                            special2: parseInt(raw.data[46]),
+                            special3: parseInt(raw.data[47]),
+                        },
+                    },
+                    damage: parseInt(raw.data[48]),
+                    criticalHit: convertToBoolean(parseInt(raw.data[49])),
+                    location: parseInt(raw.data[50]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: attackedBeastData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "AttackedByBeast":
                 console.log("AttackedByBeast", raw.data);
+                const attackedByBeastData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    seed: parseInt(raw.data[40]),
+                    id: parseInt(raw.data[41]),
+                    beastSpecs: {
+                        tier: parseInt(raw.data[42]),
+                        itemType: parseInt(raw.data[43]),
+                        level: parseInt(raw.data[44]),
+                        specials: {
+                            special1: parseInt(raw.data[45]),
+                            special2: parseInt(raw.data[46]),
+                            special3: parseInt(raw.data[47]),
+                        },
+                    },
+                    damage: parseInt(raw.data[48]),
+                    criticalHit: convertToBoolean(parseInt(raw.data[49])),
+                    location: parseInt(raw.data[50]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: attackedByBeastData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "SlayedBeast"://杀掉了怪
                 console.log("SlayedBeast", raw.data);
