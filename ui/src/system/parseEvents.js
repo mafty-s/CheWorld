@@ -146,7 +146,39 @@ function parseItems(data) {
     return purchases;
 }
 
+function parseEquippedItems(data) {
+    const equippedLength = parseInt(data[0]);
+    const equippedItems = [];
+    const unequippedItems = [];
+    for (let i = 1; i <= equippedLength; i++) {
+        equippedItems.push(parseInt(data[i]));
+    }
+    const unequippedLength = parseInt(data[equippedLength + 1]);
+    for (let i = 2; i <= unequippedLength + 1; i++) {
+        unequippedItems.push(parseInt(data[i + equippedLength]));
+    }
+    return { equippedItems, unequippedItems };
+}
 
+function parseItemLevels(data) {
+    const itemLevels = [];
+    const chunkedArray = chunkArray(data, 8);
+    for (let i = 0; i < chunkedArray.length; i++) {
+        itemLevels.push({
+            itemId: parseInt(chunkedArray[i][0]),
+            previousLevel: parseInt(chunkedArray[i][1]),
+            newLevel: parseInt(chunkedArray[i][2]),
+            suffixUnlocked: convertToBoolean(parseInt(chunkedArray[i][3])),
+            prefixesUnlocked: convertToBoolean(parseInt(chunkedArray[i][4])),
+            specials: {
+                special1: parseInt(chunkedArray[i][5]),
+                special2: parseInt(chunkedArray[i][6]),
+                special3: parseInt(chunkedArray[i][7]),
+            },
+        });
+    }
+    return itemLevels;
+}
 export async function parseEvents(receipt) {
     if (!receipt.events) {
         throw new Error(`No events found`);
@@ -478,21 +510,110 @@ export async function parseEvents(receipt) {
                 break;
             case "PurchasedPotions":
                 console.log("PurchasedPotions", raw.data);
+                const purchasedPotionsData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    quantity: parseInt(raw.data[40]),
+                    cost: parseInt(raw.data[41]),
+                    health: parseInt(raw.data[42]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: purchasedPotionsData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "EquippedItems":
                 console.log("EquippedItems", raw.data);
+                const { equippedItems, unequippedItems } = parseEquippedItems(
+                    // Include equipped array length
+                    raw.data.slice(74)
+                );
+                const equippedItemsData = {
+                    adventurerStateWithBag: {
+                        adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                        bag: parseBag(raw.data.slice(40, 73)),
+                    },
+                    equippedItems: equippedItems,
+                    unequippedItems: unequippedItems,
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: equippedItemsData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "DroppedItems":
                 console.log("DroppedItems", raw.data);
+                const itemIds = [];
+                // Skip array length
+                const itemsData = raw.data.slice(75);
+                for (let i = 0; i < itemsData.length; i++) {
+                    itemIds.push(parseInt(itemsData[i]));
+                }
+                const droppedItemsData = {
+                    adventurerStateWithBag: {
+                        adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                        bag: parseBag(raw.data.slice(40, 73)),
+                    },
+                    itemIds: itemIds,
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: droppedItemsData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "GreatnessIncreased":
                 console.log("GreatnessIncreased", raw.data);
+                const greatnessIncreasedData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    itemId: parseInt(raw.data[40]),
+                    previousLevel: parseInt(raw.data[41]),
+                    newLevel: parseInt(raw.data[42]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: greatnessIncreasedData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "ItemsLeveledUp":
                 console.log("ItemsLeveledUp", raw.data);
+                const itemsLeveledUpData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    // Skip items length
+                    items: parseItemLevels(raw.data.slice(41)),
+                };
+
+                events.push({
+                    name: eventName, data: {
+                        data: itemsLeveledUpData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "NewHighScore":
                 console.log("NewHighScore", raw.data);
+                const newHighScoreData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    rank: parseInt(raw.data[40]),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: newHighScoreData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "AdventurerDied":
                 console.log("AdventurerDied", raw.data);
@@ -527,6 +648,23 @@ export async function parseEvents(receipt) {
                 break;
             case "NewItemsAvailable":
                 console.log("NewItemsAvailable", raw.data);
+                const newItems = raw.data.slice(41);
+                const newItemsIds = [];
+                for (let i = 0; i < newItems.length; i++) {
+                    newItemsIds.push(parseInt(newItems[i]));
+                }
+                const newItemsAvailableData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    // Skip array length
+                    items: newItemsIds,
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: newItemsAvailableData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
                 break;
             case "IdleDeathPenalty":
                 console.log("IdleDeathPenalty", raw.data);
