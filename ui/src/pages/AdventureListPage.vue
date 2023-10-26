@@ -94,61 +94,15 @@
               </p>
             </div>
             <div class="dec2">
-              <p>
+              <p v-for="(key,index) in Object.keys(stat_desc)" :key="index">
                 <span class="s1">
-                  <span class="tit">Strength</span>
-                  <span class="slide">{{ stat_desc.Strength }}</span>
+                  <span class="tit">{{ key }}</span>
+                  <span class="slide">{{ stat_desc[key] }}</span>
                 </span>
-                <span class="s2">{{ content?.Strength ?? 0 }}</span>
+                <span class="s2">{{ roundFloatToInt(getContent(key)) }} => {{ getContent(key).toFixed(1) }}</span>
               </p>
 
-              <p>
-                <span class="s1">
-                  <span class="tit">Dexterity</span>
-                  <span class="slide">{{ stat_desc.Dexterity }}</span>
-                </span>
-                <span class="s2">{{ content?.Dexterity ?? 0 }}</span>
-              </p>
 
-              <p>
-                <span class="s1">
-                  <span class="tit">Wisdom</span>
-                  <span class="slide">{{ stat_desc.Wisdom }}</span>
-                </span>
-                <span class="s2">{{ content?.Wisdom ?? 0 }}</span>
-              </p>
-
-              <p>
-                <span class="s1">
-                  <span class="tit">Intelligence</span>
-                  <span class="slide">{{ stat_desc.Intelligence }}</span>
-                </span>
-                <span class="s2">{{ content?.Intelligence ?? 0 }}</span>
-              </p>
-
-              <p>
-                <span class="s1">
-                  <span class="tit">Charisma</span>
-                  <span class="slide">{{ stat_desc.Charisma }}</span>
-                </span>
-                <span class="s2">{{ content?.Charisma ?? 0 }}</span>
-              </p>
-
-              <p>
-                <span class="s1">
-                  <span class="tit">Vitality</span>
-                  <span class="slide">{{ stat_desc.Vitality }}</span>
-                </span>
-                <span class="s2">{{ content?.Vitality ?? 0 }}</span>
-              </p>
-
-              <p>
-                <span class="s1">
-                  <span class="tit">Luck</span>
-                  <span class="slide">{{ stat_desc.Luck }}</span>
-                </span>
-                <span class="s2">{{ content?.Luck ?? 0 }}</span>
-              </p>
             </div>
           </div>
           <div class="right">
@@ -181,7 +135,7 @@
 import Crafting from "../components/Crafting.vue";
 import {mapActions, mapMutations, mapState} from "vuex";
 import {getQuesting} from "../config/questing.js";
-import {getRandomNumberIn} from "../utils/index.js";
+import {getRandomFloatIn, getRandomNumberIn, roundFloatToInt} from "../utils/index.js";
 import $ from 'jquery';
 import {stat_desc} from "../config/stat.js";
 import {ElMessage} from "element-plus";
@@ -226,8 +180,16 @@ export default {
     }
   },
   methods: {
+    roundFloatToInt,
     ...mapActions(['connect_wallet', 'start', 'getReceipt']),
     ...mapMutations(['setAdventure', 'setCurrPage']),
+    getContent(key) {
+      if (this.content === null) {
+        return 0;
+      }
+      return this.content[key];
+
+    },
     async test() {
       await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');
       this.setCurrPage('main')
@@ -284,25 +246,25 @@ export default {
       let a = this.getCurrQuesting().awnser[value];
       switch (a.target) {
         case 'strength':
-          this.Strength += getRandomNumberIn(a.min, a.max)
+          this.Strength += getRandomFloatIn(a.min, a.max, 1)
           break;
         case 'dexterity':
-          this.Dexterity += getRandomNumberIn(a.min, a.max)
+          this.Dexterity += getRandomFloatIn(a.min, a.max, 1)
           break;
         case 'vitality':
-          this.Vitality += getRandomNumberIn(a.min, a.max)
+          this.Vitality += getRandomFloatIn(a.min, a.max, 1)
           break;
         case 'intelligence':
-          this.Intelligence += getRandomNumberIn(a.min, a.max)
+          this.Intelligence += getRandomFloatIn(a.min, a.max, 1)
           break;
         case 'wisdom':
-          this.Wisdom += getRandomNumberIn(a.min, a.max)
+          this.Wisdom += getRandomFloatIn(a.min, a.max, 1)
           break;
         case 'luck':
-          this.Luck += getRandomNumberIn(a.min, a.max)
+          this.Luck += getRandomFloatIn(a.min, a.max, 1)
           break;
         case 'charisma':
-          this.Charisma += getRandomNumberIn(a.min, a.max)
+          this.Charisma += getRandomFloatIn(a.min, a.max, 1)
           break;
       }
 
@@ -327,12 +289,12 @@ export default {
     },
     async spawn() {
       await this.start({
-        startingStrength: this.Strength,
-        startingDexterity: this.Dexterity,
-        startingVitality: this.Vitality,
-        startingIntelligence: this.Intelligence,
-        startingWisdom: this.Wisdom,
-        startingCharisma: this.Charisma,
+        startingStrength: roundFloatToInt(this.Strength),
+        startingDexterity: roundFloatToInt(this.Dexterity),
+        startingVitality: roundFloatToInt(this.Vitality),
+        startingIntelligence: roundFloatToInt(this.Intelligence),
+        startingWisdom: roundFloatToInt(this.Wisdom),
+        startingCharisma:roundFloatToInt( this.Charisma),
         // startingStrength: 1,
         // startingDexterity: 1,
         // startingVitality: 1,

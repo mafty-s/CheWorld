@@ -29,6 +29,15 @@ export function getRandomNumberIn(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+export function getRandomFloatIn(min, max, decimals) {
+    const randomFloat = Math.random() * (max - min) + min;
+    return parseFloat(randomFloat.toFixed(decimals));
+}
+
+export function roundFloatToInt(floatNum) {
+    return Math.round(floatNum);
+}
+
 
 export function getCurrentTime() {
     const date = new Date();
@@ -39,7 +48,7 @@ export function getCurrentTime() {
 }
 
 // 示例用法
-export function formatAdventurerState(adventurer,adventurerState){
+export function formatAdventurerState(adventurer, adventurerState) {
 
     // beastHealth
     //     :

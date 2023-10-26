@@ -7,6 +7,7 @@ export const stat_desc = {
     Vitality: "Increase the character's maximum health and stamina, and restore part of the health when increasing.",
     Luck: "Increased chance of critical damage.",
 };
+
 export const stat_desc2 = {
     Strength: "Increase the damage caused by attacking the enemy.",
     Dexterity: "Increase the chance of successful escape and the number of props obtained through collecting actions.",
