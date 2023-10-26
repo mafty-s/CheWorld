@@ -30,6 +30,22 @@ struct AdventurerRes {
     last_timestamp:u64,
 }
 
+
+// #[inline(always)]
+// fn get_item_at_slot( slot: Slot) -> ItemPrimitive {
+//     match slot {
+//         Slot::None(()) => ItemPrimitive { id: 0, xp: 0, metadata: 0 },
+//         Slot::Weapon(()) => self.weapon,
+//         Slot::Chest(()) => self.chest,
+//         Slot::Head(()) => self.head,
+//         Slot::Waist(()) => self.waist,
+//         Slot::Foot(()) => self.foot,
+//         Slot::Hand(()) => self.hand,
+//         Slot::Neck(()) => self.neck,
+//         Slot::Ring(()) => self.ring,
+//     }
+// }
+
 // impl AdventurerRes {
 //     fn new() -> Self {
 //         Self {

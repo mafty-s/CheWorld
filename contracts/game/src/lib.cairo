@@ -143,31 +143,24 @@ mod Game {
     // ------------ Impl ------------------------ //
     // ------------------------------------------ //
 
+
     #[external(v0)]
     impl Game of IGame<ContractState> {
 
-        fn composite(ref self: ContractState,adventurer_id: u256,config_id:u8){
-            let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-            res.meat = res.meat - 1;
-            res.bamboo = res.bamboo - 10;
-            res.coal = res.coal - 10;
-            res.roast_meat = res.roast_meat + 1;
-
-            _pack_adventurer_res(ref self,adventurer_id,res);
-
-        }
 
 
 
-        fn composite2(ref self: ContractState,adventurer_id: u256){
-            //
-            // res.meat = res.meat - 1;
-            // res.bamboo = res.bamboo - 10;
-            // res.coal = res.coal - 10;
-            //
-            // _pack_adventurer_res(ref self,adventurer_id,res);
-            //
-            //
+        fn composite(ref self: ContractState,adventurer_id: u256,config_id:felt252){
+
+           let cost = match config_id {
+                0 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                _ => { egg: 1, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+            }
+
+            let new_item_id = match config_id {
+                0 => { 0 },
+                _ => { 0 },
+            }
 
             let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
                 @self, adventurer_id
@@ -177,11 +170,35 @@ mod Game {
             _assert_not_dead(adventurer);
 
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-            res.meat = res.meat - 1;
+            res.egg = res.egg - cost.egg;
+            res.meat = res.meat - cost.meat;
+            res.fish = res.fish - cost.fish;
+            res.soft_skin = res.soft_skin - cost.soft_skin;
+            res.coal = res.coal - cost.coal;
+            res.berry = res.berry - cost.berry;
+            res.bamboo = res.bamboo - cost.bamboo;
+            res.balsa_wood = res.balsa_wood - cost.balsa_wood;
+            res.fir_wood = res.fir_wood - cost.fir_wood;
+            res.teak = res.teak - cost.teak;
+            res.hemlock = res.hemlock - cost.hemlock;
+            res.mahogany = res.mahogany - cost.mahogany;
+            res.pine = res.pine - cost.pine;
+            res.coal = res.coal - cost.coal;
+            res.copper = res.copper - cost.copper;
+            res.iron = res.iron - cost.iron;
+            res.silver = res.silver - cost.silver;
+            res.sterling_silver = res.sterling_silver - cost.sterling_silver;
+            res.graphite = res.graphite - cost.graphite;
+            res.platinum = res.platinum - cost.platinum;
+            res.roast_meat = res.roast_meat - cost.roast_meat;
+
+
             _pack_adventurer_res(ref self,adventurer_id,res);
 
+
+
             let mut bag = _bag_unpacked(@self, adventurer_id);
-            bag.add_new_item(adventurer, 26);
+            bag.add_new_item(adventurer, new_item_id);
 
             // pack and save adventurer
             _pack_adventurer_remove_stat_boost(
@@ -194,7 +211,7 @@ mod Game {
 
             let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
 
-            __event_Composited(ref self, adventurer_state_with_bag );
+            __event_Composited(ref self, adventurer_state_with_bag,cost );
         }
 
 
@@ -2735,6 +2752,7 @@ mod Game {
     #[derive(Drop, starknet::Event)]
     struct Composited {
         adventurer_state_with_bag: AdventurerStateWithBag,
+        cost: AdventurerRes
     }
 
     #[derive(Drop, starknet::Event)]
@@ -2902,10 +2920,12 @@ mod Game {
 
     fn __event_Composited(
         ref self: ContractState,
-        adventurer_state_with_bag: AdventurerStateWithBag
+        adventurer_state_with_bag: AdventurerStateWithBag,
+        cost: AdventurerRes
     ){
         self.emit(Composited {
-            adventurer_state_with_bag
+            adventurer_state_with_bag,
+            cost
         });
     }
 
