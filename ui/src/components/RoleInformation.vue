@@ -72,6 +72,26 @@
                   <p>XP: {{ getItem(this.adventurer.hand).xp }}</p>
                 </div>
               </li>
+              <li>
+                <div class="s1">
+                  <div class="icon"><img src="@/assets/images/fd7.png" alt=""></div>
+                  <div class="tit">{{ getItem(this.adventurer.neck).name }}</div>
+                </div>
+                <div class="s2" v-if="this.adventurer.neck.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.neck).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.neck).xp }}</p>
+                </div>
+              </li>
+              <li>
+                <div class="s1">
+                  <div class="icon"><img src="@/assets/images/fd8.png" alt=""></div>
+                  <div class="tit">{{ getItem(this.adventurer.ring).name }}</div>
+                </div>
+                <div class="s2" v-if="this.adventurer.ring.id>0">
+                  <p>TIERS: {{ getItem(this.adventurer.ring).tiers }}</p>
+                  <p>XP: {{ getItem(this.adventurer.ring).xp }}</p>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -96,7 +116,7 @@
                 <li v-for="(value, key) in stat_desc" :key="key">
                   <div class="s1">{{ key }}</div>
                   <div class="s2">{{ stat(key) }}</div>
-                  <div :class="[point>0 ? 's3' : 's3 grey']" @click="onClickAddState(key)"></div>
+                  <div :class="[point>0 ? 's3' : '']" @click="onClickAddState(key)"></div>
                 </li>
               </ul>
             </div>
