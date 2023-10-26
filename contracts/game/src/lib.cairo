@@ -8,7 +8,7 @@ mod tests {
 
 #[starknet::contract]
 mod Game {
-    // TODO: TESTING CONFIGS 
+    // TODO: TESTING CONFIGS
     // ADJUST THESE BEFORE DEPLOYMENT
     const TEST_ENTROPY: u64 = 12303548;
     const MINIMUM_SCORE_FOR_PAYOUTS: u256 = 100;
@@ -154,6 +154,16 @@ mod Game {
 
            let cost = match config_id {
                 0 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                1 => { egg: 1, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                2 => { egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                2 => { egg: 3, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                3 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                4 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                5 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                6 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                7 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                8 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                9 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
                 _ => { egg: 1, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
             }
 
@@ -203,10 +213,7 @@ mod Game {
             res.platinum = res.platinum - cost.platinum;
             res.roast_meat = res.roast_meat - cost.roast_meat;
 
-
             _pack_adventurer_res(ref self,adventurer_id,res);
-
-
 
             let mut bag = _bag_unpacked(@self, adventurer_id);
             if(new_item_id != 0){
@@ -499,7 +506,7 @@ mod Game {
                 }
             }
 
-            // remove stats, pack, and save adventurer 
+            // remove stats, pack, and save adventurer
             _pack_adventurer_remove_stat_boost(
                 ref self, ref adventurer, adventurer_id, stat_boosts
             );
@@ -955,7 +962,7 @@ mod Game {
         adventurer.beast_health = 0;
 
         // give adventurer gold reward
-        // TODO Gas Optimization: beast.get_gold_reward and get_xp_reward both call the same 
+        // TODO Gas Optimization: beast.get_gold_reward and get_xp_reward both call the same
         // get_base_reward from Combat module. Should refactor this to only make that call once and have
         // get_gold_reward and get_xp_reward operator on the base reward
         let mut gold_earned = beast.get_gold_reward(beast_seed);
@@ -1229,7 +1236,7 @@ mod Game {
             last_timestamp:timestamp
         };
 
-        // emit a StartGame event 
+        // emit a StartGame event
         __event_StartGame(ref self, new_adventurer, adventurer_id, adventurer_meta,adventure_res);
 
         // adventurer immediately gets ambushed by a starter beast
@@ -1484,16 +1491,16 @@ mod Game {
         }
     }
 
-    // @notice Grants XP to items currently equipped by an adventurer, and processes any level ups.// 
+    // @notice Grants XP to items currently equipped by an adventurer, and processes any level ups.//
     // @dev This function does three main things:
     //   1. Iterates through each of the equipped items for the given adventurer.
     //   2. Increases the XP for the equipped item. If the item levels up, it processes the level up and updates the item.
-    //   3. If any items have leveled up, emits an `ItemsLeveledUp` event.// 
+    //   3. If any items have leveled up, emits an `ItemsLeveledUp` event.//
     // @param self The contract's state reference.
     // @param adventurer Reference to the adventurer's state.
     // @param adventurer_id Unique identifier for the adventurer.
     // @param xp_amount Amount of XP to grant to each equipped item.
-    // @param entropy Random data used for any deterministic randomness during processing.// 
+    // @param entropy Random data used for any deterministic randomness during processing.//
     // @return Array of items that leveled up.
     fn _grant_xp_to_equipped_items(
         ref self: ContractState,
@@ -2001,7 +2008,7 @@ mod Game {
             // buy it and store result in our purchases array for event
             purchases.append(_buy_item(ref self, ref adventurer, ref bag, item.item_id));
 
-            // if item is being equipped as part of the purchase 
+            // if item is being equipped as part of the purchase
             if item.equip {
                 // add it to our array of items to equip
                 items_to_equip.append(item.item_id);
