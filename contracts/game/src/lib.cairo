@@ -159,8 +159,19 @@ mod Game {
 
             let new_item_id = match config_id {
                 0 => { 0 },
+                1 => { 0 },
+                2 => { 26 },
+                3 => { 21 },
+                4 => { 31 },
+                5 => { 36 },
+                6 => { 12 },
+                7 => { 41 },
+                8 => { 1 },
+                9 => { 2 },
                 _ => { 0 },
             }
+
+            ////////////////////////////////////////////////////////////////////////////////////////
 
             let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
                 @self, adventurer_id
@@ -198,12 +209,10 @@ mod Game {
 
 
             let mut bag = _bag_unpacked(@self, adventurer_id);
-            bag.add_new_item(adventurer, new_item_id);
+            if(new_item_id != 0){
+                bag.add_new_item(adventurer, new_item_id);
+            }
 
-            // pack and save adventurer
-            _pack_adventurer_remove_stat_boost(
-                ref self, ref adventurer, adventurer_id, stat_boosts
-            );
 
             let adventurer_state = AdventurerState {
                 owner: get_caller_address(), adventurer_id, adventurer
@@ -212,6 +221,11 @@ mod Game {
             let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
 
             __event_Composited(ref self, adventurer_state_with_bag,cost );
+
+            // pack and save adventurer
+            _pack_adventurer_remove_stat_boost(
+                ref self, ref adventurer, adventurer_id, stat_boosts
+            );
         }
 
 
