@@ -317,6 +317,7 @@ export const store = createStore({
                             context: "YIKES! Ambushed by a " + beastName + "!",
                             tx_hash: event.data.transaction_hash
                         })
+                        this.commit('setBeastInfoModal', true);
                         break;
                     case "AttackedBeast":
                         ElMessage('AttackedBeast')
