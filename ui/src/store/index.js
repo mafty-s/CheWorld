@@ -304,6 +304,7 @@ export const store = createStore({
                             context: "OH NO! Discovered a " + BEASTS[findBeatsId] + "!",
                             tx_hash: event.data.transaction_hash
                         })
+                        this.commit('setShowBeastInfoModal', true)
                         break;
                     case "AmbushedByBeast":
                         ElMessage('AmbushedByBeast')
@@ -348,6 +349,7 @@ export const store = createStore({
                             context: "Slayed Beast!",
                             tx_hash: event.data.transaction_hash
                         })
+                        this.commit('setShowBattleVictory', true)
                         break;
                     case "FleeFailed":
                         ElMessage('FleeFailed')
