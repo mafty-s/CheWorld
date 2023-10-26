@@ -81,6 +81,7 @@
     <RoleInformation v-if="showInformation"/>
     <DiedModal v-if="showDeadModal"/>
     <BeastInfoModal v-if="showBeastInfoModal"/>
+    <BattleVictoryModal v-if="showBattleVictory"/>
   </div>
 </template>
 
@@ -99,18 +100,21 @@ import DiedModal from "../components/DiedModal.vue";
 import {getColorByType, getResConfig, getResConfigById, getResConfigByType} from "@/config/res_conf.js";
 import BeastInfoModal from "@/components/BeastInfoModal.vue";
 import BattleMask from "@/components/BattleMask.vue";
+import BattleVictoryModal from "@/components/BattleVictoryModal.vue";
 
 
 export default {
   name: 'WorldPage',
   components: {
+    BattleVictoryModal,
     BattleMask,
     BeastInfoModal,
     DiedModal,
     FloatingBall, EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar
   },
   computed: mapState(['wallet_address', "adventurer",
-    "showMissionCompleted", "showDeadModal", "showInformation", "showBeastInfoModal", "showBattleMask"]),
+    "showMissionCompleted", "showDeadModal", "showInformation", "showBeastInfoModal", "showBattleMask",
+    'showBattleVictory']),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例

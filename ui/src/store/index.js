@@ -23,6 +23,7 @@ export const store = createStore({
         showLogModal: false,
         showBeastInfoModal: false,
         showBattleMask: false,
+        showBattleVictory: false,
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'login',
@@ -159,6 +160,9 @@ export const store = createStore({
         },
         setShowBattleMask(state, value) {
             state.showBattleMask = value
+        },
+        setShowBattleVictory(state, value) {
+            state.showBattleVictory = value
         },
         setCurrPage(state, value) {
             state.currPage = value
