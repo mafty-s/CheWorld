@@ -19,6 +19,7 @@ const ResConfig = [
     {"id":"18","name":"Sterling silver","type":"3","refresh":"2","icon":"@/assets/images/set1.png","maxnum":"500","inform":"A crafting material that is purer than silver ore and is very rare.","pos":"50,15"},
     {"id":"19","name":"Graphite","type":"3","refresh":"2","icon":"@/assets/images/set1.png","maxnum":"300","inform":"As one of the softest minerals, it can be used to make glass products.","pos":"80,45"},
     {"id":"20","name":"Platinum","type":"3","refresh":"2","icon":"@/assets/images/set1.png","maxnum":"300","inform":"A shiny, malleable silver-white metal that can be used to craft advanced tools and rare equipment.","pos":"15,10"},
+    {"id":"21","name":"Roast meat","type":"3","refresh":"2","icon":"@/assets/images/set1.png","maxnum":"0","inform":"","pos":"0,0"},
 ]
 
 export const ResType = [
@@ -44,7 +45,8 @@ export function getResConfig() {
 
 
 export function key2id(originalString) {
-    const keys = ['egg',//9 bits
+    const keys = [
+        'egg',//9 bits
         'meat',
         'fish',
         'soft_skin',
@@ -63,7 +65,9 @@ export function key2id(originalString) {
         'silver',
         'sterling_silver',
         'graphite',
-        'platinum'];
+        'platinum',
+        'roast_meat'
+    ];
 
     return keys.indexOf(originalString) + 1;
 

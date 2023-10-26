@@ -16,8 +16,11 @@
           <div class="bd">
             <div class="model">
               <ul>
-                <li v-for="(equipment,index) in currRole.bag.equipments" :key="index" v-show="craftingIndex===1" :class="[ equipment.showDetails ? 'current' : '' ]">
-                  <h2 class="h2tit" @click="showDetail(index)"><img :src="equipment.icon" alt=""><span>{{ equipment.name }}</span></h2>
+                <li v-for="(equipment,index) in currRole.bag.equipments" :key="index" v-show="craftingIndex===1"
+                    :class="[ equipment.showDetails ? 'current' : '' ]">
+                  <h2 class="h2tit" @click="showDetail(index)"><img :src="equipment.icon" alt=""><span>{{
+                      equipment.name
+                    }}</span></h2>
                   <dl :style="{ display: equipment.showDetails ? 'block' : 'none' }">
                     <dd v-for="(item,index) in equipment.list" :key="index">
                       <a href="javascript:;" class="dis"
@@ -25,8 +28,11 @@
                     </dd>
                   </dl>
                 </li>
-                <li v-for="(food,index) in currRole.bag.foods" :key="index" v-show="craftingIndex===2" :class="[ food.showDetails ? 'current' : '' ]">
-                  <h2 class="h2tit"  @click="showFoodDetail(index)"><img :src="food.icon" alt=""><span>{{ food.name }}</span></h2>
+                <li v-for="(food,index) in currRole.bag.foods" :key="index" v-show="craftingIndex===2"
+                    :class="[ food.showDetails ? 'current' : '' ]">
+                  <h2 class="h2tit" @click="showFoodDetail(index)"><img :src="food.icon" alt=""><span>{{
+                      food.name
+                    }}</span></h2>
                   <dl :style="{ display: food.showDetails ? 'block' : 'none' }">
                     <dd v-for="(item,index) in food.list" :key="index">
                       <a href="javascript:;" class="dis"
@@ -87,8 +93,12 @@ export default {
     return {}
   },
   methods: {
-    ...mapActions(['connect_wallet','addItem']),
-    ...mapMutations(['setShowCrafting', "setCraftingIndex", "setCraftingNumber","setEquipmentShowDetail","setFoodShowDetail"]),
+    ...mapActions(['connect_wallet', 'addItem', "composite"
+    ]),
+    ...mapMutations([
+      'setShowCrafting', "setCraftingIndex",
+      "setCraftingNumber", "setEquipmentShowDetail", "setFoodShowDetail",
+    ]),
     closeCrafting() {
       this.setShowCrafting(false);
     },
@@ -100,18 +110,18 @@ export default {
     },
     async doCrafting() {
       // console.log(id, name, pairs)
-      await this.addItem();
+      await this.composite();
 
       ElMessage({
         message: 'Congrats, this is a success message',
         type: 'success',
       })
     },
-    showDetail(subid){
+    showDetail(subid) {
 
       this.setEquipmentShowDetail(subid)
     },
-    showFoodDetail(subid){
+    showFoodDetail(subid) {
       this.setFoodShowDetail(subid)
     },
     async doSelect(id, name, pairs) {
