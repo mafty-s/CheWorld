@@ -694,11 +694,12 @@ export const store = createStore({
         async drop_items(context, items) {
 
         },
-        async composite(context, items) {
+        async composite(context, ) {
+            console.log("composite",context.state.adventurer?.id?.toString() );
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "composite2",
-                calldata: [context.state.adventurer?.id?.toString() ?? ""],
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", ],
             }
 
             const tx = await context.state.account?.execute(mintAdventurerTx);

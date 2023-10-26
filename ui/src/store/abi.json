@@ -1,12 +1,12 @@
 [
   {
-    "type": "impl",
     "name": "Game",
+    "type": "impl",
     "interface_name": "game::game::interfaces::IGame"
   },
   {
-    "type": "struct",
     "name": "survivor::adventurer_meta::AdventurerMetadata",
+    "type": "struct",
     "members": [
       {
         "name": "name",
@@ -27,8 +27,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::adventurer_stats::Stats",
+    "type": "struct",
     "members": [
       {
         "name": "strength",
@@ -57,8 +57,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "core::integer::u256",
+    "type": "struct",
     "members": [
       {
         "name": "low",
@@ -71,8 +71,8 @@
     ]
   },
   {
-    "type": "enum",
     "name": "core::bool",
+    "type": "enum",
     "variants": [
       {
         "name": "False",
@@ -85,8 +85,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "market::market::ItemPurchase",
+    "type": "struct",
     "members": [
       {
         "name": "item_id",
@@ -99,8 +99,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::item_primitive::ItemPrimitive",
+    "type": "struct",
     "members": [
       {
         "name": "id",
@@ -117,8 +117,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::adventurer::Adventurer",
+    "type": "struct",
     "members": [
       {
         "name": "last_action",
@@ -187,8 +187,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::adventurer_res::AdventurerRes",
+    "type": "struct",
     "members": [
       {
         "name": "egg",
@@ -271,14 +271,18 @@
         "type": "core::integer::u16"
       },
       {
+        "name": "roast_meat",
+        "type": "core::integer::u16"
+      },
+      {
         "name": "last_timestamp",
         "type": "core::integer::u64"
       }
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::bag::Bag",
+    "type": "struct",
     "members": [
       {
         "name": "item_1",
@@ -331,8 +335,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::item_meta::ItemSpecials",
+    "type": "struct",
     "members": [
       {
         "name": "special1",
@@ -349,8 +353,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "survivor::item_meta::ItemSpecialsStorage",
+    "type": "struct",
     "members": [
       {
         "name": "item_1",
@@ -399,8 +403,8 @@
     ]
   },
   {
-    "type": "enum",
     "name": "combat::constants::CombatEnums::Tier",
+    "type": "enum",
     "variants": [
       {
         "name": "None",
@@ -429,8 +433,8 @@
     ]
   },
   {
-    "type": "enum",
     "name": "combat::constants::CombatEnums::Type",
+    "type": "enum",
     "variants": [
       {
         "name": "None",
@@ -459,8 +463,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "combat::combat::SpecialPowers",
+    "type": "struct",
     "members": [
       {
         "name": "special1",
@@ -477,8 +481,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "combat::combat::CombatSpec",
+    "type": "struct",
     "members": [
       {
         "name": "tier",
@@ -499,8 +503,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "beasts::beast::Beast",
+    "type": "struct",
     "members": [
       {
         "name": "id",
@@ -517,12 +521,12 @@
     ]
   },
   {
-    "type": "interface",
     "name": "game::game::interfaces::IGame",
+    "type": "interface",
     "items": [
       {
-        "type": "function",
         "name": "start",
+        "type": "function",
         "inputs": [
           {
             "name": "interface_id",
@@ -545,8 +549,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "explore",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -561,8 +565,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "attack",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -577,8 +581,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "flee",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -593,8 +597,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "equip",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -609,8 +613,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "drop_items",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -625,8 +629,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "upgrade_adventurer",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -649,8 +653,8 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "slay_idle_adventurers",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_ids",
@@ -661,15 +665,15 @@
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "rotate_global_entropy",
+        "type": "function",
         "inputs": [],
         "outputs": [],
         "state_mutability": "external"
       },
       {
-        "type": "function",
         "name": "addItem",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -684,8 +688,8 @@
         "state_mutability": "external"
       },
       {
+        "name": "harvesting",
         "type": "function",
-        "name": "add_resources",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -696,8 +700,32 @@
         "state_mutability": "external"
       },
       {
+        "name": "composite",
         "type": "function",
+        "inputs": [
+          {
+            "name": "adventurer_id",
+            "type": "core::integer::u256"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "name": "composite2",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "adventurer_id",
+            "type": "core::integer::u256"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
         "name": "get_adventurer",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -712,8 +740,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_adventurer_no_boosts",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -728,8 +756,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_adventurer_meta",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -744,8 +772,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_adventurer_res",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -760,8 +788,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_health",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -776,8 +804,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_xp",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -792,8 +820,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_level",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -808,8 +836,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_gold",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -824,8 +852,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_stat_upgrades_available",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -840,8 +868,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_last_action",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -856,8 +884,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_stats",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -872,8 +900,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_strength",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -888,8 +916,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_dexterity",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -904,8 +932,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_vitality",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -920,8 +948,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_intelligence",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -936,8 +964,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_wisdom",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -952,8 +980,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_charisma",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -968,8 +996,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_weapon_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -984,8 +1012,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_chest_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1000,8 +1028,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_head_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1016,8 +1044,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_waist_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1032,8 +1060,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_foot_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1048,8 +1076,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_hand_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1064,8 +1092,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_necklace_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1080,8 +1108,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_ring_greatness",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1096,8 +1124,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_bag",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1112,8 +1140,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_special_storage",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1132,8 +1160,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_weapon_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1148,8 +1176,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_chest_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1164,8 +1192,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_head_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1180,8 +1208,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_waist_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1196,8 +1224,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_foot_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1212,8 +1240,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_hand_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1228,8 +1256,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_necklace_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1244,8 +1272,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_ring_specials",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1260,8 +1288,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_items_on_market",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1276,8 +1304,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_items_on_market_by_slot",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1296,8 +1324,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_items_on_market_by_tier",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1316,8 +1344,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_potion_price",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1332,8 +1360,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_item_price",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1352,8 +1380,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_stats",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1368,8 +1396,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_strength",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1384,8 +1412,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_dexterity",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1400,8 +1428,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_vitality",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1416,8 +1444,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_intelligence",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1432,8 +1460,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_wisdom",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1448,8 +1476,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_base_charisma",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1464,8 +1492,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_attacking_beast",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1480,8 +1508,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_beast_health",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1496,8 +1524,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_beast_type",
+        "type": "function",
         "inputs": [
           {
             "name": "beast_id",
@@ -1512,8 +1540,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_beast_tier",
+        "type": "function",
         "inputs": [
           {
             "name": "beast_id",
@@ -1528,8 +1556,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "next_global_entropy_rotation",
+        "type": "function",
         "inputs": [],
         "outputs": [
           {
@@ -1539,8 +1567,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_dao_address",
+        "type": "function",
         "inputs": [],
         "outputs": [
           {
@@ -1550,8 +1578,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_lords_address",
+        "type": "function",
         "inputs": [],
         "outputs": [
           {
@@ -1561,8 +1589,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "get_entropy",
+        "type": "function",
         "inputs": [],
         "outputs": [
           {
@@ -1572,8 +1600,8 @@
         "state_mutability": "view"
       },
       {
-        "type": "function",
         "name": "owner_of",
+        "type": "function",
         "inputs": [
           {
             "name": "adventurer_id",
@@ -1590,13 +1618,18 @@
     ]
   },
   {
-    "type": "constructor",
     "name": "constructor",
-    "inputs": []
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "collectible_beasts",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
   },
   {
-    "type": "struct",
     "name": "game::Game::AdventurerState",
+    "type": "struct",
     "members": [
       {
         "name": "owner",
@@ -1613,54 +1646,59 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::StartGame",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "adventurer_meta",
-        "type": "survivor::adventurer_meta::AdventurerMetadata",
-        "kind": "data"
+        "type": "survivor::adventurer_meta::AdventurerMetadata"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::ResUpdate",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "adventurer_res",
-        "type": "survivor::adventurer_res::AdventurerRes",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::UpgradesAvailable",
-    "kind": "struct",
     "members": [
       {
-        "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "kind": "data",
+        "name": "adventurer_res",
+        "type": "survivor::adventurer_res::AdventurerRes"
       },
       {
-        "name": "items",
-        "type": "core::array::Array::<core::integer::u8>",
-        "kind": "data"
+        "kind": "data",
+        "name": "changes",
+        "type": "survivor::adventurer_res::AdventurerRes"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::UpgradesAvailable",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "adventurer_state",
+        "type": "game::Game::AdventurerState"
+      },
+      {
+        "kind": "data",
+        "name": "items",
+        "type": "core::array::Array::<core::integer::u8>"
+      }
+    ]
+  },
+  {
     "name": "game::Game::Discovery",
+    "type": "struct",
     "members": [
       {
         "name": "adventurer_state",
@@ -1673,32 +1711,32 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::DiscoveredHealth",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "discovery",
-        "type": "game::Game::Discovery",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::DiscoveredGold",
-    "kind": "struct",
     "members": [
       {
+        "kind": "data",
         "name": "discovery",
-        "type": "game::Game::Discovery",
-        "kind": "data"
+        "type": "game::Game::Discovery"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::DiscoveredGold",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "discovery",
+        "type": "game::Game::Discovery"
+      }
+    ]
+  },
+  {
     "name": "game::Game::ObstacleDetails",
+    "type": "struct",
     "members": [
       {
         "name": "id",
@@ -1731,8 +1769,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "game::Game::ObstacleEvent",
+    "type": "struct",
     "members": [
       {
         "name": "adventurer_state",
@@ -1745,32 +1783,32 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::DodgedObstacle",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "obstacle_event",
-        "type": "game::Game::ObstacleEvent",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::HitByObstacle",
-    "kind": "struct",
     "members": [
       {
+        "kind": "data",
         "name": "obstacle_event",
-        "type": "game::Game::ObstacleEvent",
-        "kind": "data"
+        "type": "game::Game::ObstacleEvent"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::HitByObstacle",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "obstacle_event",
+        "type": "game::Game::ObstacleEvent"
+      }
+    ]
+  },
+  {
     "name": "game::Game::BattleDetails",
+    "type": "struct",
     "members": [
       {
         "name": "seed",
@@ -1799,138 +1837,138 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::AmbushedByBeast",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "beast_battle_details",
-        "type": "game::Game::BattleDetails",
-        "kind": "data"
+        "type": "game::Game::BattleDetails"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::DiscoveredBeast",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "seed",
-        "type": "core::integer::u128",
-        "kind": "data"
+        "type": "core::integer::u128"
       },
       {
+        "kind": "data",
         "name": "id",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "beast_specs",
-        "type": "combat::combat::CombatSpec",
-        "kind": "data"
+        "type": "combat::combat::CombatSpec"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::AttackedBeast",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "beast_battle_details",
-        "type": "game::Game::BattleDetails",
-        "kind": "data"
+        "type": "game::Game::BattleDetails"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::AttackedByBeast",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
-      },
-      {
-        "name": "beast_battle_details",
-        "type": "game::Game::BattleDetails",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::SlayedBeast",
-    "kind": "struct",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
-        "name": "seed",
-        "type": "core::integer::u128",
-        "kind": "data"
-      },
-      {
-        "name": "id",
-        "type": "core::integer::u8",
-        "kind": "data"
-      },
-      {
-        "name": "beast_specs",
-        "type": "combat::combat::CombatSpec",
-        "kind": "data"
-      },
-      {
-        "name": "damage_dealt",
-        "type": "core::integer::u16",
-        "kind": "data"
-      },
-      {
-        "name": "critical_hit",
-        "type": "core::bool",
-        "kind": "data"
-      },
-      {
-        "name": "xp_earned_adventurer",
-        "type": "core::integer::u16",
-        "kind": "data"
-      },
-      {
-        "name": "xp_earned_items",
-        "type": "core::integer::u16",
-        "kind": "data"
-      },
-      {
-        "name": "gold_earned",
-        "type": "core::integer::u16",
-        "kind": "data"
+        "kind": "data",
+        "name": "beast_battle_details",
+        "type": "game::Game::BattleDetails"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::SlayedBeast",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "adventurer_state",
+        "type": "game::Game::AdventurerState"
+      },
+      {
+        "kind": "data",
+        "name": "seed",
+        "type": "core::integer::u128"
+      },
+      {
+        "kind": "data",
+        "name": "id",
+        "type": "core::integer::u8"
+      },
+      {
+        "kind": "data",
+        "name": "beast_specs",
+        "type": "combat::combat::CombatSpec"
+      },
+      {
+        "kind": "data",
+        "name": "damage_dealt",
+        "type": "core::integer::u16"
+      },
+      {
+        "kind": "data",
+        "name": "critical_hit",
+        "type": "core::bool"
+      },
+      {
+        "kind": "data",
+        "name": "xp_earned_adventurer",
+        "type": "core::integer::u16"
+      },
+      {
+        "kind": "data",
+        "name": "xp_earned_items",
+        "type": "core::integer::u16"
+      },
+      {
+        "kind": "data",
+        "name": "gold_earned",
+        "type": "core::integer::u16"
+      }
+    ]
+  },
+  {
     "name": "game::Game::FleeEvent",
+    "type": "struct",
     "members": [
       {
         "name": "adventurer_state",
@@ -1951,54 +1989,54 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::FleeFailed",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "flee_event",
-        "type": "game::Game::FleeEvent",
-        "kind": "data"
+        "type": "game::Game::FleeEvent"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::FleeSucceeded",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "flee_event",
-        "type": "game::Game::FleeEvent",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::AdventurerLeveledUp",
-    "kind": "struct",
     "members": [
       {
-        "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
-      },
-      {
-        "name": "previous_level",
-        "type": "core::integer::u8",
-        "kind": "data"
-      },
-      {
-        "name": "new_level",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "kind": "data",
+        "name": "flee_event",
+        "type": "game::Game::FleeEvent"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::AdventurerLeveledUp",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "adventurer_state",
+        "type": "game::Game::AdventurerState"
+      },
+      {
+        "kind": "data",
+        "name": "previous_level",
+        "type": "core::integer::u8"
+      },
+      {
+        "kind": "data",
+        "name": "new_level",
+        "type": "core::integer::u8"
+      }
+    ]
+  },
+  {
     "name": "game::Game::AdventurerStateWithBag",
+    "type": "struct",
     "members": [
       {
         "name": "adventurer_state",
@@ -2011,8 +2049,8 @@
     ]
   },
   {
-    "type": "enum",
     "name": "combat::constants::CombatEnums::Slot",
+    "type": "enum",
     "variants": [
       {
         "name": "None",
@@ -2053,8 +2091,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "lootitems::loot::Loot",
+    "type": "struct",
     "members": [
       {
         "name": "id",
@@ -2075,8 +2113,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "market::market::LootWithPrice",
+    "type": "struct",
     "members": [
       {
         "name": "item",
@@ -2089,133 +2127,133 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::PurchasedItems",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state_with_bag",
-        "type": "game::Game::AdventurerStateWithBag",
-        "kind": "data"
+        "type": "game::Game::AdventurerStateWithBag"
       },
       {
+        "kind": "data",
         "name": "purchases",
-        "type": "core::array::Array::<market::market::LootWithPrice>",
-        "kind": "data"
+        "type": "core::array::Array::<market::market::LootWithPrice>"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::PurchasedPotions",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "quantity",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "cost",
-        "type": "core::integer::u16",
-        "kind": "data"
+        "type": "core::integer::u16"
       },
       {
+        "kind": "data",
         "name": "health",
-        "type": "core::integer::u16",
-        "kind": "data"
+        "type": "core::integer::u16"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::AdventurerUpgraded",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state_with_bag",
-        "type": "game::Game::AdventurerStateWithBag",
-        "kind": "data"
+        "type": "game::Game::AdventurerStateWithBag"
       },
       {
+        "kind": "data",
         "name": "strength_increase",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "dexterity_increase",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "vitality_increase",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "intelligence_increase",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "wisdom_increase",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       },
       {
+        "kind": "data",
         "name": "charisma_increase",
-        "type": "core::integer::u8",
-        "kind": "data"
+        "type": "core::integer::u8"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::EquippedItems",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "adventurer_state_with_bag",
-        "type": "game::Game::AdventurerStateWithBag",
-        "kind": "data"
-      },
-      {
-        "name": "equipped_items",
-        "type": "core::array::Array::<core::integer::u8>",
-        "kind": "data"
-      },
-      {
-        "name": "unequipped_items",
-        "type": "core::array::Array::<core::integer::u8>",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::DroppedItems",
-    "kind": "struct",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state_with_bag",
-        "type": "game::Game::AdventurerStateWithBag",
-        "kind": "data"
+        "type": "game::Game::AdventurerStateWithBag"
       },
       {
-        "name": "item_ids",
-        "type": "core::array::Array::<core::integer::u8>",
-        "kind": "data"
+        "kind": "data",
+        "name": "equipped_items",
+        "type": "core::array::Array::<core::integer::u8>"
+      },
+      {
+        "kind": "data",
+        "name": "unequipped_items",
+        "type": "core::array::Array::<core::integer::u8>"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::DroppedItems",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "adventurer_state_with_bag",
+        "type": "game::Game::AdventurerStateWithBag"
+      },
+      {
+        "kind": "data",
+        "name": "item_ids",
+        "type": "core::array::Array::<core::integer::u8>"
+      }
+    ]
+  },
+  {
     "name": "game::Game::ItemLeveledUp",
+    "type": "struct",
     "members": [
       {
         "name": "item_id",
@@ -2244,25 +2282,25 @@
     ]
   },
   {
-    "type": "event",
-    "name": "game::Game::ItemsLeveledUp",
     "kind": "struct",
+    "name": "game::Game::ItemsLeveledUp",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "items",
-        "type": "core::array::Array::<game::Game::ItemLeveledUp>",
-        "kind": "data"
+        "type": "core::array::Array::<game::Game::ItemLeveledUp>"
       }
     ]
   },
   {
-    "type": "struct",
     "name": "game::Game::DeathDetails",
+    "type": "struct",
     "members": [
       {
         "name": "killed_by_beast",
@@ -2279,69 +2317,69 @@
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::AdventurerDied",
-    "kind": "struct",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
+        "kind": "data",
         "name": "death_details",
-        "type": "game::Game::DeathDetails",
-        "kind": "data"
+        "type": "game::Game::DeathDetails"
       }
     ]
   },
   {
-    "type": "event",
+    "kind": "struct",
     "name": "game::Game::NewHighScore",
-    "kind": "struct",
-    "members": [
-      {
-        "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
-      },
-      {
-        "name": "rank",
-        "type": "core::integer::u8",
-        "kind": "data"
-      }
-    ]
-  },
-  {
     "type": "event",
-    "name": "game::Game::IdleDeathPenalty",
-    "kind": "struct",
     "members": [
       {
+        "kind": "data",
         "name": "adventurer_state",
-        "type": "game::Game::AdventurerState",
-        "kind": "data"
+        "type": "game::Game::AdventurerState"
       },
       {
-        "name": "idle_blocks",
-        "type": "core::integer::u16",
-        "kind": "data"
-      },
-      {
-        "name": "penalty_threshold",
-        "type": "core::integer::u16",
-        "kind": "data"
-      },
-      {
-        "name": "caller",
-        "type": "core::starknet::contract_address::ContractAddress",
-        "kind": "data"
+        "kind": "data",
+        "name": "rank",
+        "type": "core::integer::u8"
       }
     ]
   },
   {
-    "type": "struct",
+    "kind": "struct",
+    "name": "game::Game::IdleDeathPenalty",
+    "type": "event",
+    "members": [
+      {
+        "kind": "data",
+        "name": "adventurer_state",
+        "type": "game::Game::AdventurerState"
+      },
+      {
+        "kind": "data",
+        "name": "idle_blocks",
+        "type": "core::integer::u16"
+      },
+      {
+        "kind": "data",
+        "name": "penalty_threshold",
+        "type": "core::integer::u16"
+      },
+      {
+        "kind": "data",
+        "name": "caller",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
+  },
+  {
     "name": "game::Game::PlayerReward",
+    "type": "struct",
     "members": [
       {
         "name": "adventurer_id",
@@ -2362,8 +2400,8 @@
     ]
   },
   {
-    "type": "struct",
     "name": "game::Game::ClientReward",
+    "type": "struct",
     "members": [
       {
         "name": "amount",
@@ -2376,166 +2414,166 @@
     ]
   },
   {
-    "type": "event",
-    "name": "game::Game::RewardDistribution",
     "kind": "struct",
+    "name": "game::Game::RewardDistribution",
+    "type": "event",
     "members": [
       {
+        "kind": "data",
         "name": "first_place",
-        "type": "game::Game::PlayerReward",
-        "kind": "data"
+        "type": "game::Game::PlayerReward"
       },
       {
+        "kind": "data",
         "name": "second_place",
-        "type": "game::Game::PlayerReward",
-        "kind": "data"
+        "type": "game::Game::PlayerReward"
       },
       {
+        "kind": "data",
         "name": "third_place",
-        "type": "game::Game::PlayerReward",
-        "kind": "data"
+        "type": "game::Game::PlayerReward"
       },
       {
+        "kind": "data",
         "name": "client",
-        "type": "game::Game::ClientReward",
-        "kind": "data"
+        "type": "game::Game::ClientReward"
       },
       {
+        "kind": "data",
         "name": "dao",
-        "type": "core::integer::u256",
-        "kind": "data"
+        "type": "core::integer::u256"
       }
     ]
   },
   {
-    "type": "event",
-    "name": "game::Game::Event",
     "kind": "enum",
+    "name": "game::Game::Event",
+    "type": "event",
     "variants": [
       {
+        "kind": "nested",
         "name": "StartGame",
-        "type": "game::Game::StartGame",
-        "kind": "nested"
+        "type": "game::Game::StartGame"
       },
       {
+        "kind": "nested",
         "name": "ResUpdate",
-        "type": "game::Game::ResUpdate",
-        "kind": "nested"
+        "type": "game::Game::ResUpdate"
       },
       {
+        "kind": "nested",
         "name": "UpgradesAvailable",
-        "type": "game::Game::UpgradesAvailable",
-        "kind": "nested"
+        "type": "game::Game::UpgradesAvailable"
       },
       {
+        "kind": "nested",
         "name": "DiscoveredHealth",
-        "type": "game::Game::DiscoveredHealth",
-        "kind": "nested"
+        "type": "game::Game::DiscoveredHealth"
       },
       {
+        "kind": "nested",
         "name": "DiscoveredGold",
-        "type": "game::Game::DiscoveredGold",
-        "kind": "nested"
+        "type": "game::Game::DiscoveredGold"
       },
       {
+        "kind": "nested",
         "name": "DodgedObstacle",
-        "type": "game::Game::DodgedObstacle",
-        "kind": "nested"
+        "type": "game::Game::DodgedObstacle"
       },
       {
+        "kind": "nested",
         "name": "HitByObstacle",
-        "type": "game::Game::HitByObstacle",
-        "kind": "nested"
+        "type": "game::Game::HitByObstacle"
       },
       {
+        "kind": "nested",
         "name": "AmbushedByBeast",
-        "type": "game::Game::AmbushedByBeast",
-        "kind": "nested"
+        "type": "game::Game::AmbushedByBeast"
       },
       {
+        "kind": "nested",
         "name": "DiscoveredBeast",
-        "type": "game::Game::DiscoveredBeast",
-        "kind": "nested"
+        "type": "game::Game::DiscoveredBeast"
       },
       {
+        "kind": "nested",
         "name": "AttackedBeast",
-        "type": "game::Game::AttackedBeast",
-        "kind": "nested"
+        "type": "game::Game::AttackedBeast"
       },
       {
+        "kind": "nested",
         "name": "AttackedByBeast",
-        "type": "game::Game::AttackedByBeast",
-        "kind": "nested"
+        "type": "game::Game::AttackedByBeast"
       },
       {
+        "kind": "nested",
         "name": "SlayedBeast",
-        "type": "game::Game::SlayedBeast",
-        "kind": "nested"
+        "type": "game::Game::SlayedBeast"
       },
       {
+        "kind": "nested",
         "name": "FleeFailed",
-        "type": "game::Game::FleeFailed",
-        "kind": "nested"
+        "type": "game::Game::FleeFailed"
       },
       {
+        "kind": "nested",
         "name": "FleeSucceeded",
-        "type": "game::Game::FleeSucceeded",
-        "kind": "nested"
+        "type": "game::Game::FleeSucceeded"
       },
       {
+        "kind": "nested",
         "name": "AdventurerLeveledUp",
-        "type": "game::Game::AdventurerLeveledUp",
-        "kind": "nested"
+        "type": "game::Game::AdventurerLeveledUp"
       },
       {
+        "kind": "nested",
         "name": "PurchasedItems",
-        "type": "game::Game::PurchasedItems",
-        "kind": "nested"
+        "type": "game::Game::PurchasedItems"
       },
       {
+        "kind": "nested",
         "name": "PurchasedPotions",
-        "type": "game::Game::PurchasedPotions",
-        "kind": "nested"
+        "type": "game::Game::PurchasedPotions"
       },
       {
+        "kind": "nested",
         "name": "AdventurerUpgraded",
-        "type": "game::Game::AdventurerUpgraded",
-        "kind": "nested"
+        "type": "game::Game::AdventurerUpgraded"
       },
       {
+        "kind": "nested",
         "name": "EquippedItems",
-        "type": "game::Game::EquippedItems",
-        "kind": "nested"
+        "type": "game::Game::EquippedItems"
       },
       {
+        "kind": "nested",
         "name": "DroppedItems",
-        "type": "game::Game::DroppedItems",
-        "kind": "nested"
+        "type": "game::Game::DroppedItems"
       },
       {
+        "kind": "nested",
         "name": "ItemsLeveledUp",
-        "type": "game::Game::ItemsLeveledUp",
-        "kind": "nested"
+        "type": "game::Game::ItemsLeveledUp"
       },
       {
+        "kind": "nested",
         "name": "AdventurerDied",
-        "type": "game::Game::AdventurerDied",
-        "kind": "nested"
+        "type": "game::Game::AdventurerDied"
       },
       {
+        "kind": "nested",
         "name": "NewHighScore",
-        "type": "game::Game::NewHighScore",
-        "kind": "nested"
+        "type": "game::Game::NewHighScore"
       },
       {
+        "kind": "nested",
         "name": "IdleDeathPenalty",
-        "type": "game::Game::IdleDeathPenalty",
-        "kind": "nested"
+        "type": "game::Game::IdleDeathPenalty"
       },
       {
+        "kind": "nested",
         "name": "RewardDistribution",
-        "type": "game::Game::RewardDistribution",
-        "kind": "nested"
+        "type": "game::Game::RewardDistribution"
       }
     ]
   }

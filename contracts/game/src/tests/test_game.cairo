@@ -488,6 +488,24 @@ mod tests {
         game.explore(ADVENTURER_ID, true);
     }
 
+
+    #[test]
+    #[should_panic]
+    #[available_gas(90000000)]
+    fn test_compose1() {
+        let mut game = new_adventurer(1000);
+
+        game.composite(ADVENTURER_ID);
+
+        let res = game.get_adventurer_res(ADVENTURER_ID);
+
+        assert(res.fish == 100, '');
+        assert(res.meat == 99, '');
+        assert(res.bamboo == 90, '');
+        assert(res.roast_meat == 101, '');
+
+    }
+
     #[test]
     #[should_panic]
     #[available_gas(90000000)]
