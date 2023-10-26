@@ -331,6 +331,7 @@ export async function parseEvents(receipt) {
                 break;
             case "FleeFailed":
                 console.log("FleeFailed", raw.data);
+
                 break;
             case "FleeSucceeded":
                 console.log("FleeSucceeded", raw.data);

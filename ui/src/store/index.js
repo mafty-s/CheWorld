@@ -276,6 +276,7 @@ export const store = createStore({
                         break;
                     case "HitByObstacle":
                         ElMessage('HitByObstacle')
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "OH NO! Hit By Obstacle!",
@@ -306,6 +307,7 @@ export const store = createStore({
                         break;
                     case "AttackedBeast":
                         ElMessage('AttackedBeast')
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Attacked Beast!",
@@ -314,6 +316,7 @@ export const store = createStore({
                         break;
                     case "AttackedByBeast":
                         ElMessage('AttackedByBeast')
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Attacked By Beast!",
@@ -327,7 +330,7 @@ export const store = createStore({
                         //     txid:event.data.data.transaction_hash,
                         //     time:event.data.data.t
                         // })
-
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         this.commit('addLog', {
                             time: getCurrentTime(),
                             context: "Slayed Beast!",
