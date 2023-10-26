@@ -60,6 +60,9 @@
                 <div class="s2" v-if="this.adventurer.weapon.id>0">
                   <p>TIERS: {{ getItem(this.adventurer.weapon).tiers }}</p>
                   <p>XP: {{ getItem(this.adventurer.weapon).xp }}</p>
+
+                    <el-button size="small">Drop</el-button>
+
                 </div>
               </li>
               <li>

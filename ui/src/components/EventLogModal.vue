@@ -6,10 +6,6 @@ export default {
   name: 'EventLogModal',
   components: {},
   mounted() {
-
-    const timestamp = this.adventurer.resources.last_timestamp + 600;
-    this.targetTime = new Date(timestamp * 1000);
-
     this.formatLogs();
     this.startCountdown();
 
@@ -18,10 +14,16 @@ export default {
     // })
 
   },
-  computed: mapState(['wallet_address', "adventurer","showLogModal"]),
+  computed: {
+    ...mapState(['wallet_address', "adventurer", "showLogModal"]),
+    targetTime() {
+      const timestamp = this.adventurer.resources.last_timestamp + 600;
+      return new Date(timestamp * 1000)
+    }
+  },
   data() {
     return {
-      targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
+      // targetTime: new Date().getTime() + 6000000, // 设置目标时间为当前时间的1分钟后
       countdown: '00:00',
       logs: [
         {
