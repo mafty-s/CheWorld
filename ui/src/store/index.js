@@ -21,6 +21,7 @@ export const store = createStore({
         showMissionCompleted: false,
         showDeadModal: false,
         showLogModal: false,
+        showBeastInfoModal: false,
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'login',
@@ -151,6 +152,9 @@ export const store = createStore({
         },
         setShowMissionCompleted(state, value) {
             state.showMissionCompleted = value
+        },
+        setShowBeastInfoModal(state, value) {
+            state.showBeastInfoModal = value
         },
         setCurrPage(state, value) {
             state.currPage = value

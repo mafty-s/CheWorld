@@ -48,9 +48,10 @@
         </div>
 
         <div v-for="(res, index) in ResConfig" :key="index">
-          <div :class="'block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting" :style="{'left':res.x+'%','top':res.y+'%'}">
+          <div :class="'block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting"
+               :style="{'left':res.x+'%','top':res.y+'%'}">
             <div class="text">
-              {{res.name}} <br>{{ getCanHarvestNum(ResConfig.id) }}/ {{res.maxnum}}
+              {{ res.name }} <br>{{ getCanHarvestNum(ResConfig.id) }}/ {{ res.maxnum }}
             </div>
             <div class="icon">
               <img :src="'images/ui'+getColorByType(res.type)+'.png'" alt="">
@@ -78,6 +79,7 @@
     <MissionCompleteModal v-if="showMissionCompleted"/>
     <RoleInformation v-if="showInformation"/>
     <DiedModal v-if="showDeadModal"/>
+    <BeastInfoModal v-if="showBeastInfoModal"/>
   </div>
 </template>
 
@@ -94,15 +96,18 @@ import FloatingBall from "../components/FloatingBall.vue";
 import {ElMessage} from "element-plus";
 import DiedModal from "../components/DiedModal.vue";
 import {getColorByType, getResConfig, getResConfigById, getResConfigByType} from "@/config/res_conf.js";
+import BeastInfoModal from "@/components/BeastInfoModal.vue";
 
 
 export default {
   name: 'WorldPage',
   components: {
+    BeastInfoModal,
     DiedModal,
     FloatingBall, EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar
   },
-  computed: mapState(['wallet_address', "adventurer", "showMissionCompleted", "showDeadModal", "showInformation"]),
+  computed: mapState(['wallet_address', "adventurer",
+    "showMissionCompleted", "showDeadModal", "showInformation", "showBeastInfoModal"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例
@@ -136,12 +141,12 @@ export default {
   },
   data() {
     return {
-      ResConfig:getResConfig()
+      ResConfig: getResConfig()
     };
   },
   methods: {
     getColorByType,
-    ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation']),
+    ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation','setShowBeastInfoModal']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
       await this.harvesting();
@@ -150,7 +155,8 @@ export default {
     async onClickAttack() {
       let monster = this.adventurer.beastSpecs;
       if (monster) {
-        await this.attack(false, null);
+       // await this.attack(false, null);
+        this.showBeastInfoModal(true)
       } else {
         if (this.adventurer.statUpgrades > 0) {
           ElMessage.error('Please upgrade your character first')
@@ -165,14 +171,14 @@ export default {
       this.setCurrPage('main');
     },
     getCanHarvestNum(id) {
-      if(id===undefined) {
+      if (id === undefined) {
         return 0
       }
       console.log("getCanHarvestNum", id);
       const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
       const count = (current_timestamp - last_timestamp) / 600;
-      let  num= count.toFixed(0);
+      let num = count.toFixed(0);
       const config = getResConfigById(id);
       if (num >= config.maxnum) {
         num = config.maxnum;
@@ -209,7 +215,7 @@ export default {
   border: 2px solid #000000;
 }
 
-.mapContent .blocks .block{
+.mapContent .blocks .block {
   transform: scale(1);
 }
 </style>
