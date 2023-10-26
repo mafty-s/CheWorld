@@ -4,13 +4,15 @@ import {mapActions, mapMutations} from "vuex";
 export default {
   name: "BeastInfoModal",
   methods: {
-    ...mapMutations(["setShowBeastInfoModal"]),
+    ...mapMutations(["setShowBeastInfoModal","setShowBattleMask"]),
     ...mapActions(["attack", "explore", 'flee']),
     onClickClose() {
       this.setShowBeastInfoModal(false)
     },
     async onClickAttack() {
+      this.setShowBattleMask(true)
       await this.attack(false, null);
+      this.setShowBattleMask(false)
     },
     async onClickFlee() {
       await this.flee(false, null)

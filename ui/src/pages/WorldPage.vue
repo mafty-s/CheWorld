@@ -72,6 +72,7 @@
       </div>
     </div>
 
+    <BattleMask v-if="showBattleMask"/>
     <EventLogModal/>
     <AvatarComponent/>
     <FloatingBall/>
@@ -97,17 +98,19 @@ import {ElMessage} from "element-plus";
 import DiedModal from "../components/DiedModal.vue";
 import {getColorByType, getResConfig, getResConfigById, getResConfigByType} from "@/config/res_conf.js";
 import BeastInfoModal from "@/components/BeastInfoModal.vue";
+import BattleMask from "@/components/BattleMask.vue";
 
 
 export default {
   name: 'WorldPage',
   components: {
+    BattleMask,
     BeastInfoModal,
     DiedModal,
     FloatingBall, EventLogModal, RoleInformation, AvatarComponent, MissionCompleteModal, ShortcutBar
   },
   computed: mapState(['wallet_address', "adventurer",
-    "showMissionCompleted", "showDeadModal", "showInformation", "showBeastInfoModal"]),
+    "showMissionCompleted", "showDeadModal", "showInformation", "showBeastInfoModal", "showBattleMask"]),
   mounted() {
     var scale = 1.0; // 初始缩放比例
     var maxScale = 2.0; // 最大缩放比例
@@ -146,7 +149,7 @@ export default {
   },
   methods: {
     getColorByType,
-    ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation','setShowBeastInfoModal']),
+    ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation', 'setShowBeastInfoModal']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
       await this.harvesting();
@@ -155,8 +158,8 @@ export default {
     async onClickAttack() {
       let monster = this.adventurer.beastSpecs;
       if (monster) {
-       // await this.attack(false, null);
-        this.showBeastInfoModal(true)
+        // await this.attack(false, null);
+        this.setShowBeastInfoModal(true)
       } else {
         if (this.adventurer.statUpgrades > 0) {
           ElMessage.error('Please upgrade your character first')
