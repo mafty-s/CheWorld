@@ -208,4 +208,8 @@ export default {
   background: #0a0a0a;
   border: 2px solid #000000;
 }
+
+.mapContent .blocks .block{
+  transform: scale(1);
+}
 </style>

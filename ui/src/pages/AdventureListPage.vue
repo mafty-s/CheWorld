@@ -338,5 +338,7 @@ export default {
 </script>
 
 <style scoped>
-
-</style>xian
+.creatMain .content3 .con .left .dec2 p {
+  line-height: 1.4;
+}
+</style>
