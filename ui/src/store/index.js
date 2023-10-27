@@ -6,7 +6,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
 
-export const contract_address = "0x06f062ec6e2669aef94d24b82ad3dbc800f46204c198359a4ac99256b70c30cd";
+export const contract_address = "0x0484fc4f6a1bd0d949c6ddf8b0c56aad38b72e3b78b020b238fb031ea49a46e9";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 import {BEASTS} from "../system/GameData.js";
@@ -592,15 +592,15 @@ export const store = createStore({
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
 
-            context.commit('setShowBeastInfoModal',false);
-            context.commit('setShowBattleMask',true);
+            context.commit('setShowBeastInfoModal', false);
+            context.commit('setShowBattleMask', true);
             console.log("tx", tx);
 
             const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
 
             console.log('receipt', receipt);
 
-            context.commit('setShowBattleMask',false);
+            context.commit('setShowBattleMask', false);
 
             let events = await parseEvents(receipt);
 
@@ -694,13 +694,14 @@ export const store = createStore({
         async drop_items(context, items) {
 
         },
-        async composite(context, ) {
-            let config_id =2;
-            console.log("composite",context.state.adventurer?.id?.toString() );
+        async composite(context,) {
+            let config_id = 2;
+            let times = 2;
+            console.log("composite", context.state.adventurer?.id?.toString());
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "composite",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0",config_id.toString() ],
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", config_id.toString(), times.toString()],
             }
 
             const tx = await context.state.account?.execute(mintAdventurerTx);

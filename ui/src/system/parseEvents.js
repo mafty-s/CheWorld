@@ -733,6 +733,7 @@ export async function parseEvents(receipt) {
                     },
                     cost:  parseAdventurerRes(raw.data.slice(74, 95)),
                     res:  parseAdventurerRes(raw.data.slice(96, 117)),
+                    reward:  parseAdventurerRes(raw.data.slice(118, 139)),
                 };
                 events.push({
                     name: eventName, data: {
