@@ -1162,8 +1162,9 @@ mod Game {
         _assert_ownership(@self, adventurer_id);
         _assert_not_dead(adventurer);
 
+        let times:u16 = 2;
         let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-        res.egg = res.egg - cost.egg;
+        res.egg = res.egg - cost.egg * times;
         res.meat = res.meat - cost.meat;
         res.fish = res.fish - cost.fish;
         res.soft_skin = res.soft_skin - cost.soft_skin;
@@ -1211,7 +1212,14 @@ mod Game {
 
         let mut bag = _bag_unpacked(@self, adventurer_id);
         if(new_item_id != 0){
-            bag.add_new_item(adventurer, new_item_id);
+            let mut left = times;
+            loop {
+                if left == 0 {
+                    break;
+                }
+                bag.add_new_item(adventurer, new_item_id);
+                left = left - 1;
+            }
         }
 
 
