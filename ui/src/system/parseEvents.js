@@ -157,7 +157,7 @@ function parseEquippedItems(data) {
     for (let i = 2; i <= unequippedLength + 1; i++) {
         unequippedItems.push(parseInt(data[i + equippedLength]));
     }
-    return { equippedItems, unequippedItems };
+    return {equippedItems, unequippedItems};
 }
 
 function parseItemLevels(data) {
@@ -554,7 +554,7 @@ export async function parseEvents(receipt) {
                 break;
             case "EquippedItems":
                 console.log("EquippedItems", raw.data);
-                const { equippedItems, unequippedItems } = parseEquippedItems(
+                const {equippedItems, unequippedItems} = parseEquippedItems(
                     // Include equipped array length
                     raw.data.slice(74)
                 );
@@ -713,8 +713,8 @@ export async function parseEvents(receipt) {
             case "ResUpdate":
                 console.log("ResUpdate", raw.data);
                 const ResUpdateData = {
-                    adventurer_res: parseAdventurerRes(raw.data.slice(0,21)),
-                    changed:  parseAdventurerRes(raw.data.slice(22, 43)),
+                    adventurer_res: parseAdventurerRes(raw.data.slice(0, 21)),
+                    changed: parseAdventurerRes(raw.data.slice(22, 43)),
                 };
                 events.push({
                     name: eventName, data: {
@@ -731,9 +731,10 @@ export async function parseEvents(receipt) {
                         adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
                         bag: parseBag(raw.data.slice(40, 73)),
                     },
-                    cost:  parseAdventurerRes(raw.data.slice(74, 95)),
-                    res:  parseAdventurerRes(raw.data.slice(96, 117)),
-                    reward:  parseAdventurerRes(raw.data.slice(118, 139)),
+                    cost: parseAdventurerRes(raw.data.slice(74, 95)),
+                    res: parseAdventurerRes(raw.data.slice(96, 117)),
+                    reward: parseAdventurerRes(raw.data.slice(118, 139)),
+                    times: parseInt(raw.data[140]),
                 };
                 events.push({
                     name: eventName, data: {
