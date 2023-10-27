@@ -36,7 +36,7 @@
                   <dl :style="{ display: food.showDetails ? 'block' : 'none' }">
                     <dd v-for="(item,index) in food.list" :key="index">
                       <a href="javascript:;" class="dis"
-                         @click="doSelect(item.id,item.name,item.pairs)">{{ item.name }}</a>
+                         @click="doSelect(item)">{{ item.name }}</a>
                     </dd>
                   </dl>
                 </li>
@@ -55,9 +55,9 @@
             <div class="title">Ingredient Recipe</div>
             <div class="list">
               <ul>
-                <li v-for="(item,index) in selected.pairs" :key="index">
+                <li v-for="(pair,index) in selected.pairs" :key="index">
                   <img src="@/assets/images/set1.png" alt="">
-                  <div class="num">{{ item[1] }}</div>
+                  <div class="num">{{ pair.value }}</div>
                 </li>
               </ul>
             </div>
@@ -77,10 +77,10 @@
                 <li v-for="(item,index) in addedItems" :key="index">
                   <div class="infor1">
                     <div class="icon"><img src="@/assets/images/ic1.png" alt=""></div>
-                    <div class="tit">{{item.name}}</div>
+                    <div class="tit">{{ item.name }}</div>
                   </div>
                   <div class="dec">
-                    <p>TIERS:{{item.tiers}}</p>
+                    <p>TIERS:{{ item.tiers }}</p>
                     <p>XP: 0</p>
                   </div>
                 </li>
@@ -194,7 +194,7 @@ export default {
     ...mapActions(['connect_wallet', "composite"
     ]),
     ...mapMutations([
-      'setShowCrafting', "setCraftingIndex","setAdventurerBag",
+      'setShowCrafting', "setCraftingIndex", "setAdventurerBag",
       "setCraftingNumber",
     ]),
     init() {
@@ -206,22 +206,23 @@ export default {
         });
         console.log(pairs);
 
-        if(comp.type==2){
+        if (comp.type == 2) {
           this.configs.foods[0].list.push({
             id: comp.id,
-            name:"ROAST MEAT",
+            name: "ROAST MEAT",
             pairs: pairs
           })
         }
 
         if (comp.type == 1) {
-          let item_name = ITEMS[comp.id];
+          let item_name = ITEMS[comp.name];
           let key = item_name.replace(' ', '');
           let item_slot = ITEM_SLOTS[key];
           switch (item_slot) {
             case 'Neck':
               this.configs.equipments.Neck.list.push({
                 id: comp.id,
+                target:comp.name,
                 name: item_name,
                 pairs: pairs
               });
@@ -329,6 +330,8 @@ export default {
         let events = await this.composite({config_id: this.selected.id, times: this.craftingNumber});
         let event = events[0];
         let bag = event.data.data.adventurerStateWithBag.bag;
+        let reward = event.data.data.reward;
+        let times = event.data.data.times;
         console.log(bag);
         let diff = this.diffBags(this.adventurer.bag, bag);
         console.log(diff);
@@ -336,13 +339,21 @@ export default {
           this.showInformation = true;
         }
 
-        for(let i=0;i<diff.addedItems.length;i++){
+        for (let i = 0; i < diff.addedItems.length; i++) {
           let key = diff.addedItems[i];
           let info = bag[key];
           this.addedItems.push({
-            'id':info.id,
-            'name':ITEMS[info.id],
-            'tiers':ITEM_TIERS[ITEMS[info.id]]
+            'id': info.id,
+            'name': ITEMS[info.id],
+            'tiers': ITEM_TIERS[ITEMS[info.id]]
+          })
+        }
+
+        for (let i = 0; i < reward.roast_meat * times; i++) {
+          this.addedItems.push({
+            'id': 0,
+            'name': 'Roast Meat',
+            'tiers': 0
           })
         }
 
@@ -361,21 +372,26 @@ export default {
       // })
     },
     showDetail(subid) {
-      console.log("subid",subid)
-      this.configs.equipments[subid].showDetails=! this.configs.equipments[subid].showDetails
+      console.log("subid", subid)
+      this.configs.equipments[subid].showDetails = !this.configs.equipments[subid].showDetails
       // this.setEquipmentShowDetail(subid)
     },
     showFoodDetail(subid) {
-      this.configs.foods[subid].showDetails=! this.configs.foods[subid].showDetails
+      this.configs.foods[subid].showDetails = !this.configs.foods[subid].showDetails
     },
     async doSelect(item) {
+      if (this.loading) {
+        return;
+      }
+
       console.log("select", item)
       // await this.addItem();
       // ElMessage({
       //   message: 'Congrats, this is a success message.',
       //   type: 'success',
       // })
-      this.selected = item
+      this.selected = item;
+      this.complate = null;
     },
     onClickCompleteConform() {
       this.selected = null;
@@ -386,13 +402,30 @@ export default {
 </script>
 
 <style scoped>
-#tab1 > div.right > div > div.list > ul > li > img {
+.right > div > div.list > ul > li{
+  width: 78px;
+  height: 78px;
+  display: inline-block;
+  background-size: 100%;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+
+.right > div > div.list > ul > li > img {
   object-fit: contain;
   height: 100%;
 }
 
-.num {
+.right > div > div.list > ul > li > .num {
   height: 10px;
-//background: red; //position: absolute; //color: white; //text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black; //right: 10px; //bottom: 10px; //z-index: 44; //font-size: 14px;
+  width: 10px;
+  position: absolute;
+  color: white;
+  text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+  right: 10px;
+  bottom: 10px;
+  z-index: 44;
+  font-size: 14px;
 }
 </style>

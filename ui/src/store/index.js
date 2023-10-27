@@ -26,9 +26,6 @@ export const store = createStore({
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'login',
-        currRole: {
-            ingredientRecipe: [],
-        },
         adventurers: [],
         adventurer: null
     },
@@ -350,7 +347,7 @@ export const store = createStore({
                         break;
                     case "Composited":
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
-                        state.adventurer.bag = event.data.data.adventurerStateWithBag.bag;
+                        state.adventurer.resources = event.data.data.res
                         break;
                     default:
                         ElMessage('unknown event: ' + event.name)
