@@ -55,19 +55,13 @@
             <div class="title">Ingredient Recipe</div>
             <div class="list">
               <ul>
-                <li><img src="@/assets/images/user.png"/></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+               <li v-for="(item,index) in selected.pairs" :key="index">
+                 <img src="@/assets/images/set1.png" alt="">
+                 <div class="num">{{ item[1]}}</div>
+               </li>
               </ul>
             </div>
-            <div class="title2"><img src="@/assets/images/ic1.png" alt=""><span>Feathered Crest</span></div>
+            <div class="title2"><img src="@/assets/images/ic1.png" alt=""><span>{{selected.name}}</span></div>
             <div class="num">
               <i class="ic1" @click="decrCraftingNumber"></i>
               <input type="text" :value="craftingNumber" class="words">
