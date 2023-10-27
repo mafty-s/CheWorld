@@ -58,7 +58,7 @@
     <AvatarComponent/>
     <FloatingBall/>
     <ShortcutBar/>
-    <Crafting v-show="showCrafting"/>
+    <Crafting v-if="showCrafting"/>
     <RoleInformation v-if="showInformation"/>
     <DiedModal v-if="showDeadModal"/>
   </div>

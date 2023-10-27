@@ -48,7 +48,10 @@
           </div>
         </div>
         <div class="right">
-          <div class="type1">
+
+          <div class="none" v-if="!selected">Select equipment on the left to view crafting recipes</div>
+
+          <div class="type1" v-if="!complate && selected">
             <div class="title">Ingredient Recipe</div>
             <div class="list">
               <ul>
@@ -72,6 +75,28 @@
             </div>
             <a href="javascript:;" class="Craft" @click="doCrafting">Craft</a>
           </div>
+
+          <div class="type2" v-if="complate">
+            <div class="title">Crafting Complete</div>
+            <div class="list2">
+              <ul>
+                <li>
+                  <div class="infor1">
+                    <div class="icon"><img src="@/assets/images/ic1.png" alt=""></div>
+                    <div class="tit">Feathered Crest</div>
+                  </div>
+                  <div class="dec">
+                    <p>Healthy:+20</p>
+                    <p>power:+20</p>
+                    <p>Healthy:+20</p>
+                    <p>power:+20</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <a href="javascript:;" class="Craft" @click="onClickCompleteConform">confirm</a>
+          </div>
+
         </div>
       </div>
     </div>
@@ -90,7 +115,10 @@ export default {
   },
   computed: mapState(['wallet_address', "currRole", "craftingIndex", "craftingNumber"]),
   data() {
-    return {}
+    return {
+      selected:null,
+      complate:null,
+    }
   },
   methods: {
     ...mapActions(['connect_wallet', 'addItem', "composite"
@@ -110,12 +138,18 @@ export default {
     },
     async doCrafting() {
       // console.log(id, name, pairs)
-      await this.composite();
+      try {
+        await this.composite();
+        this.complate=true
+      }catch (e) {
+        console.log(e)
+      }
 
-      ElMessage({
-        message: 'Congrats, this is a success message',
-        type: 'success',
-      })
+
+      // ElMessage({
+      //   message: 'Congrats, this is a success message',
+      //   type: 'success',
+      // })
     },
     showDetail(subid) {
 
@@ -125,11 +159,16 @@ export default {
       this.setFoodShowDetail(subid)
     },
     async doSelect(id, name, pairs) {
-      await this.addItem();
-      ElMessage({
-        message: 'Congrats, this is a success message.',
-        type: 'success',
-      })
+      // await this.addItem();
+      // ElMessage({
+      //   message: 'Congrats, this is a success message.',
+      //   type: 'success',
+      // })
+      this.selected=1
+    },
+    onClickCompleteConform(){
+      this.selected=null;
+      this.complate=null;
     }
   }
 }
