@@ -701,7 +701,7 @@ export const store = createStore({
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "composite",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", config_id.toString()],
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", config_id.toString(),times.toString()],
             }
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
