@@ -146,10 +146,6 @@ mod Game {
 
     #[external(v0)]
     impl Game of IGame<ContractState> {
-
-
-
-
         fn composite(ref self: ContractState,adventurer_id: u256,config_id:felt252){
 
            let cost = match config_id {
@@ -164,7 +160,7 @@ mod Game {
                 7 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
                 8 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
                 9 => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
-                _ => { egg: 1, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
+                _ => { egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 },
             }
 
             let new_item_id = match config_id {
@@ -227,7 +223,7 @@ mod Game {
 
             let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
 
-            __event_Composited(ref self, adventurer_state_with_bag,cost );
+            __event_Composited(ref self, adventurer_state_with_bag,cost,res );
 
             // pack and save adventurer
             _pack_adventurer_remove_stat_boost(
@@ -237,6 +233,10 @@ mod Game {
 
 
         fn harvesting(ref self: ContractState,adventurer_id: u256){
+
+            _assert_ownership(@self, adventurer_id);
+            _assert_not_dead(adventurer);
+
             let timestamp: u64 = starknet::get_block_info().unbox().block_timestamp.into();
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
             let count:u16 = ((timestamp - res.last_timestamp)/600).try_into().expect('tick');
@@ -2773,7 +2773,8 @@ mod Game {
     #[derive(Drop, starknet::Event)]
     struct Composited {
         adventurer_state_with_bag: AdventurerStateWithBag,
-        cost: AdventurerRes
+        cost: AdventurerRes,
+        res: AdventurerRes,
     }
 
     #[derive(Drop, starknet::Event)]
@@ -2942,11 +2943,13 @@ mod Game {
     fn __event_Composited(
         ref self: ContractState,
         adventurer_state_with_bag: AdventurerStateWithBag,
-        cost: AdventurerRes
+        cost: AdventurerRes,
+        res: AdventurerRes,
     ){
         self.emit(Composited {
             adventurer_state_with_bag,
-            cost
+            cost,
+            res,
         });
     }
 
