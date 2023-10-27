@@ -191,11 +191,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['connect_wallet', 'addItem', "composite"
+    ...mapActions(['connect_wallet', "composite"
     ]),
     ...mapMutations([
-      'setShowCrafting', "setCraftingIndex",
-      "setCraftingNumber", "setEquipmentShowDetail", "setFoodShowDetail",
+      'setShowCrafting', "setCraftingIndex","setAdventurerBag",
+      "setCraftingNumber",
     ]),
     init() {
       for (let i = 0; i < composite_config.length; i++) {
@@ -346,6 +346,7 @@ export default {
           })
         }
 
+        this.setAdventurerBag(bag);
         this.complate = true
       } catch (e) {
         console.log(e)

@@ -87,6 +87,9 @@ export const store = createStore({
         setAdventurerName(state, value) {
             state.adventurer.name = value;
         },
+        setAdventurerBag(state, value) {
+            state.adventurer.bag = value
+        },
         addLog(state, log) {
             state.adventurer.logs.push('addLog', log);
             state.showLogModal = true;
@@ -347,6 +350,7 @@ export const store = createStore({
                         break;
                     case "Composited":
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
+                        state.adventurer.bag = event.data.data.adventurerStateWithBag.bag;
                         break;
                     default:
                         ElMessage('unknown event: ' + event.name)
