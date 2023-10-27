@@ -31,18 +31,17 @@ export const items_config = [
     {"ID": 30, "NAME": "Ring(T5)", "ICON": "", "TYPE": 2, "SUBCLASS": 8, "SOURCE": 0, "STACK": 1},
 ];
 
-export const composite_config = [
-    {"ID": 21, "COMPOSITE": "3|1,7|10,14|10"},
-    {"ID": 22, "COMPOSITE": "4|1,7|20,14|10"},
-    {"ID": 23, "COMPOSITE": "15|20,8|20,14|20"},
-    {"ID": 24, "COMPOSITE": "6|20,16|10"},
-    {"ID": 25, "COMPOSITE": "5|20,15|10"},
-    {"ID": 26, "COMPOSITE": "5|20,16|20,14|20"},
-    {"ID": 27, "COMPOSITE": "5|20,15|20"},
-    {"ID": 28, "COMPOSITE": "5|20,6|10"},
-    {"ID": 29, "COMPOSITE": "15|20,16|20,17|20"},
-    {"ID": 30, "COMPOSITE": "15|20,16|20"},
-];
+export const composite_config =[
+    {"id":1,"name":21,"icon":"@/assets/images/set1.png","type":2,"subclass":9,"composite":"2|1,7|10,14|10"},
+    {"id":2,"name":26,"icon":"@/assets/images/set1.png","type":1,"subclass":1,"composite":"15|20,8|20,14|20"},
+    {"id":3,"name":21,"icon":"@/assets/images/set1.png","type":1,"subclass":2,"composite":"5|20,16|10"},
+    {"id":4,"name":31,"icon":"@/assets/images/set1.png","type":1,"subclass":3,"composite":"4|20,15|10"},
+    {"id":5,"name":36,"icon":"@/assets/images/set1.png","type":1,"subclass":4,"composite":"4|20,16|20,14|20"},
+    {"id":6,"name":12,"icon":"@/assets/images/set1.png","type":1,"subclass":5,"composite":"4|20,15|20"},
+    {"id":7,"name":41,"icon":"@/assets/images/set1.png","type":1,"subclass":6,"composite":"4|20,5|10"},
+    {"id":8,"name":1,"icon":"@/assets/images/set1.png","type":1,"subclass":7,"composite":"15|20,16|20,17|20"},
+    {"id":9,"name":2,"icon":"@/assets/images/set1.png","type":1,"subclass":8,"composite":"15|20,16|20"},
+]
 
 export const item_types = {
     materials: 1,
@@ -65,11 +64,3 @@ export const item_subtypes = {
     soup: 10
 }
 
-export const getItemConfigById=(id)=>{
-    for (let i=0;i<items_config.length;i++){
-        let item = items_config[i];
-        if(item.ID===id){
-            return item;
-        }
-    }
-}

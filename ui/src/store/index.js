@@ -1,6 +1,5 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
-import {item_subtypes} from "../config/item.js";
 import {formatAdventurerState, getCurrentTime, getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
@@ -29,79 +28,6 @@ export const store = createStore({
         currPage: 'login',
         currRole: {
             ingredientRecipe: [],
-            bag: {
-                equipments: [
-                    item_subtypes.hand = {
-                        icon: "images/ic1.png",
-                        name: "HEAD",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.head
-                    },
-                    item_subtypes.chest = {
-                        icon: "images/ic2.png",
-                        name: "CHEST",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.chest
-                    },
-                    item_subtypes.waist = {
-                        icon: "images/ic3.png",
-                        name: "WAIST",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.waist
-                    },
-                    {
-                        icon: "images/ic4.png",
-                        name: "FOOT",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.foot
-                    },
-                    {
-                        icon: "images/ic5.png",
-                        name: "WEAPON",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.weapon
-                    },
-                    {
-                        icon: "images/ic6.png",
-                        name: "HAND",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.hand
-                    },
-                    {
-                        icon: "images/ic6.png",
-                        name: "NECK",
-                        showDetails: false,
-                        list: [],
-                        subtype: item_subtypes.nick
-                    },
-                    {
-                        icon: "images/ic6.png",
-                        name: "RING",
-                        showDetails: false,
-                        list: []
-                    },
-                ],
-                foods: [
-                    {
-                        icon: "images/ic6.png",
-                        name: "ROAST MEAT",
-                        showDetails: false,
-                        list: []
-                    },
-                    {
-                        icon: "images/ic6.png",
-                        name: "FISH SOUP",
-                        showDetails: false,
-                        list: []
-                    },
-                ]
-            }
         },
         adventurers: [],
         adventurer: null
@@ -694,14 +620,14 @@ export const store = createStore({
         async drop_items(context, items) {
 
         },
-        async composite(context,) {
-            let config_id = 2;
-            let times = 2;
-            console.log("composite", context.state.adventurer?.id?.toString(),times.toString());
+        async composite(context,payload) {
+            let config_id = payload.config_id;
+            let times = payload.times;
+            console.log("composite", context.state.adventurer?.id?.toString(), "id=" + config_id, "times=" + times.toString());
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "composite",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", config_id.toString(),times.toString()],
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", config_id.toString(), times.toString()],
             }
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
