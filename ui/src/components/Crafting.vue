@@ -21,7 +21,7 @@
                   <h2 class="h2tit" @click="showDetail(index)"><img :src="equipment.icon" alt=""><span>{{
                       equipment.name
                     }}</span></h2>
-                  <dl :style="{ display: equipment.showDetails ? 'block' : 'block' }">
+                  <dl :style="{ display: equipment.showDetails ? 'block' : 'none' }">
                     <dd v-for="(item,index) in equipment.list" :key="index">
                       <a href="javascript:;" class="dis"
                          @click="doSelect(item)">{{ item.name }}</a>
@@ -129,42 +129,42 @@ export default {
             subtype: item_subtypes.head
           },
           'Chest': {
-            icon: "images/fd1.png",
+            icon: "images/fd2.png",
             name: "Chest",
             showDetails: false,
             list: [],
             subtype: item_subtypes.head
           },
           'Hand': {
-            icon: "images/ic1.png",
+            icon: "images/fd6.png",
             name: "Hand",
             showDetails: false,
             list: [],
             subtype: item_subtypes.head
           },
           'Waist': {
-            icon: "images/ic1.png",
+            icon: "images/fd3.png",
             name: "Waist",
             showDetails: false,
             list: [],
             subtype: item_subtypes.head
           },
           'Foot': {
-            icon: "images/ic1.png",
+            icon: "images/fd4.png",
             name: "Foot",
             showDetails: false,
             list: [],
             subtype: item_subtypes.head
           },
           'Head': {
-            icon: "images/ic1.png",
+            icon: "images/fd1.png",
             name: "Head",
             showDetails: false,
             list: [],
             subtype: item_subtypes.head
           },
           'Weapon': {
-            icon: "images/ic1.png",
+            icon: "images/fd5.png",
             name: "Weapon",
             showDetails: false,
             list: [],
@@ -205,6 +205,15 @@ export default {
           return {key: parseInt(key), value: parseInt(value)};
         });
         console.log(pairs);
+
+        if(comp.type==2){
+          this.configs.foods[0].list.push({
+            id: comp.id,
+            name:"ROAST MEAT",
+            pairs: pairs
+          })
+        }
+
         if (comp.type == 1) {
           let item_name = ITEMS[comp.id];
           let key = item_name.replace(' ', '');
@@ -271,35 +280,6 @@ export default {
 
           console.log(item_name, item_slot);
         }
-
-        // switch (target_define.SUBCLASS) {
-        //     case item_subtypes.hand:
-        //
-        //         break;
-        // }
-
-        // switch (target_define.TYPE) {
-        //   case item_types.equipments:
-        //     if (store.state.configs.equipments[target_define.SUBCLASS - 1]) {
-        //       store.state.configs.equipments[target_define.SUBCLASS - 1].list.push({
-        //         id: target_define.ID,
-        //         name: target_define.NAME,
-        //         pairs: pairs
-        //       })
-        //     }
-        //     break;
-        //   case item_types.foods:
-        //     if (store.state.configs.foods[target_define.SUBCLASS - 9]) {
-        //       store.state.configs.foods[target_define.SUBCLASS - 9].list.push({
-        //         id: target_define.ID,
-        //         name: target_define.NAME,
-        //         pairs: pairs
-        //       })
-        //     }
-        //     break;
-        // }
-
-
       }
 
     },
@@ -380,11 +360,12 @@ export default {
       // })
     },
     showDetail(subid) {
-
-      this.setEquipmentShowDetail(subid)
+      console.log("subid",subid)
+      this.configs.equipments[subid].showDetails=! this.configs.equipments[subid].showDetails
+      // this.setEquipmentShowDetail(subid)
     },
     showFoodDetail(subid) {
-      this.setFoodShowDetail(subid)
+      this.configs.foods[subid].showDetails=! this.configs.foods[subid].showDetails
     },
     async doSelect(item) {
       console.log("select", item)

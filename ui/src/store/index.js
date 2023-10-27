@@ -60,15 +60,6 @@ export const store = createStore({
             }
             state.craftingNumber = value;
         },
-        // addItem(state, value) {
-        //
-        // },
-        setEquipmentShowDetail(state, index) {
-            state.currRole.bag.equipments[index].showDetails = !state.currRole.bag.equipments[index].showDetails
-        },
-        setFoodShowDetail(state, index) {
-            state.currRole.bag.foods[index].showDetails = !state.currRole.bag.foods[index].showDetails
-        },
         setAdventures(state, value) {
             state.adventurers = value;
         },
@@ -355,7 +346,7 @@ export const store = createStore({
 
                         break;
                     case "Composited":
-
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
                         break;
                     default:
                         ElMessage('unknown event: ' + event.name)
