@@ -150,10 +150,47 @@ mod Game {
         fn composite(ref self: ContractState,adventurer_id: u256,config_id:felt252){
             if(config_id==1){
                 let cost =  AdventurerRes{ egg: 1, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 1, last_timestamp: 0 };
                 _composite( ref self,adventurer_id,cost,0);
             }
             if(config_id==2){
                 let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==3){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==4){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==5){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==6){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==7){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==8){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost,26);
+            }
+            if(config_id==9){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                let rewrd =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
                 _composite( ref self,adventurer_id,cost,26);
             }
         }
@@ -1114,6 +1151,7 @@ mod Game {
         ref self: ContractState,
         adventurer_id: u256,
         cost:AdventurerRes,
+        reward:AdventurerRes,
         new_item_id:u8,
     ){
 
@@ -1147,6 +1185,28 @@ mod Game {
         res.platinum = res.platinum - cost.platinum;
         res.roast_meat = res.roast_meat - cost.roast_meat;
 
+        res.egg = res.egg + reward.egg;
+        res.meat = res.meat + reward.meat;
+        res.fish = res.fish + reward.fish;
+        res.soft_skin = res.soft_skin + reward.soft_skin;
+        res.coal = res.coal + reward.coal;
+        res.berry = res.berry + reward.berry;
+        res.bamboo = res.bamboo + reward.bamboo;
+        res.balsa_wood = res.balsa_wood + reward.balsa_wood;
+        res.fir_wood = res.fir_wood + reward.fir_wood;
+        res.teak = res.teak + reward.teak;
+        res.hemlock = res.hemlock + reward.hemlock;
+        res.mahogany = res.mahogany + reward.mahogany;
+        res.pine = res.pine + reward.pine;
+        res.coal = res.coal + reward.coal;
+        res.copper = res.copper + reward.copper;
+        res.iron = res.iron + reward.iron;
+        res.silver = res.silver + reward.silver;
+        res.sterling_silver = res.sterling_silver + reward.sterling_silver;
+        res.graphite = res.graphite + reward.graphite;
+        res.platinum = res.platinum + reward.platinum;
+        res.roast_meat = res.roast_meat + reward.roast_meat;
+
         _pack_adventurer_res(ref self,adventurer_id,res);
 
         let mut bag = _bag_unpacked(@self, adventurer_id);
@@ -1161,7 +1221,7 @@ mod Game {
 
         let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
 
-        __event_Composited(ref self, adventurer_state_with_bag,cost,res );
+        __event_Composited(ref self, adventurer_state_with_bag,cost,res,reward);
 
         // pack and save adventurer
         _pack_adventurer_remove_stat_boost(
@@ -2763,6 +2823,7 @@ mod Game {
         adventurer_state_with_bag: AdventurerStateWithBag,
         cost: AdventurerRes,
         res: AdventurerRes,
+        reward: AdventurerRes,
     }
 
     #[derive(Drop, starknet::Event)]
@@ -2934,11 +2995,13 @@ mod Game {
         adventurer_state_with_bag: AdventurerStateWithBag,
         cost: AdventurerRes,
         res: AdventurerRes,
+        reward: AdventurerRes,
     ){
         self.emit(Composited {
             adventurer_state_with_bag,
             cost,
             res,
+            reward,
         });
     }
 

@@ -724,8 +724,8 @@ export async function parseEvents(receipt) {
                     }
                 });
                 break;
-            case "Composed":
-                console.log("Composed", raw.data);
+            case "Composited":
+                console.log("Composited", raw.data);
                 const ComposedData = {
                     adventurerStateWithBag: {
                         adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
