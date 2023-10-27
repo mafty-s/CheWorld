@@ -47,7 +47,7 @@ mod Game {
         adventurer::{Adventurer, ImplAdventurer, IAdventurer}, adventurer_stats::{Stats, StatUtils},
         item_primitive::{ImplItemPrimitive, ItemPrimitive}, bag::{Bag, IBag, ImplBag},
         adventurer_meta::{AdventurerMetadata}, exploration::ExploreUtils,
-        adventurer_res::{AdventurerRes,get_cost_by_id},
+        adventurer_res::{AdventurerRes},
         constants::{
             discovery_constants::DiscoveryEnums::{ExploreResult, DiscoveryType},
             adventurer_constants::{
@@ -146,79 +146,17 @@ mod Game {
 
     #[external(v0)]
     impl Game of IGame<ContractState> {
+
         fn composite(ref self: ContractState,adventurer_id: u256,config_id:felt252){
-
-
-            let cost = get_cost_by_id(config_id);
-            let new_item_id = 26;
-// match config_id {
-//                 0 => { 0 },
-//                 1 => { 0 },
-//                 2 => { 26 },
-//                 3 => { 21 },
-//                 4 => { 31 },
-//                 5 => { 36 },
-//                 6 => { 12 },
-//                 7 => { 41 },
-//                 8 => { 1 },
-//                 9 => { 2 },
-//                 _ => { 0 },
-//             };
-
-            ////////////////////////////////////////////////////////////////////////////////////////
-
-            let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
-                @self, adventurer_id
-            );
-
-            _assert_ownership(@self, adventurer_id);
-            _assert_not_dead(adventurer);
-
-            let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
-            res.egg = res.egg - cost.egg;
-            res.meat = res.meat - cost.meat;
-            res.fish = res.fish - cost.fish;
-            res.soft_skin = res.soft_skin - cost.soft_skin;
-            res.coal = res.coal - cost.coal;
-            res.berry = res.berry - cost.berry;
-            res.bamboo = res.bamboo - cost.bamboo;
-            res.balsa_wood = res.balsa_wood - cost.balsa_wood;
-            res.fir_wood = res.fir_wood - cost.fir_wood;
-            res.teak = res.teak - cost.teak;
-            res.hemlock = res.hemlock - cost.hemlock;
-            res.mahogany = res.mahogany - cost.mahogany;
-            res.pine = res.pine - cost.pine;
-            res.coal = res.coal - cost.coal;
-            res.copper = res.copper - cost.copper;
-            res.iron = res.iron - cost.iron;
-            res.silver = res.silver - cost.silver;
-            res.sterling_silver = res.sterling_silver - cost.sterling_silver;
-            res.graphite = res.graphite - cost.graphite;
-            res.platinum = res.platinum - cost.platinum;
-            res.roast_meat = res.roast_meat - cost.roast_meat;
-
-            _pack_adventurer_res(ref self,adventurer_id,res);
-
-            let mut bag = _bag_unpacked(@self, adventurer_id);
-            if(new_item_id != 0){
-                bag.add_new_item(adventurer, new_item_id);
+            if(config_id==1){
+                let cost =  AdventurerRes{ egg: 1, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost);
             }
-
-
-            let adventurer_state = AdventurerState {
-                owner: get_caller_address(), adventurer_id, adventurer
-            };
-
-            let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
-
-            __event_Composited(ref self, adventurer_state_with_bag,cost,res );
-
-            // pack and save adventurer
-            _pack_adventurer_remove_stat_boost(
-                ref self, ref adventurer, adventurer_id, stat_boosts
-            );
+            if(config_id==2){
+                let cost =  AdventurerRes{ egg: 2, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
+                _composite( ref self,adventurer_id,cost);
+            }
         }
-
 
         fn harvesting(ref self: ContractState,adventurer_id: u256){
 
@@ -1169,6 +1107,64 @@ mod Game {
                 client: ClientReward { amount: week.INTERFACE, address: client_address },
                 dao: week.DAO
             }
+        );
+    }
+
+    fn _composite(
+        ref self: ContractState,
+        adventurer_id: u256,
+        cost:AdventurerRes){
+        let new_item_id = 26;
+
+        let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
+            @self, adventurer_id
+        );
+
+        _assert_ownership(@self, adventurer_id);
+        _assert_not_dead(adventurer);
+
+        let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+        res.egg = res.egg - cost.egg;
+        res.meat = res.meat - cost.meat;
+        res.fish = res.fish - cost.fish;
+        res.soft_skin = res.soft_skin - cost.soft_skin;
+        res.coal = res.coal - cost.coal;
+        res.berry = res.berry - cost.berry;
+        res.bamboo = res.bamboo - cost.bamboo;
+        res.balsa_wood = res.balsa_wood - cost.balsa_wood;
+        res.fir_wood = res.fir_wood - cost.fir_wood;
+        res.teak = res.teak - cost.teak;
+        res.hemlock = res.hemlock - cost.hemlock;
+        res.mahogany = res.mahogany - cost.mahogany;
+        res.pine = res.pine - cost.pine;
+        res.coal = res.coal - cost.coal;
+        res.copper = res.copper - cost.copper;
+        res.iron = res.iron - cost.iron;
+        res.silver = res.silver - cost.silver;
+        res.sterling_silver = res.sterling_silver - cost.sterling_silver;
+        res.graphite = res.graphite - cost.graphite;
+        res.platinum = res.platinum - cost.platinum;
+        res.roast_meat = res.roast_meat - cost.roast_meat;
+
+        _pack_adventurer_res(ref self,adventurer_id,res);
+
+        let mut bag = _bag_unpacked(@self, adventurer_id);
+        if(new_item_id != 0){
+            bag.add_new_item(adventurer, new_item_id);
+        }
+
+
+        let adventurer_state = AdventurerState {
+            owner: get_caller_address(), adventurer_id, adventurer
+        };
+
+        let adventurer_state_with_bag = AdventurerStateWithBag { adventurer_state, bag };
+
+        __event_Composited(ref self, adventurer_state_with_bag,cost,res );
+
+        // pack and save adventurer
+        _pack_adventurer_remove_stat_boost(
+            ref self, ref adventurer, adventurer_id, stat_boosts
         );
     }
 
@@ -2884,6 +2880,7 @@ mod Game {
         amount: u256,
         address: ContractAddress,
     }
+
 
     fn __event_RewardDistribution(ref self: ContractState, event: RewardDistribution) {
         self.emit(event);
