@@ -55,35 +55,33 @@
             <div class="title">Ingredient Recipe</div>
             <div class="list">
               <ul>
-               <li v-for="(item,index) in selected.pairs" :key="index">
-                 <img src="@/assets/images/set1.png" alt="">
-                 <div class="num">{{ item[1]}}</div>
-               </li>
+                <li v-for="(item,index) in selected.pairs" :key="index">
+                  <img src="@/assets/images/set1.png" alt="">
+                  <div class="num">{{ item[1] }}</div>
+                </li>
               </ul>
             </div>
-            <div class="title2"><img src="@/assets/images/ic1.png" alt=""><span>{{selected.name}}</span></div>
+            <div class="title2"><img src="@/assets/images/ic1.png" alt=""><span>{{ selected.name }}</span></div>
             <div class="num">
               <i class="ic1" @click="decrCraftingNumber"></i>
               <input type="text" :value="craftingNumber" class="words">
               <i class="ic2" @click="incrCraftingNumber"></i>
             </div>
-            <a href="javascript:;" class="Craft" @click="doCrafting">Craft</a>
+            <a href="javascript:;" v-loading="loading" class="Craft" @click="doCrafting">Craft</a>
           </div>
 
           <div class="type2" v-if="complate">
             <div class="title">Crafting Complete</div>
             <div class="list2">
               <ul>
-                <li>
+                <li v-for="(item,index) in addedItems" :key="index">
                   <div class="infor1">
                     <div class="icon"><img src="@/assets/images/ic1.png" alt=""></div>
-                    <div class="tit">Feathered Crest</div>
+                    <div class="tit">{{item.name}}</div>
                   </div>
                   <div class="dec">
-                    <p>Healthy:+20</p>
-                    <p>power:+20</p>
-                    <p>Healthy:+20</p>
-                    <p>power:+20</p>
+                    <p>TIERS:{{item.tiers}}</p>
+                    <p>XP: 0</p>
                   </div>
                 </li>
               </ul>
@@ -101,7 +99,7 @@
 import {mapActions, mapMutations, mapState} from "vuex";
 import {ElMessage} from "element-plus";
 import {composite_config, item_subtypes} from "@/config/item.js";
-import {ITEM_SLOTS, ITEMS} from "@/system/GameData.js";
+import {ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
 
 export default {
   name: 'CraftingComponent',
@@ -109,7 +107,7 @@ export default {
   mounted() {
     this.init();
   },
-  computed: mapState(['wallet_address', "currRole", "craftingIndex", "craftingNumber"]),
+  computed: mapState(['wallet_address', "adventurer", "craftingIndex", "craftingNumber"]),
   data() {
     return {
       selected: null,
@@ -187,7 +185,9 @@ export default {
             list: []
           },
         ]
-      }
+      },
+      loading: false,
+      addedItems: [],
     }
   },
   methods: {
@@ -312,13 +312,65 @@ export default {
     decrCraftingNumber() {
       this.setCraftingNumber(this.craftingNumber - 1);
     },
+    diffBags(bag1, bag2) {
+      const removedItems = [];
+      const addedItems = [];
+
+      for (const item in bag1) {
+        if (item === "mutated") {
+          continue;
+        }
+        if (bag1[item].id === 0) {
+          removedItems.push(item);
+        }
+      }
+
+      for (const item in bag2) {
+        if (item === "mutated") {
+          continue;
+        }
+        if (bag2[item].id !== 0) {
+          addedItems.push(item);
+        }
+      }
+
+      return {
+        removedItems,
+        addedItems,
+      };
+    },
     async doCrafting() {
       // console.log(id, name, pairs)
+      if (this.loading === true) {
+        return;
+      }
       try {
-        await this.composite({config_id: 1, times: this.craftingNumber});
+        this.loading = true;
+        let events = await this.composite({config_id: this.selected.id, times: this.craftingNumber});
+        let event = events[0];
+        let bag = event.data.data.adventurerStateWithBag.bag;
+        console.log(bag);
+        let diff = this.diffBags(this.adventurer.bag, bag);
+        console.log(diff);
+        if (diff.length > 0) {
+          this.showInformation = true;
+        }
+
+        for(let i=0;i<diff.addedItems.length;i++){
+          let key = diff.addedItems[i];
+          let info = bag[key];
+          this.addedItems.push({
+            'id':info.id,
+            'name':ITEMS[info.id],
+            'tiers':ITEM_TIERS[ITEMS[info.id]]
+          })
+        }
+
         this.complate = true
       } catch (e) {
         console.log(e)
+      } finally {
+        this.loading = false;
       }
 
 
@@ -335,7 +387,7 @@ export default {
       this.setFoodShowDetail(subid)
     },
     async doSelect(item) {
-      console.log("select",item)
+      console.log("select", item)
       // await this.addItem();
       // ElMessage({
       //   message: 'Congrats, this is a success message.',
@@ -352,5 +404,13 @@ export default {
 </script>
 
 <style scoped>
+#tab1 > div.right > div > div.list > ul > li > img {
+  object-fit: contain;
+  height: 100%;
+}
 
+.num {
+  height: 10px;
+//background: red; //position: absolute; //color: white; //text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black; //right: 10px; //bottom: 10px; //z-index: 44; //font-size: 14px;
+}
 </style>

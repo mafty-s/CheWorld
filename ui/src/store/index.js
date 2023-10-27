@@ -121,32 +121,19 @@ export const store = createStore({
                             gold: 0,
                             health: 100,
                             statUpgrades: 0,
-                            battles: [
-                                {
-                                    "adventurerHealth": 100,  // 冒险者生命值
-                                    "adventurerId": 5,  // 冒险者ID
-                                    "attacker": "Beast",  // 攻击者
-                                    "beast": "Fairy",  // 兽类
-                                    "beastHealth": 5,  // 兽类生命值
-                                    "beastLevel": 1,  // 兽类等级
-                                    "blockTime": "2023-09-22T14:57:31.870Z",  // 区块时间
-                                    "criticalHit": false,  // 是否暴击
-                                    "damageDealt": 0,  // 造成伤害
-                                    "damageLocation": "Foot",  // 伤害位置
-                                    "damageTaken": 10,  // 承受伤害
-                                    "discoveryTime": "2023-09-22T14:57:31.870Z",  // 发现时间
-                                    "fled": false,  // 是否逃跑
-                                    "goldEarned": 0,  // 获得金币
-                                    "seed": "0x0000000000000000000000000000000000000000000000000000000000000000",  // 种子
-                                    "special1": null,  // 特殊属性1
-                                    "special2": null,  // 特殊属性2
-                                    "special3": null,  // 特殊属性3
-                                    "timestamp": "2023-09-22T14:57:31.870Z",  // 时间戳
-                                    "txHash": "0x02063f1a064203b50ecd3e25f092aa5423c31ab49401dd5193364faab6aded25",  // 交易哈希
-                                    "xpEarnedAdventurer": 0,  // 冒险者获得经验值
-                                    "xpEarnedItems": 0  // 物品获得经验值
-                                }
-                            ],
+                            bag: {
+                                item1: {id: 0, xp: 0, metadata: 0},
+                                item2: {id: 0, xp: 0, metadata: 0},
+                                item3: {id: 0, xp: 0, metadata: 0},
+                                item4: {id: 0, xp: 0, metadata: 0},
+                                item5: {id: 0, xp: 0, metadata: 0},
+                                item6: {id: 0, xp: 0, metadata: 0},
+                                item7: {id: 0, xp: 0, metadata: 0},
+                                item8: {id: 0, xp: 0, metadata: 0},
+                                item9: {id: 0, xp: 0, metadata: 0},
+                                item10: {id: 0, xp: 0, metadata: 0},
+                                item11: {id: 0, xp: 0, metadata: 0}
+                            },
                             logs: []
                         };
                         state.adventurer = ad;
@@ -365,6 +352,9 @@ export const store = createStore({
                             context: "Mining successfully obtained ore!",
                             tx_hash: event.data.transaction_hash
                         })
+
+                        break;
+                    case "Composited":
 
                         break;
                     default:
@@ -620,7 +610,7 @@ export const store = createStore({
         async drop_items(context, items) {
 
         },
-        async composite(context,payload) {
+        async composite(context, payload) {
             let config_id = payload.config_id;
             let times = payload.times;
             console.log("composite", context.state.adventurer?.id?.toString(), "id=" + config_id, "times=" + times.toString());
@@ -644,6 +634,7 @@ export const store = createStore({
             console.log('events', events);
 
             context.commit("doEvents", events)
+            return events;
         },
         async harvesting(context) {
             const mintAdventurerTx = {
