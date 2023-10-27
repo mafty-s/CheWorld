@@ -6,7 +6,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
 
-export const contract_address = "0x00314e8a38ea8f6ff71a456bcfb395df0063db26060f58cd6c7e6c593a74eba0";
+export const contract_address = "0x06f062ec6e2669aef94d24b82ad3dbc800f46204c198359a4ac99256b70c30cd";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 import {BEASTS} from "../system/GameData.js";
@@ -695,11 +695,12 @@ export const store = createStore({
 
         },
         async composite(context, ) {
+            let config_id =2;
             console.log("composite",context.state.adventurer?.id?.toString() );
             const mintAdventurerTx = {
                 contractAddress: contract_address,
-                entrypoint: "composite2",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", ],
+                entrypoint: "composite",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0",config_id.toString() ],
             }
 
             const tx = await context.state.account?.execute(mintAdventurerTx);

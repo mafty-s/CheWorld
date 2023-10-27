@@ -179,6 +179,34 @@ function parseItemLevels(data) {
     }
     return itemLevels;
 }
+
+function parseAdventurerRes(data) {
+    return {
+        egg: parseInt(data[0]),
+        meat: parseInt(data[1]),
+        fish: parseInt(data[2]),
+        soft_skin: parseInt(data[3]),
+        crusty: parseInt(data[4]),
+        berry: parseInt(data[5]),
+        bamboo: parseInt(data[6]),
+        balsa_wood: parseInt(data[7]),
+        fir_wood: parseInt(data[8]),
+        teak: parseInt(data[9]),
+        hemlock: parseInt(data[10]),
+        mahogany: parseInt(data[11]),
+        pine: parseInt(data[12]),
+        coal: parseInt(data[13]),
+        copper: parseInt(data[14]),
+        iron: parseInt(data[15]),
+        silver: parseInt(data[16]),
+        sterling_silver: parseInt(data[17]),
+        graphite: parseInt(data[18]),
+        platinum: parseInt(data[19]),
+        roast_meat: parseInt(data[20]),
+        last_timestamp: parseInt(data[21]),
+    };
+}
+
 export async function parseEvents(receipt) {
     if (!receipt.events) {
         throw new Error(`No events found`);
@@ -684,83 +712,31 @@ export async function parseEvents(receipt) {
                 break;
             case "ResUpdate":
                 console.log("ResUpdate", raw.data);
-
-                //     struct AdventurerRes {
-                //     egg:u16,//9 bits
-                //         meat:u16,
-                //         fish:u16,
-                //         soft_skin:u16,
-                //         crusty:u16,
-                //         berry:u16,
-                //         bamboo:u16,
-                //         balsa_wood:u16,
-                //         fir_wood:u16,
-                //         teak:u16,
-                //         hemlock:u16,
-                //         mahogany:u16,
-                //         pine:u16,
-                //         coal:u16,
-                //         copper:u16,
-                //         iron:u16,
-                //         silver:u16,
-                //         sterling_silver:u16,
-                //         graphite:u16,
-                //         platinum:u16,
-                //         last_timestamp:u64,
-                // }
                 const ResUpdateData = {
-
-                    adventurer_res: {
-                        egg: parseInt(raw.data[0]),
-                        meat: parseInt(raw.data[1]),
-                        fish: parseInt(raw.data[2]),
-                        soft_skin: parseInt(raw.data[3]),
-                        crusty: parseInt(raw.data[4]),
-                        berry: parseInt(raw.data[5]),
-                        bamboo: parseInt(raw.data[6]),
-                        balsa_wood: parseInt(raw.data[7]),
-                        fir_wood: parseInt(raw.data[8]),
-                        teak: parseInt(raw.data[9]),
-                        hemlock: parseInt(raw.data[10]),
-                        mahogany: parseInt(raw.data[11]),
-                        pine: parseInt(raw.data[12]),
-                        coal: parseInt(raw.data[13]),
-                        copper: parseInt(raw.data[14]),
-                        iron: parseInt(raw.data[15]),
-                        silver: parseInt(raw.data[16]),
-                        sterling_silver: parseInt(raw.data[17]),
-                        graphite: parseInt(raw.data[18]),
-                        platinum: parseInt(raw.data[19]),
-                        roast_meat: parseInt(raw.data[20]),
-                        last_timestamp: parseInt(raw.data[21]),
-                    },
-                    changed: {
-                        egg: parseInt(raw.data[22]),
-                        meat: parseInt(raw.data[23]),
-                        fish: parseInt(raw.data[24]),
-                        soft_skin: parseInt(raw.data[25]),
-                        crusty: parseInt(raw.data[26]),
-                        berry: parseInt(raw.data[27]),
-                        bamboo: parseInt(raw.data[28]),
-                        balsa_wood: parseInt(raw.data[29]),
-                        fir_wood: parseInt(raw.data[30]),
-                        teak: parseInt(raw.data[31]),
-                        hemlock: parseInt(raw.data[32]),
-                        mahogany: parseInt(raw.data[33]),
-                        pine: parseInt(raw.data[34]),
-                        coal: parseInt(raw.data[35]),
-                        copper: parseInt(raw.data[36]),
-                        iron: parseInt(raw.data[37]),
-                        silver: parseInt(raw.data[38]),
-                        sterling_silver: parseInt(raw.data[39]),
-                        graphite: parseInt(raw.data[40]),
-                        platinum: parseInt(raw.data[41]),
-                        last_timestamp: parseInt(raw.data[42]),
-                    }
+                    adventurer_res: parseAdventurerRes(raw.data.slice(0,21)),
+                    changed:  parseAdventurerRes(raw.data.slice(22, 43)),
                 };
                 events.push({
                     name: eventName, data: {
                         data: ResUpdateData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
+                break;
+            case "Composed":
+                console.log("Composed", raw.data);
+                const ComposedData = {
+                    adventurerStateWithBag: {
+                        adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                        bag: parseBag(raw.data.slice(40, 73)),
+                    },
+                    cost:  parseAdventurerRes(raw.data.slice(74, 95)),
+                    res:  parseAdventurerRes(raw.data.slice(96, 117)),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: ComposedData,
                         event_name: eventName,
                         transaction_hash: receipt.transaction_hash
                     }
